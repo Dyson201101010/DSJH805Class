@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -70,6 +71,12 @@
       display: inline-block;
       margin-top: 1rem;
     }
+
+    #photo-list img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -92,6 +99,12 @@
   <section class="section" id="calendar">
     <h2>班級行事曆 / Class Calendar</h2>
     <p id="calendar-text">日後將隨更新推出 / Will be released in future updates</p>
+  </section>
+
+  <section class="section" id="photos">
+    <h2>照片專區 / Photo Gallery</h2>
+    <p id="photo-empty">目前無內容 / No content yet</p>
+    <div id="photo-list" style="display:none;"></div>
   </section>
 
   <footer>
@@ -134,7 +147,31 @@
         currentLang === 'zh'
           ? '此網站為學生自行製作，非東新國中官方製作。<br>This website is created by students and not officially affiliated with Dongxin Junior High School.'
           : 'This website is created by students and not officially affiliated with Dongxin Junior High School.<br>此網站為學生自行製作，非東新國中官方製作。';
+
+      document.querySelector('#photos h2').textContent =
+        currentLang === 'zh' ? '照片專區 / Photo Gallery' : 'Photo Gallery / 照片專區';
     }
+
+    // 照片區塊管理
+    const photoList = document.getElementById('photo-list');
+    const photoEmpty = document.getElementById('photo-empty');
+
+    function addPhoto(url) {
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.maxWidth = '100%';
+      img.style.borderRadius = '8px';
+      img.style.marginTop = '1rem';
+
+      photoList.appendChild(img);
+
+      photoList.style.display = 'block';
+      photoEmpty.style.display = 'none';
+    }
+
+    // 範例：你要新增照片時，可取消下面註解並改成你的照片網址
+    // addPhoto('https://example.com/photo1.jpg');
+    // addPhoto('https://example.com/photo2.jpg');
   </script>
 </body>
 </html>
