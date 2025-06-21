@@ -1,5 +1,3 @@
-<!-- Updated version with full English version layout and animation -->
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -116,7 +114,6 @@
       cursor: pointer;
       user-select: none;
     }
-    .en { display: none; }
   </style>
 </head>
 <body>
@@ -126,11 +123,15 @@
 
   <main>
     <div class="left-col">
-      <section class="zh">
+      <section>
         <h2>課表</h2>
         <div class="schedule-wrapper">
           <table>
-            <thead><tr><th>星期</th><th>第一節</th><th>第二節</th><th>第三節</th><th>第四節</th><th>中午</th><th>第五節</th><th>第六節</th><th>第七節</th><th>第八節</th></tr></thead>
+            <thead>
+              <tr>
+                <th>星期</th><th>第一節</th><th>第二節</th><th>第三節</th><th>第四節</th><th>中午</th><th>第五節</th><th>第六節</th><th>第七節</th><th>第八節</th>
+              </tr>
+            </thead>
             <tbody>
               <tr><td>星期一</td><td>閱讀</td><td>表演</td><td>國文</td><td>數學</td><td>午餐</td><td>自然</td><td>家政</td><td>科技</td><td>英文複習</td></tr>
               <tr><td>星期二</td><td>健康</td><td>體育</td><td>童軍</td><td>國文</td><td>午餐</td><td>音樂</td><td>作家</td><td>數學</td><td>數學複習</td></tr>
@@ -141,43 +142,33 @@
           </table>
         </div>
       </section>
-      <section class="en">
-        <h2>Class Schedule</h2>
-        <div class="schedule-wrapper">
-          <table>
-            <thead><tr><th>Day</th><th>Period 1</th><th>Period 2</th><th>Period 3</th><th>Period 4</th><th>Lunch</th><th>Period 5</th><th>Period 6</th><th>Period 7</th><th>Period 8</th></tr></thead>
-            <tbody>
-              <tr><td>Monday</td><td>Reading</td><td>Performance</td><td>Chinese</td><td>Math</td><td>Lunch</td><td>Science</td><td>Home Ec</td><td>Tech</td><td>English Review</td></tr>
-              <tr><td>Tuesday</td><td>Health</td><td>PE</td><td>Scouts</td><td>Chinese</td><td>Lunch</td><td>Music</td><td>Author</td><td>Math</td><td>Math Review</td></tr>
-              <tr><td>Wednesday</td><td>Min Nan</td><td>Science</td><td>Counseling</td><td>Geography</td><td>Lunch</td><td>Visual</td><td>Chinese</td><td>English</td><td>Chinese Review</td></tr>
-              <tr><td>Thursday</td><td>Chinese</td><td>FUN Learning</td><td>Math</td><td>Science</td><td>Lunch</td><td>IT</td><td>History</td><td>English</td><td>Science Review</td></tr>
-              <tr><td>Friday</td><td>English</td><td>Chinese</td><td>Civics</td><td>PE</td><td>Lunch</td><td>Class Meeting</td><td>Math</td><td>Club</td><td>Club</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
     </div>
     <div class="right-col">
-      <section class="zh"><h2>重要事項</h2><p style="text-align:center">目前無內容。</p></section>
-      <section class="en"><h2>Important Announcements</h2><p style="text-align:center">No content available.</p></section>
+      <section>
+        <h2>重要事項</h2>
+        <p style="text-align:center">目前無內容。</p>
+      </section>
 
-      <section class="zh"><h2>班級照片</h2><p style="text-align:center">目前無內容。</p></section>
-      <section class="en"><h2>Class Photos</h2><p style="text-align:center">No content available.</p></section>
+      <section>
+        <h2>班級照片</h2>
+        <p style="text-align:center">目前無內容。</p>
+      </section>
 
-      <section class="zh" id="officers">
+      <section id="officers">
         <h2>班級幹部</h2>
         <ul>
-          <li>班長：12號</li><li>副班長：2號</li><li>風紀股長：21號</li><li>副風紀股長：3號</li><li>總務股長：24號</li>
-          <li>副總務股長：23號</li><li>衛生股長：17號</li><li>學藝股長：7號</li><li>導師秘書：N/A</li>
-          <li>午餐股長：5號</li><li>輔導股長：10號</li><li>康樂股長：18號</li>
-        </ul>
-      </section>
-      <section class="en" id="officers">
-        <h2>Class Officers</h2>
-        <ul>
-          <li>Leader: No.12</li><li>Vice Leader: No.2</li><li>Discipline Leader: No.21</li><li>Vice Discipline: No.3</li><li>General Affairs Leader: No.24</li>
-          <li>Vice General Affairs: No.23</li><li>Health Leader: No.17</li><li>Arts Leader: No.7</li><li>Teacher Secretary: N/A</li>
-          <li>Lunch Leader: No.5</li><li>Counseling Leader: No.10</li><li>Recreation Leader: No.18</li>
+          <li>班長：12號</li>
+          <li>副班長：2號</li>
+          <li>風紀股長：21號</li>
+          <li>副風紀股長：3號</li>
+          <li>總務股長：24號</li>
+          <li>副總務股長：23號</li>
+          <li>衛生股長：17號</li>
+          <li>學藝股長：7號</li>
+          <li>導師秘書：N/A</li>
+          <li>午餐股長：5號</li>
+          <li>輔導股長：10號</li>
+          <li>康樂股長：18號</li>
         </ul>
       </section>
     </div>
@@ -185,30 +176,7 @@
 
   <footer>
     <div id="footer-text">此網站為學生自行製作，非東新國中官方製作。</div>
-    <div class="lang-switcher" onclick="toggleLang()">切換語言 / Switch Language</div>
+    <div class="lang-switcher">切換語言 / Switch Language</div>
   </footer>
-
-  <script>
-    let currentLang = 'zh';
-    function toggleLang() {
-      const zhEls = document.querySelectorAll('.zh');
-      const enEls = document.querySelectorAll('.en');
-      const title = document.querySelector('#title');
-      const footer = document.querySelector('#footer-text');
-      if (currentLang === 'zh') {
-        zhEls.forEach(el => el.style.display = 'none');
-        enEls.forEach(el => el.style.display = 'block');
-        title.textContent = 'DSJH 705 Class Website';
-        footer.textContent = 'This website is created by students and not officially affiliated with Dongxin Junior High School.';
-        currentLang = 'en';
-      } else {
-        zhEls.forEach(el => el.style.display = 'block');
-        enEls.forEach(el => el.style.display = 'none');
-        title.textContent = 'DSJH 705 班級網站';
-        footer.textContent = '此網站為學生自行製作，非東新國中官方製作。';
-        currentLang = 'zh';
-      }
-    }
-  </script>
 </body>
 </html>
