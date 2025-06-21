@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSJH 705 班級網站</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -36,7 +36,6 @@
 
     h1 {
       font-size: 2.5rem;
-      font-weight: 700; /* 加粗 */
     }
 
     .section {
@@ -45,7 +44,7 @@
       background: rgba(255, 255, 255, 0.85);
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       opacity: 0;
       transform: translateY(50px);
       transition: all 1s ease;
@@ -57,42 +56,16 @@
       transform: translateY(0);
     }
 
-    /* 標題置中 */
-    .section h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-
-    /* 內容文字置中對齊 */
-    .section p,
-    .section ul {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #333;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* 列表間距調整 */
-    .section ul li {
-      margin: 0.3rem 0;
-      white-space: normal; /* 自動換行 */
-      font-size: 1rem;
-    }
-
     footer {
       text-align: center;
       padding: 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255,255,255,0.8);
       font-size: 0.9rem;
       margin-top: 2rem;
     }
 
     .lang-switcher {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255,255,255,0.8);
       padding: 0.5rem 1rem;
       border-radius: 8px;
       cursor: pointer;
@@ -100,24 +73,60 @@
       margin-top: 1rem;
     }
 
-    /* 表格置中，保持固定寬度，且可橫向滾動 */
     table {
       border-collapse: collapse;
-      margin: 1rem auto 0 auto;
+      margin: 0 auto;
+      margin-top: 1rem;
       min-width: 1000px;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid #999;
       padding: 10px;
       text-align: center;
       white-space: nowrap;
-      font-size: 0.95rem;
     }
 
     th {
       background-color: #f0f0f0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 以下是調整段落和列表置中且對齊的CSS */
+    .section p, 
+    .section ul {
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      list-style-position: inside;
+    }
+
+    .section ul {
+      max-width: 400px;
+    }
+
+    .section ul li {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 0.3rem 0;
+      white-space: normal;
     }
   </style>
 </head>
@@ -144,66 +153,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>星期一</td>
-          <td>閱讀</td>
-          <td>表演</td>
-          <td>國文</td>
-          <td>數學</td>
-          <td>午餐/午休</td>
-          <td>自然科學</td>
-          <td>家政</td>
-          <td>生活科技</td>
-          <td>英文複習</td>
-        </tr>
-        <tr>
-          <td>星期二</td>
-          <td>健康</td>
-          <td>體育</td>
-          <td>童軍</td>
-          <td>國文</td>
-          <td>午餐/午休</td>
-          <td>音樂</td>
-          <td>作家</td>
-          <td>數學</td>
-          <td>數學複習</td>
-        </tr>
-        <tr>
-          <td>星期三</td>
-          <td>閩南語</td>
-          <td>自然科學</td>
-          <td>輔導</td>
-          <td>地理</td>
-          <td>午餐/午休</td>
-          <td>視覺</td>
-          <td>國文</td>
-          <td>英文</td>
-          <td>國文複習</td>
-        </tr>
-        <tr>
-          <td>星期四</td>
-          <td>國文</td>
-          <td>FUN學</td>
-          <td>數學</td>
-          <td>自然科學</td>
-          <td>午餐/午休</td>
-          <td>資訊科技</td>
-          <td>歷史</td>
-          <td>英文</td>
-          <td>自然複習</td>
-        </tr>
-        <tr>
-          <td>星期五</td>
-          <td>英文</td>
-          <td>國文</td>
-          <td>公民</td>
-          <td>體育</td>
-          <td>午餐/午休</td>
-          <td>班會</td>
-          <td>數學</td>
-          <td>社團</td>
-          <td>社團</td>
-        </tr>
+        <tr><td>星期一</td><td>閱讀</td><td>表演</td><td>國文</td><td>數學</td><td>午餐/午休</td><td>自然科學</td><td>家政</td><td>生活科技</td><td>英文複習</td></tr>
+        <tr><td>星期二</td><td>健康</td><td>體育</td><td>童軍</td><td>國文</td><td>午餐/午休</td><td>音樂</td><td>作家</td><td>數學</td><td>數學複習</td></tr>
+        <tr><td>星期三</td><td>閩南語</td><td>自然科學</td><td>輔導</td><td>地理</td><td>午餐/午休</td><td>視覺</td><td>國文</td><td>英文</td><td>國文複習</td></tr>
+        <tr><td>星期四</td><td>國文</td><td>FUN學</td><td>數學</td><td>自然科學</td><td>午餐/午休</td><td>資訊科技</td><td>歷史</td><td>英文</td><td>自然複習</td></tr>
+        <tr><td>星期五</td><td>英文</td><td>國文</td><td>公民</td><td>體育</td><td>午餐/午休</td><td>班會</td><td>數學</td><td>社團</td><td>社團</td></tr>
       </tbody>
     </table>
   </section>
@@ -228,12 +182,12 @@
 
   <section class="section zh" id="important">
     <h2>重要事項</h2>
-    <p>目前無內容。</p>
+    <p style="text-align: center;">目前無內容。</p>
   </section>
 
   <section class="section zh" id="photos">
     <h2>班級照片</h2>
-    <p>目前無內容。</p>
+    <p style="text-align: center;">目前無內容。</p>
   </section>
 
   <section class="section en" style="display:none">
@@ -254,66 +208,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Monday</td>
-          <td>Reading</td>
-          <td>Performance</td>
-          <td>Chinese</td>
-          <td>Math</td>
-          <td>Lunch Break</td>
-          <td>Science</td>
-          <td>Home Ec</td>
-          <td>Tech</td>
-          <td>English Review</td>
-        </tr>
-        <tr>
-          <td>Tuesday</td>
-          <td>Health</td>
-          <td>PE</td>
-          <td>Scouts</td>
-          <td>Chinese</td>
-          <td>Lunch Break</td>
-          <td>Music</td>
-          <td>Author</td>
-          <td>Math</td>
-          <td>Math Review</td>
-        </tr>
-        <tr>
-          <td>Wednesday</td>
-          <td>Min Nan</td>
-          <td>Science</td>
-          <td>Counseling</td>
-          <td>Geography</td>
-          <td>Lunch Break</td>
-          <td>Visual Arts</td>
-          <td>Chinese</td>
-          <td>English</td>
-          <td>Chinese Review</td>
-        </tr>
-        <tr>
-          <td>Thursday</td>
-          <td>Chinese</td>
-          <td>FUN Learning</td>
-          <td>Math</td>
-          <td>Science</td>
-          <td>Lunch Break</td>
-          <td>IT</td>
-          <td>History</td>
-          <td>English</td>
-          <td>Science Review</td>
-        </tr>
-        <tr>
-          <td>Friday</td>
-          <td>English</td>
-          <td>Chinese</td>
-          <td>Civics</td>
-          <td>PE</td>
-          <td>Lunch Break</td>
-          <td>Class Meeting</td>
-          <td>Math</td>
-          <td>Club</td>
-          <td>Club</td>
-        </tr>
+        <tr><td>Monday</td><td>Reading</td><td>Performance</td><td>Chinese</td><td>Math</td><td>Lunch Break</td><td>Science</td><td>Home Ec</td><td>Tech</td><td>English Review</td></tr>
+        <tr><td>Tuesday</td><td>Health</td><td>PE</td><td>Scouts</td><td>Chinese</td><td>Lunch Break</td><td>Music</td><td>Author</td><td>Math</td><td>Math Review</td></tr>
+        <tr><td>Wednesday</td><td>Min Nan</td><td>Science</td><td>Counseling</td><td>Geography</td><td>Lunch Break</td><td>Visual Arts</td><td>Chinese</td><td>English</td><td>Chinese Review</td></tr>
+        <tr><td>Thursday</td><td>Chinese</td><td>FUN Learning</td><td>Math</td><td>Science</td><td>Lunch Break</td><td>IT</td><td>History</td><td>English</td><td>Science Review</td></tr>
+        <tr><td>Friday</td><td>English</td><td>Chinese</td><td>Civics</td><td>PE</td><td>Lunch Break</td><td>Class Meeting</td><td>Math</td><td>Club</td><td>Club</td></tr>
       </tbody>
     </table>
   </section>
@@ -338,12 +237,12 @@
 
   <section class="section en" style="display:none">
     <h2>Important Announcements</h2>
-    <p>No content at the moment.</p>
+    <p style="text-align: center;">No content at the moment.</p>
   </section>
 
   <section class="section en" style="display:none">
     <h2>Class Photos</h2>
-    <p>No content at the moment.</p>
+    <p style="text-align: center;">No content at the moment.</p>
   </section>
 
   <footer>
@@ -375,15 +274,14 @@
       const footer = document.querySelector('#footer-text');
 
       if (currentLang === 'zh') {
-        zhSections.forEach(s => (s.style.display = 'none'));
-        enSections.forEach(s => (s.style.display = 'block'));
+        zhSections.forEach(s => s.style.display = 'none');
+        enSections.forEach(s => s.style.display = 'block');
         title.textContent = 'DSJH 705 Class Website';
-        footer.textContent =
-          'This website is created by students and not officially affiliated with Dongxin Junior High School.';
+        footer.textContent = 'This website is created by students and not officially affiliated with Dongxin Junior High School.';
         currentLang = 'en';
       } else {
-        zhSections.forEach(s => (s.style.display = 'block'));
-        enSections.forEach(s => (s.style.display = 'none'));
+        zhSections.forEach(s => s.style.display = 'block');
+        enSections.forEach(s => s.style.display = 'none');
         title.textContent = 'DSJH 705 班級網站';
         footer.textContent = '此網站為學生自行製作，非東新國中官方製作。';
         currentLang = 'zh';
