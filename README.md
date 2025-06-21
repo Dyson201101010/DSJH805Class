@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSJH 705 班級網站</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -76,12 +77,108 @@
       border-radius: 8px;
       margin-top: 1rem;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1 id="title">DSJH 705 班級網站</h1>
   </header>
+
+  <section class="section" id="schedule">
+    <h2>課表 / Class Schedule</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>星期</th>
+          <th colspan="9">課程</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>星期一</td>
+          <td>閱讀</td>
+          <td>表演</td>
+          <td>國文</td>
+          <td>數學</td>
+          <td>午餐/午休</td>
+          <td>自然科學</td>
+          <td>家政</td>
+          <td>生活科技</td>
+          <td>英文複習</td>
+        </tr>
+        <tr>
+          <td>星期二</td>
+          <td>健康</td>
+          <td>體育</td>
+          <td>童軍</td>
+          <td>國文</td>
+          <td>午餐/午休</td>
+          <td>音樂</td>
+          <td>作家</td>
+          <td>數學</td>
+          <td>數學複習</td>
+        </tr>
+        <tr>
+          <td>星期三</td>
+          <td>閩南語</td>
+          <td>自然科學</td>
+          <td>輔導</td>
+          <td>地理</td>
+          <td>午餐/午休</td>
+          <td>視覺</td>
+          <td>國文</td>
+          <td>英文</td>
+          <td>國文複習</td>
+        </tr>
+        <tr>
+          <td>星期四</td>
+          <td>國文</td>
+          <td>FUN學</td>
+          <td>數學</td>
+          <td>自然科學</td>
+          <td>午餐/午休</td>
+          <td>資訊科技</td>
+          <td>歷史</td>
+          <td>英文</td>
+          <td>自然複習</td>
+        </tr>
+        <tr>
+          <td>星期五</td>
+          <td>英文</td>
+          <td>國文</td>
+          <td>公民</td>
+          <td>體育</td>
+          <td>午餐/午休</td>
+          <td>班會</td>
+          <td>數學</td>
+          <td>社團</td>
+          <td>社團</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
   <section class="section" id="leaders">
     <h2>班級幹部 / Class Leaders</h2>
@@ -92,22 +189,27 @@
       <li>副風紀股長 / Vice Discipline Leader: 3號</li>
       <li>總務股長 / General Affairs Leader: 24號</li>
       <li>副總務股長 / Vice General Affairs Leader: 23號</li>
+      <li>衛生股長 / Health Leader: 17號</li>
+      <li>學藝股長 / Academic Affairs Leader: 7號</li>
+      <li>導師秘書 / Homeroom Secretary: N/A</li>
+      <li>午餐股長 / Lunch Leader: 5號</li>
+      <li>輔導股長 / Guidance Leader: 10號</li>
+      <li>康樂股長 / Recreation Leader: 18號</li>
     </ul>
   </section>
 
-  <section class="section" id="calendar">
-    <h2>班級行事曆 / Class Calendar</h2>
-    <p id="calendar-text">日後將隨更新推出 / Will be released in future updates</p>
+  <section class="section" id="important">
+    <h2>重要事項 / Important Notices</h2>
+    <p>目前無內容 / No content yet</p>
   </section>
 
   <section class="section" id="photos">
     <h2>照片專區 / Photo Gallery</h2>
-    <p id="photo-empty">目前無內容 / No content yet</p>
-    <div id="photo-list" style="display:none;"></div>
+    <p>目前無內容 / No content yet</p>
   </section>
 
   <footer>
-    <p>此網站為學生自行製作，非東新國中官方製作。<br>This website is created by students and not officially affiliated with Dongxin Junior High School.</p>
+    <p>此網站為學生自行製作，非東新國中官方製作。<br />This website is created by students and not officially affiliated with Dongxin Junior High School.</p>
     <div class="lang-switcher" onclick="toggleLang()">切換語言 / Switch Language</div>
   </footer>
 
@@ -130,47 +232,30 @@
     let currentLang = 'zh';
     function toggleLang() {
       currentLang = currentLang === 'zh' ? 'en' : 'zh';
+
       document.querySelector('#title').textContent =
         currentLang === 'zh' ? 'DSJH 705 班級網站' : 'DSJH 705 Class Website';
 
       document.querySelector('#leaders h2').textContent =
         currentLang === 'zh' ? '班級幹部 / Class Leaders' : 'Class Leaders / 班級幹部';
 
-      document.querySelector('#calendar h2').textContent =
-        currentLang === 'zh' ? '班級行事曆 / Class Calendar' : 'Class Calendar / 班級行事曆';
+      document.querySelector('#important h2').textContent =
+        currentLang === 'zh' ? '重要事項 / Important Notices' : 'Important Notices / 重要事項';
 
-      document.querySelector('#calendar-text').textContent =
-        currentLang === 'zh' ? '日後將隨更新推出 / Will be released in future updates' : 'Will be released in future updates / 日後將隨更新推出';
-
-      document.querySelector('footer p').innerHTML =
-        currentLang === 'zh'
-          ? '此網站為學生自行製作，非東新國中官方製作。<br>This website is created by students and not officially affiliated with Dongxin Junior High School.'
-          : 'This website is created by students and not officially affiliated with Dongxin Junior High School.<br>此網站為學生自行製作，非東新國中官方製作。';
+      document.querySelector('#important p').textContent =
+        currentLang === 'zh' ? '目前無內容 / No content yet' : 'No content yet / 目前無內容';
 
       document.querySelector('#photos h2').textContent =
         currentLang === 'zh' ? '照片專區 / Photo Gallery' : 'Photo Gallery / 照片專區';
+
+      document.querySelector('#photos p').textContent =
+        currentLang === 'zh' ? '目前無內容 / No content yet' : 'No content yet / 目前無內容';
+
+      document.querySelector('footer p').innerHTML =
+        currentLang === 'zh'
+          ? '此網站為學生自行製作，非東新國中官方製作。<br />This website is created by students and not officially affiliated with Dongxin Junior High School.'
+          : 'This website is created by students and not officially affiliated with Dongxin Junior High School.<br />此網站為學生自行製作，非東新國中官方製作。';
     }
-
-    // 照片區塊管理
-    const photoList = document.getElementById('photo-list');
-    const photoEmpty = document.getElementById('photo-empty');
-
-    function addPhoto(url) {
-      const img = document.createElement('img');
-      img.src = url;
-      img.style.maxWidth = '100%';
-      img.style.borderRadius = '8px';
-      img.style.marginTop = '1rem';
-
-      photoList.appendChild(img);
-
-      photoList.style.display = 'block';
-      photoEmpty.style.display = 'none';
-    }
-
-    // 範例：你要新增照片時，可取消下面註解並改成你的照片網址
-    // addPhoto('https://example.com/photo1.jpg');
-    // addPhoto('https://example.com/photo2.jpg');
   </script>
 </body>
 </html>
