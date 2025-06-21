@@ -3,7 +3,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSJH 705 班級網站</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -38,7 +38,7 @@
     }
 
     .section {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 4rem auto;
       background: rgba(255, 255, 255, 0.85);
       padding: 2rem;
@@ -85,18 +85,13 @@
 
     th, td {
       border: 1px solid #999;
-      padding: 8px;
+      padding: 10px;
       text-align: center;
+      white-space: nowrap;
     }
 
     th {
       background-color: #f0f0f0;
-    }
-
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-      margin-top: 1rem;
     }
   </style>
 </head>
@@ -111,7 +106,15 @@
       <thead>
         <tr>
           <th>星期</th>
-          <th colspan="9">課程</th>
+          <th>第一節</th>
+          <th>第二節</th>
+          <th>第三節</th>
+          <th>第四節</th>
+          <th>午休</th>
+          <th>第六節</th>
+          <th>第七節</th>
+          <th>第八節</th>
+          <th>第九節</th>
         </tr>
       </thead>
       <tbody>
@@ -197,18 +200,8 @@
     </ul>
   </section>
 
-  <section class="section" id="important">
-    <h2>重要事項 / Important Notices</h2>
-    <p>目前無內容 / No content yet</p>
-  </section>
-
-  <section class="section" id="photos">
-    <h2>照片專區 / Photo Gallery</h2>
-    <p>目前無內容 / No content yet</p>
-  </section>
-
   <footer>
-    <p>此網站為學生自行製作，非東新國中官方製作。<br />This website is created by students and not officially affiliated with Dongxin Junior High School.</p>
+    <p>此網站為學生自行製作，非東新國中官方製作。<br>This website is created by students and not officially affiliated with Dongxin Junior High School.</p>
     <div class="lang-switcher" onclick="toggleLang()">切換語言 / Switch Language</div>
   </footer>
 
@@ -231,29 +224,16 @@
     let currentLang = 'zh';
     function toggleLang() {
       currentLang = currentLang === 'zh' ? 'en' : 'zh';
-
       document.querySelector('#title').textContent =
         currentLang === 'zh' ? 'DSJH 705 班級網站' : 'DSJH 705 Class Website';
 
       document.querySelector('#leaders h2').textContent =
         currentLang === 'zh' ? '班級幹部 / Class Leaders' : 'Class Leaders / 班級幹部';
 
-      document.querySelector('#important h2').textContent =
-        currentLang === 'zh' ? '重要事項 / Important Notices' : 'Important Notices / 重要事項';
-
-      document.querySelector('#important p').textContent =
-        currentLang === 'zh' ? '目前無內容 / No content yet' : 'No content yet / 目前無內容';
-
-      document.querySelector('#photos h2').textContent =
-        currentLang === 'zh' ? '照片專區 / Photo Gallery' : 'Photo Gallery / 照片專區';
-
-      document.querySelector('#photos p').textContent =
-        currentLang === 'zh' ? '目前無內容 / No content yet' : 'No content yet / 目前無內容';
-
       document.querySelector('footer p').innerHTML =
         currentLang === 'zh'
-          ? '此網站為學生自行製作，非東新國中官方製作。<br />This website is created by students and not officially affiliated with Dongxin Junior High School.'
-          : 'This website is created by students and not officially affiliated with Dongxin Junior High School.<br />此網站為學生自行製作，非東新國中官方製作。';
+          ? '此網站為學生自行製作，非東新國中官方製作。<br>This website is created by students and not officially affiliated with Dongxin Junior High School.'
+          : 'This website is created by students and not officially affiliated with Dongxin Junior High School.<br>此網站為學生自行製作，非東新國中官方製作。';
     }
   </script>
 </body>
