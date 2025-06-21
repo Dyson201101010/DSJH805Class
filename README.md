@@ -105,6 +105,10 @@
       text-align: center;
       margin-bottom: 1.5rem;
     }
+
+    .section p {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -159,12 +163,12 @@
 
   <section class="section zh" id="important">
     <h2>重要事項</h2>
-    <p style="text-align: center;">目前無內容。</p>
+    <p>目前無內容。</p>
   </section>
 
   <section class="section zh" id="photos">
     <h2>班級照片</h2>
-    <p style="text-align: center;">目前無內容。</p>
+    <p>目前無內容。</p>
   </section>
 
   <section class="section en" style="display:none">
@@ -214,12 +218,12 @@
 
   <section class="section en" style="display:none">
     <h2>Important Announcements</h2>
-    <p style="text-align: center;">No content at the moment.</p>
+    <p>No content at the moment.</p>
   </section>
 
   <section class="section en" style="display:none">
     <h2>Class Photos</h2>
-    <p style="text-align: center;">No content at the moment.</p>
+    <p>No content at the moment.</p>
   </section>
 
   <footer>
