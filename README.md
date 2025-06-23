@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -38,7 +39,6 @@
       }
     }
 
-    /* 置中及寬度統一，並加入左右padding避免內容靠邊太近 */
     header, main, footer {
       max-width: 1000px;
       margin-left: auto;
@@ -64,7 +64,7 @@
 
     main {
       margin: 0 auto;
-      padding: 1rem 0; /* 上下間距1rem，左右由header/main/footer統一padding控制 */
+      padding: 1rem 0;
     }
 
     section {
@@ -73,6 +73,17 @@
       padding: 1.5rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       margin-bottom: 2rem;
+    }
+
+    section h2 {
+      text-align: left;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    section p, section ul {
+      text-align: center;
     }
 
     .schedule-wrapper { overflow-x: auto; }
@@ -90,13 +101,10 @@
     ul {
       list-style: none;
       padding: 0;
-      text-align: center;
+      margin: 0;
     }
     ul li { margin: 0.3rem 0; }
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+    
     footer {
       text-align: center;
       padding: 1rem;
@@ -146,16 +154,16 @@
     </section>
 
     <section id="important" style="padding-bottom: 2.5rem;">
-      <h2 style="text-align: center;">重要事項</h2>
-      <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">（非即時更改）</p>
+      <h2>重要事項</h2>
+      <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">（非即時更改）</p>
       <hr style="width: 60%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
-      <p style="text-align:center; margin-top: 1.5rem;">📌 6/26-6/27段考</p>
-      <p style="text-align:center; margin-top: 1rem;">📌 6/30休業式</p>
+      <p style="margin-top: 1.5rem;">📌 6/26-6/27段考</p>
+      <p style="margin-top: 1rem;">📌 6/30休業式</p>
     </section>
 
     <section id="photos">
       <h2>班級照片</h2>
-      <p style="text-align:center;">之後將推出此功能。</p>
+      <p>之後將推出此功能。</p>
     </section>
   </main>
 
