@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -39,6 +38,16 @@
       }
     }
 
+    /* 置中及寬度統一，並加入左右padding避免內容靠邊太近 */
+    header, main, footer {
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      box-sizing: border-box;
+    }
+
     header {
       text-align: center;
       margin: 2rem auto 1rem;
@@ -48,13 +57,14 @@
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.125);
       padding: 1.5rem;
-      max-width: 800px;
+    }
+    header h1 {
+      text-align: center;
     }
 
     main {
-      max-width: 1000px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 1rem 0; /* 上下間距1rem，左右由header/main/footer統一padding控制 */
     }
 
     section {
@@ -88,13 +98,12 @@
       margin-bottom: 1rem;
     }
     footer {
-      max-width: 1000px;
-      margin: 2rem auto 0;
       text-align: center;
       padding: 1rem;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 12px;
       font-size: 0.9rem;
+      margin: 2rem auto 2rem;
     }
   </style>
 </head>
