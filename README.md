@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DSJH 705 班級網站</title>
+  <title>DSJH 705 班級網站 / Class Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -19,16 +19,16 @@
       min-height: 100vh;
       color: #333;
     }
-    header, section.block, footer {
+    header, section, footer {
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 0.8s ease forwards;
     }
     header { animation-delay: 0.1s; }
-    section.block:nth-of-type(1) { animation-delay: 0.3s; }
-    section.block:nth-of-type(2) { animation-delay: 0.5s; }
-    section.block:nth-of-type(3) { animation-delay: 0.7s; }
-    section.block:nth-of-type(4) { animation-delay: 0.9s; }
+    main > section:nth-of-type(1) { animation-delay: 0.3s; }
+    main > section:nth-of-type(2) { animation-delay: 0.5s; }
+    main > section:nth-of-type(3) { animation-delay: 0.7s; }
+    main > section:nth-of-type(4) { animation-delay: 0.9s; }
     footer { animation-delay: 1.1s; }
 
     @keyframes fadeInUp {
@@ -48,6 +48,7 @@
       border: 1px solid rgba(255, 255, 255, 0.125);
       padding: 1.5rem;
       max-width: 800px;
+      position: relative;
     }
 
     main {
@@ -56,7 +57,7 @@
       padding: 1rem;
     }
 
-    section.block {
+    section {
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       padding: 1.5rem;
@@ -64,9 +65,7 @@
       margin-bottom: 2rem;
     }
 
-    .schedule-wrapper {
-      overflow-x: auto;
-    }
+    .schedule-wrapper { overflow-x: auto; }
     table {
       border-collapse: collapse;
       width: 100%;
@@ -83,33 +82,31 @@
       padding: 0;
       text-align: center;
     }
-    ul li {
-      margin: 0.3rem 0;
-    }
+    ul li { margin: 0.3rem 0; }
     h2 {
       text-align: left;
       margin-bottom: 1rem;
-      font-weight: 700;
     }
-    /* 重要事項條目置中 */
-    #important-zh p,
-    #important-en p {
-      text-align: center;
-      margin-top: 0.5rem;
-    }
-    /* 重要事項標題下的非即時更改 */
-    .note {
+    /* 重要事項標題下方的非即時更改說明 */
+    #important p.note {
       text-align: right;
       font-size: 0.85rem;
       color: #666;
       margin-top: 0.5rem;
+      margin-bottom: 1rem;
     }
-    .separator {
+    #important hr {
       width: 60%;
-      margin: 0.5rem auto 1rem;
+      margin: 0 auto 1.5rem auto;
       border: 0;
       border-top: 1px solid #ccc;
     }
+
+    #important p.content {
+      text-align: center;
+      margin: 0.5rem 0;
+    }
+
     footer {
       max-width: 1000px;
       margin: 2rem auto 2rem;
@@ -118,47 +115,44 @@
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 12px;
       font-size: 0.9rem;
-      /* 新增按鈕與文字間隔 */
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
+      position: relative;
     }
 
-    footer button {
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      cursor: pointer;
+    /* 語言切換按鈕 */
+    #lang-switcher {
+      position: fixed;
+      bottom: 3.5rem;
+      right: 2rem;
+      background: rgba(255,255,255,0.9);
       border-radius: 8px;
-      border: 1px solid #333;
-      background-color: #fff;
-      transition: background-color 0.3s ease;
-    }
-    footer button:hover {
-      background-color: #eee;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      user-select: none;
+      font-weight: 700;
     }
 
-    /* 語言切換用active類別 */
-    .zh {
-      display: block;
+    /* 語言切換按鈕與版權文字區隔 */
+    #footer-text {
+      margin-bottom: 2rem;
     }
-    .en {
-      display: none;
-    }
-    .active {
-      display: block !important;
+
+    /* 隱藏所有中文區塊時 */
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1 id="title" class="zh active">DSJH 705 班級網站</h1>
-    <h1 id="title-en" class="en">DSJH 705 Class Website</h1>
+    <h1 id="title-zh">DSJH 705 班級網站</h1>
+    <h1 id="title-en" class="hidden">DSJH 705 Class Website</h1>
   </header>
 
   <main>
-    <!-- 中文版區塊 -->
-    <section id="schedule-zh" class="block zh active">
+    <!-- 中文版 -->
+    <section id="schedule-zh">
       <h2>課表</h2>
       <div class="schedule-wrapper">
         <table>
@@ -176,7 +170,7 @@
       </div>
     </section>
 
-    <section id="officers-zh" class="block zh active">
+    <section id="officers-zh">
       <h2>班級幹部</h2>
       <ul>
         <li>班長：12號</li>
@@ -194,21 +188,21 @@
       </ul>
     </section>
 
-    <section id="important-zh" class="block zh active" style="padding-bottom: 2.5rem;">
+    <section id="important-zh" style="padding-bottom: 2.5rem;">
       <h2>重要事項</h2>
       <p class="note">（非即時更改）</p>
-      <hr class="separator" />
-      <p>📌 6/26-6/27段考</p>
-      <p>📌 6/30休業式</p>
+      <hr />
+      <p class="content">📌 6/26-6/27段考</p>
+      <p class="content">📌 6/30休業式</p>
     </section>
 
-    <section id="photos-zh" class="block zh active">
+    <section id="photos-zh">
       <h2>班級照片</h2>
-      <p>之後將推出此功能。</p>
+      <p style="text-align:center;">之後將推出此功能。</p>
     </section>
 
-    <!-- 英文版區塊 -->
-    <section id="schedule-en" class="block en">
+    <!-- 英文版 -->
+    <section id="schedule-en" class="hidden">
       <h2>Class Schedule</h2>
       <div class="schedule-wrapper">
         <table>
@@ -226,7 +220,7 @@
       </div>
     </section>
 
-    <section id="officers-en" class="block en">
+    <section id="officers-en" class="hidden">
       <h2>Class Officers</h2>
       <ul>
         <li>Class Leader: No. 12</li>
@@ -244,72 +238,76 @@
       </ul>
     </section>
 
-    <section id="important-en" class="block en" style="padding-bottom: 2.5rem;">
+    <section id="important-en" class="hidden" style="padding-bottom: 2.5rem;">
       <h2>Important Announcements</h2>
-      <p class="note">(Not real-time updates)</p>
-      <hr class="separator" />
-      <p>📌 June 26-27 Exams</p>
-      <p>📌 June 30 Closing Ceremony</p>
+      <p class="note">(* Not real-time updates)</p>
+      <hr />
+      <p class="content">📌 Exams on June 26-27</p>
+      <p class="content">📌 School Closing Ceremony on June 30</p>
     </section>
 
-    <section id="photos-en" class="block en">
+    <section id="photos-en" class="hidden">
       <h2>Class Photos</h2>
-      <p>Coming soon.</p>
+      <p style="text-align:center;">This feature will be available soon.</p>
     </section>
   </main>
 
   <footer>
-    <button id="lang-toggle-btn">Switch to English</button>
-    <div id="footer-text-zh" class="zh active">此網站為學生自行製作，非東新國中官方製作。</div>
-    <div id="footer-text-en" class="en">This website is created by students and not officially affiliated with Dongxin Junior High School.</div>
+    <div id="footer-text-zh">此網站為學生自行製作，非東新國中官方製作。</div>
+    <div id="footer-text-en" class="hidden">This website is created by students and not officially affiliated with Dongxin Junior High School.</div>
   </footer>
 
+  <div id="lang-switcher">切換英文版 / Switch to English</div>
+
   <script>
-    const btn = document.getElementById('lang-toggle-btn');
-    const zhElements = document.querySelectorAll('.zh');
-    const enElements = document.querySelectorAll('.en');
+    const langSwitcher = document.getElementById('lang-switcher');
+    let currentLang = 'zh';
 
-    let isChinese = true; // 初始為中文版顯示
+    function switchToEnglish() {
+      // 隱藏中文區塊，顯示英文區塊
+      document.getElementById('title-zh').classList.add('hidden');
+      document.getElementById('title-en').classList.remove('hidden');
 
-    function setLanguage(chinese) {
-      if (chinese) {
-        zhElements.forEach(el => {
-          el.classList.add('active');
-          el.style.display = ''; // 確保正確顯示
-        });
-        enElements.forEach(el => {
-          el.classList.remove('active');
-          el.style.display = 'none';
-        });
-        btn.textContent = 'Switch to English';
-      } else {
-        enElements.forEach(el => {
-          el.classList.add('active');
-          el.style.display = '';
-        });
-        zhElements.forEach(el => {
-          el.classList.remove('active');
-          el.style.display = 'none';
-        });
-        btn.textContent = '切換回中文';
-      }
-      // 重置動畫
-      const blocks = document.querySelectorAll('section.block, header, footer');
-      blocks.forEach((block, i) => {
-        block.style.animation = 'none';
-        block.offsetHeight; // trigger reflow
-        block.style.animation = `fadeInUp 0.8s ease forwards`;
-        block.style.animationDelay = `${0.1 + i * 0.2}s`;
+      ['schedule-zh', 'officers-zh', 'important-zh', 'photos-zh'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
       });
+      ['schedule-en', 'officers-en', 'important-en', 'photos-en'].forEach(id => {
+        document.getElementById(id).classList.remove('hidden');
+      });
+
+      document.getElementById('footer-text-zh').classList.add('hidden');
+      document.getElementById('footer-text-en').classList.remove('hidden');
+
+      langSwitcher.textContent = '切換中文版 / Switch to Chinese';
+      currentLang = 'en';
     }
 
-    btn.addEventListener('click', () => {
-      isChinese = !isChinese;
-      setLanguage(isChinese);
-    });
+    function switchToChinese() {
+      // 顯示中文區塊，隱藏英文區塊
+      document.getElementById('title-zh').classList.remove('hidden');
+      document.getElementById('title-en').classList.add('hidden');
 
-    // 初始化
-    setLanguage(isChinese);
+      ['schedule-zh', 'officers-zh', 'important-zh', 'photos-zh'].forEach(id => {
+        document.getElementById(id).classList.remove('hidden');
+      });
+      ['schedule-en', 'officers-en', 'important-en', 'photos-en'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+
+      document.getElementById('footer-text-zh').classList.remove('hidden');
+      document.getElementById('footer-text-en').classList.add('hidden');
+
+      langSwitcher.textContent = '切換英文版 / Switch to English';
+      currentLang = 'zh';
+    }
+
+    langSwitcher.addEventListener('click', () => {
+      if (currentLang === 'zh') {
+        switchToEnglish();
+      } else {
+        switchToChinese();
+      }
+    });
   </script>
 </body>
 </html>
