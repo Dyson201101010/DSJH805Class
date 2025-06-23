@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -19,23 +20,28 @@
       min-height: 100vh;
       color: #333;
     }
-    header, main, footer {
+    header, section, footer {
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 0.8s ease forwards;
     }
     header { animation-delay: 0.1s; }
-    main { animation-delay: 0.4s; }
-    footer { animation-delay: 1.4s; }
+    section:nth-of-type(1) { animation-delay: 0.3s; }
+    section:nth-of-type(2) { animation-delay: 0.5s; }
+    section:nth-of-type(3) { animation-delay: 0.7s; }
+    section:nth-of-type(4) { animation-delay: 0.9s; }
+    footer { animation-delay: 1.1s; }
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
     header {
       text-align: center;
-      margin: 2rem auto 2rem;
+      margin: 2rem auto 1rem;
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
       background-color: rgba(255, 255, 255, 0.3);
@@ -44,30 +50,26 @@
       padding: 1.5rem;
       max-width: 800px;
     }
+
     main {
       max-width: 1000px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      padding: 0 1rem 3rem;
+      padding: 1rem;
     }
+
     section {
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      overflow-x: auto;
+      margin-bottom: 2rem;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+
+    .schedule-wrapper { overflow-x: auto; }
     table {
       border-collapse: collapse;
       width: 100%;
-      min-width: 900px;
+      min-width: 950px;
     }
     th, td {
       border: 1px solid #999;
@@ -75,17 +77,19 @@
       text-align: center;
       white-space: nowrap;
     }
-    #officers ul {
+    ul {
       list-style: none;
       padding: 0;
       text-align: center;
     }
-    #officers li {
-      margin: 0.3rem 0;
+    ul li { margin: 0.3rem 0; }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
     }
     footer {
       max-width: 1000px;
-      margin: 0 auto 2rem;
+      margin: 2rem auto 0;
       text-align: center;
       padding: 1rem;
       background-color: rgba(255, 255, 255, 0.8);
@@ -96,26 +100,22 @@
 </head>
 <body>
   <header>
-    <h1>DSJH 705 班級網站</h1>
+    <h1 id="title">DSJH 705 班級網站</h1>
   </header>
 
   <main>
-    <section id="schedule">
+    <section>
       <h2>課表</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>星期</th><th>第一節</th><th>第二節</th><th>第三節</th><th>第四節</th><th>中午</th><th>第五節</th><th>第六節</th><th>第七節</th><th>第八節</th>
-          </tr>
-        </thead>
+      <div class="schedule-wrapper">
+        <table><thead><tr><th>星期</th><th>第一節</th><th>第二節</th><th>第三節</th><th>第四節</th><th>中午</th><th>第五節</th><th>第六節</th><th>第七節</th><th>第八節</th></tr></thead>
         <tbody>
           <tr><td>星期一</td><td>閱讀</td><td>表演</td><td>國文</td><td>數學</td><td>午餐</td><td>自然</td><td>家政</td><td>科技</td><td>英文複習</td></tr>
           <tr><td>星期二</td><td>健康</td><td>體育</td><td>童軍</td><td>國文</td><td>午餐</td><td>音樂</td><td>作家</td><td>數學</td><td>數學複習</td></tr>
-          <tr><td>星期三</td><td>閩南語</td><td>自然</td><td>輔導</td><td>地理</td><td>午餐</td><td>視覺</td><td>國文</td><td>英文</td><td>國文複習</td></tr>
-          <tr><td>星期四</td><td>國文</td><td>FUN學</td><td>數學</td><td>自然</td><td>午餐</td><td>資訊</td><td>歷史</td><td>英文</td><td>自然複習</td></tr>
+          <tr><td>星期三</td><td>閩南語</td><td>自然科學</td><td>輔導</td><td>地理</td><td>午餐</td><td>視覺</td><td>國文</td><td>英文</td><td>國文複習</td></tr>
+          <tr><td>星期四</td><td>國文</td><td>FUN學</td><td>數學</td><td>自然科學</td><td>午餐</td><td>資訊科技</td><td>歷史</td><td>英文</td><td>自然複習</td></tr>
           <tr><td>星期五</td><td>英文</td><td>國文</td><td>公民</td><td>體育</td><td>午餐</td><td>班會</td><td>數學</td><td>社團</td><td>社團</td></tr>
-        </tbody>
-      </table>
+        </tbody></table>
+      </div>
     </section>
 
     <section id="officers">
@@ -129,26 +129,29 @@
         <li>副總務股長：23號</li>
         <li>衛生股長：17號</li>
         <li>學藝股長：7號</li>
-        <li>導師秘書：N/A</li>
+        <li>導師秘書：14號</li>
         <li>午餐股長：5號</li>
         <li>輔導股長：10號</li>
         <li>康樂股長：18號</li>
       </ul>
     </section>
 
-    <section id="important">
-      <h2>重要事項</h2>
-      <p style="text-align:center;">目前無內容。</p>
+    <section id="important" style="padding-bottom: 2.5rem;">
+      <h2 style="text-align: center;">重要事項</h2>
+      <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">（非即時更改）</p>
+      <hr style="width: 60%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
+      <p style="text-align:center; margin-top: 1.5rem;">📌 6/26-6/27段考</p>
+      <p style="text-align:center; margin-top: 1rem;">📌 6/30休業式</p>
     </section>
 
     <section id="photos">
       <h2>班級照片</h2>
-      <p style="text-align:center;">目前無內容。</p>
+      <p style="text-align:center;">之後將推出此功能。</p>
     </section>
   </main>
 
   <footer>
-    <div>此網站為學生自行製作，非東新國中官方製作。</div>
+    <div id="footer-text">此網站為學生自行製作，非東新國中官方製作。</div>
   </footer>
 </body>
 </html>
