@@ -109,7 +109,11 @@
     </section>
     <section class="zh" id="important-zh">
       <h2>重要事項</h2>
-      <p style="text-align:center;">暫無內容</p>
+      <ul style="list-style: none; padding-left: 0; text-align: center;">
+        <li>📌 8/28 新生訓練</li>
+        <li style="margin-top: 0.5rem;">📌 8/29 全校返校日</li>
+        <li style="margin-top: 0.5rem;">📌 9/1 正式開學</li>
+      </ul>
     </section>
     <section class="zh" id="photos-zh">
       <h2>班級照片</h2>
@@ -126,7 +130,11 @@
     </section>
     <section class="en hidden" id="important-en">
       <h2>Important Announcements</h2>
-      <p style="text-align:center;">No content available</p>
+      <ul style="list-style: none; padding-left: 0; text-align: center;">
+        <li>📌 8/28 Freshmen Orientation</li>
+        <li style="margin-top: 0.5rem;">📌 8/29 School-wide Return Day</li>
+        <li style="margin-top: 0.5rem;">📌 9/1 Official First Day</li>
+      </ul>
     </section>
     <section class="en hidden" id="photos-en">
       <h2>Class Photos</h2>
