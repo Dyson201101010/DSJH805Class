@@ -1,4 +1,4 @@
-<!-- Full bilingual version with 4-directional parallax background and section animations -->
+<!-- DSJH 805 Website with School Link Button -->
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -17,8 +17,6 @@
       background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
       background-size: cover;
       background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-position: center;
       min-height: 100vh;
       color: #333;
     }
@@ -51,6 +49,22 @@
       border: 1px solid rgba(255, 255, 255, 0.125);
       padding: 1.5rem;
       max-width: 800px;
+      position: relative;
+    }
+
+    .school-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #2ecc71;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      z-index: 1000;
     }
 
     main {
@@ -91,40 +105,33 @@
     }
     footer {
       max-width: 1000px;
-      margin: 2rem auto 0;
+      margin: 3rem auto 2rem;
       text-align: center;
       padding: 1rem;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 12px;
       font-size: 0.9rem;
     }
-    .lang-switcher {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.8);
-      border-radius: 8px;
-      cursor: pointer;
-      display: inline-block;
-    }
   </style>
 </head>
 <body>
+  <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
   <header>
     <h1 id="title">DSJH 805 班級網站</h1>
   </header>
 
   <main>
-    <section class="zh">
+    <section>
       <h2>課表</h2>
       <p style="text-align: center;">暫無內容。</p>
     </section>
 
-    <section class="zh">
+    <section id="officers">
       <h2>班級幹部</h2>
       <p style="text-align: center;">暫無內容。</p>
     </section>
 
-    <section class="zh" style="padding-bottom: 2.5rem;">
+    <section id="important" style="padding-bottom: 2.5rem;">
       <h2>重要事項</h2>
       <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">（非即時更改）</p>
       <hr style="width: 60%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
@@ -133,67 +140,20 @@
       <p style="text-align:center; margin-top: 0.8rem;">📌 9/1 正式開學</p>
     </section>
 
-    <section class="zh">
+    <section id="photos">
       <h2>班級照片</h2>
       <p style="text-align:center;">暫無內容。</p>
     </section>
 
-    <section class="en" style="display:none">
-      <h2>Class Schedule</h2>
-      <p style="text-align: center;">No content available.</p>
-    </section>
-
-    <section class="en" style="display:none">
-      <h2>Class Officers</h2>
-      <p style="text-align: center;">No content available.</p>
-    </section>
-
-    <section class="en" style="display:none">
-      <h2>Important Announcements</h2>
-      <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">(Not updated in real-time)</p>
-      <hr style="width: 60%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
-      <p style="text-align:center; margin-top: 1.5rem;">📌 8/28 Freshmen Orientation</p>
-      <p style="text-align:center; margin-top: 0.8rem;">📌 8/29 School-wide Return Day</p>
-      <p style="text-align:center; margin-top: 0.8rem;">📌 9/1 Official First Day</p>
-    </section>
-
-    <section class="en" style="display:none">
-      <h2>Class Photos</h2>
-      <p style="text-align:center;">No content available.</p>
+    <section id="contact">
+      <h2>作者聯絡方式</h2>
+      <p style="text-align: center; margin-top: 1rem;">Gmail：lianyuqing169@gmail.com</p>
+      <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">請聯絡時將所有事情一次打好，請勿重複傳送 Gmail。</p>
     </section>
   </main>
 
   <footer>
     <div id="footer-text">此網站為學生自行製作，非東新國中官方製作。</div>
-    <div class="lang-switcher" onclick="toggleLang()">切換英文版 / Switch to English</div>
   </footer>
-
-  <script>
-    // 背景上下左右滑動視差效果
-    document.addEventListener("mousemove", function(e) {
-      const xPercent = (e.clientX / window.innerWidth - 0.5) * 2;
-      const yPercent = (e.clientY / window.innerHeight - 0.5) * 2;
-      document.body.style.backgroundPosition = `${50 + xPercent * 10}% ${50 + yPercent * 10}%`;
-    });
-
-    let currentLang = 'zh';
-    function toggleLang() {
-      const zh = document.querySelectorAll('.zh');
-      const en = document.querySelectorAll('.en');
-      if (currentLang === 'zh') {
-        zh.forEach(e => e.style.display = 'none');
-        en.forEach(e => e.style.display = 'block');
-        document.getElementById("title").textContent = "DSJH 805 Class Website";
-        document.getElementById("footer-text").textContent = "This website is created by students and not officially affiliated with Dongxin Junior High School.";
-        currentLang = 'en';
-      } else {
-        zh.forEach(e => e.style.display = 'block');
-        en.forEach(e => e.style.display = 'none');
-        document.getElementById("title").textContent = "DSJH 805 班級網站";
-        document.getElementById("footer-text").textContent = "此網站為學生自行製作，非東新國中官方製作。";
-        currentLang = 'zh';
-      }
-    }
-  </script>
 </body>
 </html>
