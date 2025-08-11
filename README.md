@@ -1,4 +1,4 @@
-<!-- DSJH 805 Website with School Link Button -->
+<!-- DSJH 805 Website with School Link & Location Button -->
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -52,10 +52,17 @@
       position: relative;
     }
 
-    .school-btn {
+    .btn-container {
       position: fixed;
       top: 20px;
       right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .school-btn {
       background-color: #2ecc71;
       color: #fff;
       padding: 0.6rem 1.2rem;
@@ -64,7 +71,21 @@
       cursor: pointer;
       text-decoration: none;
       font-size: 0.9rem;
-      z-index: 1000;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .location-btn {
+      background-color: #3498db;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-align: center;
+      white-space: nowrap;
     }
 
     main {
@@ -115,7 +136,11 @@
   </style>
 </head>
 <body>
-  <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
+  <div class="btn-container">
+    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
+    <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank">學校位置查看</a>
+  </div>
+  
   <header>
     <h1 id="title">DSJH 805 班級網站</h1>
   </header>
@@ -123,7 +148,7 @@
   <main>
     <section>
       <h2>課表</h2>
-      <p style="text-align: center;">暫無內容。</p>
+      <p style="text-align: center;">9/1將同步上線。</p>
     </section>
 
     <section id="officers">
