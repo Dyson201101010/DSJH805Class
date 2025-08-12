@@ -1,4 +1,4 @@
-<!-- DSJH 805 Website with School Link & Location Button + 字體大小調整 + 玻璃效果 -->
+<!-- DSJH 805 Website with School Link & Location Button + 玻璃效果 -->
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -64,97 +64,6 @@
       z-index: 1000;
     }
 
-    /* 字體調整容器 - 去除背景、陰影 */
-    .font-size-wrapper {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      user-select: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      z-index: 1000;
-      width: auto;
-      /* 去除背景和陰影 */
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 0;
-    }
-
-    /* 按鈕和選單共用樣式 */
-    .font-size-button,
-    .font-size-options button {
-      font-size: 0.9rem;
-      font-weight: 600;
-      background-color: rgba(255,255,255,0.6);
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      user-select: none;
-      color: #000;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 36px;
-      transition: background-color 0.3s ease;
-      flex-shrink: 0;
-      margin: 0;
-    }
-
-    /* 主按鈕 */
-    .font-size-button {
-      background-color: rgba(255,255,255,0.9);
-      position: relative;
-      z-index: 1001;
-    }
-    .font-size-button:hover,
-    .font-size-button:focus {
-      background-color: rgba(255,255,255,1);
-      outline: none;
-    }
-
-    /* 選單 - 由上往下彈出，絕對定位於主按鈕正下方 */
-    .font-size-options {
-      position: absolute;
-      top: 100%; /* 按鈕正下方 */
-      left: 0;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.3rem 0.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      white-space: nowrap;
-      user-select: none;
-      width: max-content;
-      min-width: 120px;
-      z-index: 1000;
-      /* 高度自適應，變成垂直排列 */
-    }
-
-    /* hover 或 focus 時顯示選單 */
-    .font-size-wrapper:hover .font-size-options,
-    .font-size-wrapper:focus-within .font-size-options {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* 選單按鈕 hover/focus */
-    .font-size-options button:hover,
-    .font-size-options button:focus {
-      background-color: rgba(255,255,255,0.9);
-      outline: none;
-    }
-
     /* 其他按鈕樣式 */
     .school-btn, .location-btn {
       padding: 0.6rem 1.2rem;
@@ -207,17 +116,6 @@
   </style>
 </head>
 <body>
-  <!-- 左上角字體大小調整 按鈕 + 滑鼠靠近下方顯示選單 -->
-  <div class="font-size-wrapper" id="fontSizeWrapper" tabindex="0" aria-label="字體大小調整選單">
-    <button class="font-size-button" type="button" aria-haspopup="true" aria-expanded="false">字體大小調整</button>
-    <div class="font-size-options" role="menu" aria-hidden="true">
-      <button type="button" role="menuitem" onclick="changeFontSize('small')">小</button>
-      <button type="button" role="menuitem" onclick="changeFontSize('medium')">中</button>
-      <button type="button" role="menuitem" onclick="changeFontSize('large')">大</button>
-      <button type="button" role="menuitem" onclick="changeFontSize('x-large')">特大</button>
-    </div>
-  </div>
-
   <!-- 右上角按鈕 -->
   <div class="btn-container">
     <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
@@ -263,11 +161,5 @@
   <footer>
     <div id="footer-text">此網站為學生自行製作，非東新國中官方製作。</div>
   </footer>
-
-  <script>
-    function changeFontSize(size) {
-      document.body.style.fontSize = size;
-    }
-  </script>
 </body>
 </html>
