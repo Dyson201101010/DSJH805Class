@@ -1,4 +1,4 @@
-<!-- DSJH 805 Website with School Link & Location Button -->
+<!-- DSJH 805 Website with School Link & Location Button + 字體大小調整 + 玻璃效果 -->
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +19,7 @@
       background-attachment: fixed;
       min-height: 100vh;
       color: #333;
+      font-size: medium;
     }
     header, section, footer {
       opacity: 0;
@@ -52,6 +53,7 @@
       position: relative;
     }
 
+    /* 按鈕容器 */
     .btn-container {
       position: fixed;
       top: 20px;
@@ -62,22 +64,99 @@
       z-index: 1000;
     }
 
-    .school-btn {
-      background-color: #2ecc71;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 20px;
+    /* 字體調整容器 - 去除背景、陰影 */
+    .font-size-wrapper {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      user-select: none;
       cursor: pointer;
-      text-decoration: none;
-      font-size: 0.9rem;
-      text-align: center;
-      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      z-index: 1000;
+      width: auto;
+      /* 去除背景和陰影 */
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
     }
 
-    .location-btn {
-      background-color: #3498db;
-      color: #fff;
+    /* 按鈕和選單共用樣式 */
+    .font-size-button,
+    .font-size-options button {
+      font-size: 0.9rem;
+      font-weight: 600;
+      background-color: rgba(255,255,255,0.6);
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      user-select: none;
+      color: #000;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    /* 主按鈕 */
+    .font-size-button {
+      background-color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 1001;
+    }
+    .font-size-button:hover,
+    .font-size-button:focus {
+      background-color: rgba(255,255,255,1);
+      outline: none;
+    }
+
+    /* 選單 - 由上往下彈出，絕對定位於主按鈕正下方 */
+    .font-size-options {
+      position: absolute;
+      top: 100%; /* 按鈕正下方 */
+      left: 0;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.3rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+      width: max-content;
+      min-width: 120px;
+      z-index: 1000;
+      /* 高度自適應，變成垂直排列 */
+    }
+
+    /* hover 或 focus 時顯示選單 */
+    .font-size-wrapper:hover .font-size-options,
+    .font-size-wrapper:focus-within .font-size-options {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 選單按鈕 hover/focus */
+    .font-size-options button:hover,
+    .font-size-options button:focus {
+      background-color: rgba(255,255,255,0.9);
+      outline: none;
+    }
+
+    /* 其他按鈕樣式 */
+    .school-btn, .location-btn {
       padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 20px;
@@ -86,7 +165,11 @@
       font-size: 0.9rem;
       text-align: center;
       white-space: nowrap;
+      color: #fff;
+      user-select: none;
     }
+    .school-btn { background-color: #2ecc71; }
+    .location-btn { background-color: #3498db; }
 
     main {
       max-width: 1000px;
@@ -94,12 +177,15 @@
       padding: 1rem;
     }
 
-    section {
-      background: rgba(255, 255, 255, 0.85);
+    section, footer {
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.3);
       border-radius: 12px;
       padding: 1.5rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.125);
     }
 
     .schedule-wrapper { overflow-x: auto; }
@@ -114,28 +200,25 @@
       text-align: center;
       white-space: nowrap;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
+    ul { list-style: none; text-align: center; }
     ul li { margin: 0.3rem 0; }
-    h2 {
-      text-align: left;
-      margin-bottom: 1rem;
-    }
-    footer {
-      max-width: 1000px;
-      margin: 3rem auto 2rem;
-      text-align: center;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 12px;
-      font-size: 0.9rem;
-    }
+    h2 { text-align: left; margin-bottom: 1rem; }
+    footer { text-align: center; font-size: 0.9rem; }
   </style>
 </head>
 <body>
+  <!-- 左上角字體大小調整 按鈕 + 滑鼠靠近下方顯示選單 -->
+  <div class="font-size-wrapper" id="fontSizeWrapper" tabindex="0" aria-label="字體大小調整選單">
+    <button class="font-size-button" type="button" aria-haspopup="true" aria-expanded="false">字體大小調整</button>
+    <div class="font-size-options" role="menu" aria-hidden="true">
+      <button type="button" role="menuitem" onclick="changeFontSize('small')">小</button>
+      <button type="button" role="menuitem" onclick="changeFontSize('medium')">中</button>
+      <button type="button" role="menuitem" onclick="changeFontSize('large')">大</button>
+      <button type="button" role="menuitem" onclick="changeFontSize('x-large')">特大</button>
+    </div>
+  </div>
+
+  <!-- 右上角按鈕 -->
   <div class="btn-container">
     <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
     <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank">學校位置查看</a>
@@ -156,13 +239,13 @@
       <p style="text-align: center;">暫無內容。</p>
     </section>
 
-    <section id="important" style="padding-bottom: 2.5rem;">
+    <section id="important">
       <h2>重要事項</h2>
-      <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">（非即時更改）</p>
+      <p style="text-align: center; font-size: 0.85rem; color: #666;">（非即時更改）</p>
       <hr style="width: 60%; margin: 1rem auto; border: 0; border-top: 1px solid #ccc;">
-      <p style="text-align:center; margin-top: 1.5rem;">📌 8/28 新生訓練</p>
-      <p style="text-align:center; margin-top: 0.8rem;">📌 8/29 全校返校日</p>
-      <p style="text-align:center; margin-top: 0.8rem;">📌 9/1 正式開學</p>
+      <p style="text-align:center;">📌 8/28 新生訓練</p>
+      <p style="text-align:center;">📌 8/29 全校返校日</p>
+      <p style="text-align:center;">📌 9/1 正式開學</p>
     </section>
 
     <section id="photos">
@@ -172,13 +255,19 @@
 
     <section id="contact">
       <h2>作者聯絡方式</h2>
-      <p style="text-align: center; margin-top: 1rem;">Gmail：lianyuqing169@gmail.com</p>
-      <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">請聯絡時將所有事情一次打好，請勿重複傳送 Gmail。</p>
+      <p style="text-align: center;">Gmail：lianyuqing169@gmail.com</p>
+      <p style="text-align: center; color: #666; font-size: 0.9rem;">請聯絡時將所有事情一次打好，請勿重複傳送 Gmail。</p>
     </section>
   </main>
 
   <footer>
     <div id="footer-text">此網站為學生自行製作，非東新國中官方製作。</div>
   </footer>
+
+  <script>
+    function changeFontSize(size) {
+      document.body.style.fontSize = size;
+    }
+  </script>
 </body>
 </html>
