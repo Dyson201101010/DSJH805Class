@@ -1,11 +1,15 @@
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DSJH 805 班級網站</title>
   <meta name="description" content="東新國中805班官方網站，提供課表、公告與聯絡資訊">
+  
+  <!-- 效能優化：預載字體 -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" as="style">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet" />
+  
   <style>
     * {
       box-sizing: border-box;
@@ -14,6 +18,7 @@
       padding: 0;
       scroll-behavior: smooth;
     }
+    
     body {
       background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
       background-size: cover;
@@ -21,39 +26,59 @@
       min-height: 100vh;
       color: #333;
       font-size: medium;
+      overflow-x: hidden;
     }
+    
+    /* 高性能粒子背景 */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    
+    /* 原有區塊樣式 + 流暢優化 */
     header, section, footer {
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(50px) translateZ(0);
       animation: fadeInUp 0.8s ease forwards;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), 
+                  box-shadow 0.3s ease;
+      will-change: transform;
     }
+    
+    /* 流暢懸停效果 */
+    section:hover {
+      transform: scale(1.02) translateZ(0) !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+      }
+    }
+    
     header { animation-delay: 0.1s; }
     section:nth-of-type(1) { animation-delay: 0.3s; }
     section:nth-of-type(2) { animation-delay: 0.5s; }
     section:nth-of-type(3) { animation-delay: 0.7s; }
     section:nth-of-type(4) { animation-delay: 0.9s; }
     footer { animation-delay: 1.1s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    header {
-      text-align: center;
-      margin: 2rem auto 1rem;
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 1.5rem;
-      max-width: 800px;
-      position: relative;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
 
     /* 按鈕容器 */
     .btn-container {
@@ -82,20 +107,21 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transform: translateZ(0);
     }
     .school-btn { 
       background-color: #2ecc71; 
     }
     .school-btn:hover { 
       background-color: #27ae60;
-      transform: translateY(-2px);
+      transform: translateY(-2px) translateZ(0);
     }
     .location-btn { 
       background-color: #3498db; 
     }
     .location-btn:hover { 
       background-color: #2980b9;
-      transform: translateY(-2px);
+      transform: translateY(-2px) translateZ(0);
     }
     .school-btn::after, .location-btn::after {
       content: '';
@@ -120,24 +146,13 @@
     }
     .back-to-top:hover {
       background-color: #8e44ad;
-      transform: translateY(-2px);
+      transform: translateY(-2px) translateZ(0);
     }
 
     main {
       max-width: 1000px;
       margin: 0 auto;
       padding: 1rem;
-    }
-
-    section, footer {
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     /* 動態公告區塊 */
@@ -161,9 +176,10 @@
       margin-bottom: 0.8rem;
       border-radius: 0 8px 8px 0;
       transition: all 0.3s;
+      transform: translateZ(0);
     }
     .announcement-item:hover {
-      transform: translateX(5px);
+      transform: translateX(5px) translateZ(0);
       box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
     }
     .announcement-date {
@@ -206,10 +222,11 @@
       text-decoration: none;
       transition: all 0.3s;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transform: translateZ(0);
     }
     .contact-email:hover {
       background: rgba(52, 152, 219, 0.2);
-      transform: translateY(-2px);
+      transform: translateY(-2px) translateZ(0);
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
@@ -241,10 +258,18 @@
         top: 10px;
         right: 10px;
       }
+      
+      /* 手機端減弱動畫 */
+      section:hover {
+        transform: none !important;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- 高性能粒子背景 -->
+  <div id="particles-js"></div>
+  
   <!-- 右上角按鈕 -->
   <div class="btn-container">
     <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank">進入學校網站</a>
@@ -307,20 +332,67 @@
   </footer>
 
   <script>
-    // 返回頂部按鈕顯示/隱藏
-    window.addEventListener('scroll', function() {
-      const backToTop = document.querySelector('.back-to-top');
-      if (window.pageYOffset > 300) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
+    // ===== 高性能粒子系統 =====
+    function initParticles() {
+      const container = document.getElementById('particles-js');
+      const particleCount = Math.min(window.innerWidth / 5, 100); // 根據寬度自動調整數量
+      
+      // 清空容器
+      container.innerHTML = '';
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // 初始隨機樣式
+        const size = Math.random() * 3 + 1;
+        const opacity = Math.random() * 0.4 + 0.1;
+        
+        Object.assign(particle.style, {
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${Math.random() * 100}vw`,
+          top: `${Math.random() * 100}vh`,
+          opacity: opacity,
+          transform: 'translateZ(0)',
+          position: 'absolute',
+          'border-radius': '50%',
+          'pointer-events': 'none',
+          'background-color': 'rgba(255,255,255,0.6)'
+        });
+        
+        container.appendChild(particle);
+        animateParticle(particle);
       }
-    });
+    }
+    
+    // 流暢粒子動畫
+    function animateParticle(el) {
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
+      const speedX = Math.random() * 0.5 - 0.25;
+      const speedY = Math.random() * 0.5 - 0.25;
+      
+      function update() {
+        x += speedX;
+        y += speedY;
+        
+        // 邊界檢查
+        if (x > window.innerWidth) x = 0;
+        if (x < 0) x = window.innerWidth;
+        if (y > window.innerHeight) y = 0;
+        if (y < 0) y = window.innerHeight;
+        
+        el.style.transform = `translate(${x}px, ${y}px) translateZ(0)`;
+        requestAnimationFrame(update);
+      }
+      
+      update();
+    }
 
-    // 動態載入公告 (使用 Google Sheets 作為後端)
+    // ===== 動態公告系統 =====
     async function loadAnnouncements() {
       try {
-        // ★ 請替換成你的 Google Sheets ID ★
         const sheetId = '1sz54ecuwgSz6QvbR5GrtyugznuYxKDfZOBo-GnYz_94';
         const sheetUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
         
@@ -351,36 +423,47 @@
       }
     }
 
-    // 每5分鐘自動刷新公告
-    loadAnnouncements();
-    setInterval(loadAnnouncements, 5 * 60 * 1000);
+    // ===== 頁面初始化 =====
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始化粒子系統
+      initParticles();
+      
+      // 載入公告
+      loadAnnouncements();
+      setInterval(loadAnnouncements, 5 * 60 * 1000);
+      
+      // 返回頂部按鈕
+      window.addEventListener('scroll', () => {
+        document.querySelector('.back-to-top').style.display = 
+          window.scrollY > 300 ? 'block' : 'none';
+      }, { passive: true });
+      
+      // 點擊水波紋效果
+      document.addEventListener('click', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple-effect';
+        ripple.style.cssText = `
+          position: fixed;
+          width: 20px;
+          height: 20px;
+          background: rgba(255,255,255,0.6);
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          animation: ripple 1s ease-out;
+          pointer-events: none;
+          left: ${e.clientX}px;
+          top: ${e.clientY}px;
+          z-index: 1000;
+        `;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 1000);
+      });
+    });
 
-    // 點擊水波紋效果
-    document.addEventListener('click', (e) => {
-      const ripple = document.createElement('div');
-      ripple.className = 'ripple-effect';
-      ripple.style.left = `${e.clientX}px`;
-      ripple.style.top = `${e.clientY}px`;
-      document.body.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 1000);
+    // 響應式調整
+    window.addEventListener('resize', () => {
+      initParticles();
     });
   </script>
-
-  <style>
-    /* 點擊水波紋效果 */
-    .ripple-effect {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: rgba(255,255,255,0.6);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      animation: ripple 1s ease-out;
-      pointer-events: none;
-    }
-    @keyframes ripple {
-      to { transform: translate(-50%, -50%) scale(10); opacity: 0; }
-    }
-  </style>
 </body>
 </html>
