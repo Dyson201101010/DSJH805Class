@@ -42,8 +42,30 @@
       will-change: transform;
     }
     
+    /* 標題置中修正 */
+    header {
+      text-align: center;
+      margin: 2rem auto 1rem;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 1.5rem;
+      max-width: 800px;
+      position: relative;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    header h1 {
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
     /* 原有區塊樣式 + 流暢優化 */
-    header, section, footer {
+    section, footer {
       opacity: 0;
       transform: translateY(50px) translateZ(0);
       animation: fadeInUp 0.8s ease forwards;
@@ -77,8 +99,7 @@
     section:nth-of-type(1) { animation-delay: 0.3s; }
     section:nth-of-type(2) { animation-delay: 0.5s; }
     section:nth-of-type(3) { animation-delay: 0.7s; }
-    section:nth-of-type(4) { animation-delay: 0.9s; }
-    footer { animation-delay: 1.1s; }
+    footer { animation-delay: 0.9s; }
 
     /* 按鈕容器 */
     .btn-container {
@@ -155,48 +176,6 @@
       padding: 1rem;
     }
 
-    /* 動態公告區塊 */
-    .live-badge {
-      background: #e74c3c;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      animation: pulse 1.5s infinite;
-    }
-    .announcement-container {
-      max-height: 300px;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-    .announcement-item {
-      background: rgba(255,255,255,0.7);
-      border-left: 3px solid #3498db;
-      padding: 0.8rem;
-      margin-bottom: 0.8rem;
-      border-radius: 0 8px 8px 0;
-      transition: all 0.3s;
-      transform: translateZ(0);
-    }
-    .announcement-item:hover {
-      transform: translateX(5px) translateZ(0);
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }
-    .announcement-date {
-      font-size: 0.8rem;
-      color: #7f8c8d;
-      margin-bottom: 0.3rem;
-    }
-    .urgent {
-      border-left-color: #e74c3c !important;
-      background: rgba(231, 76, 60, 0.1) !important;
-    }
-    @keyframes pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 1; }
-      100% { opacity: 0.6; }
-    }
-
     /* 重要事項樣式 */
     .event-item {
       text-align: center;
@@ -242,13 +221,6 @@
       padding: 1rem 0;
     }
 
-    /* 載入狀態 */
-    .loading, .no-data, .error {
-      text-align: center;
-      padding: 1rem;
-      color: #7f8c8d;
-    }
-
     /* RWD 響應式設計 */
     @media (max-width: 768px) {
       header, section {
@@ -279,19 +251,12 @@
   <!-- 返回頂部按鈕 -->
   <a href="#" class="back-to-top">↑ 返回頂部</a>
 
+  <!-- 已修正標題置中 -->
   <header>
     <h1 id="title">DSJH 805 班級網站</h1>
   </header>
 
   <main>
-    <!-- 動態公告區塊 -->
-    <section id="announcements">
-      <h2>最新公告 <span class="live-badge">LIVE</span></h2>
-      <div class="announcement-container" id="announcement-list">
-        <div class="loading">載入中...</div>
-      </div>
-    </section>
-
     <section>
       <h2>課表</h2>
       <p class="centered-content">暫無內容顯示。</p>
@@ -390,47 +355,10 @@
       update();
     }
 
-    // ===== 動態公告系統 =====
-    async function loadAnnouncements() {
-      try {
-        const sheetId = '1sz54ecuwgSz6QvbR5GrtyugznuYxKDfZOBo-GnYz_94';
-        const sheetUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
-        
-        const response = await fetch(sheetUrl);
-        const data = await response.text();
-        const json = JSON.parse(data.substr(47).slice(0, -2));
-        
-        let html = '';
-        json.table.rows.forEach(row => {
-          const [date, title, content, isUrgent] = row.c;
-          const urgentClass = (isUrgent && isUrgent.v === '是') ? 'urgent' : '';
-          
-          html += `
-            <div class="announcement-item ${urgentClass}">
-              <div class="announcement-date">${date.v}</div>
-              <h3>${title.v}</h3>
-              <p>${content.v}</p>
-            </div>
-          `;
-        });
-        
-        document.getElementById('announcement-list').innerHTML = html || 
-          '<div class="no-data">暫無公告</div>';
-      } catch (error) {
-        console.error('公告載入失敗:', error);
-        document.getElementById('announcement-list').innerHTML = 
-          '<div class="error">公告載入失敗，請稍後再試</div>';
-      }
-    }
-
     // ===== 頁面初始化 =====
     document.addEventListener('DOMContentLoaded', () => {
       // 初始化粒子系統
       initParticles();
-      
-      // 載入公告
-      loadAnnouncements();
-      setInterval(loadAnnouncements, 5 * 60 * 1000);
       
       // 返回頂部按鈕
       window.addEventListener('scroll', () => {
