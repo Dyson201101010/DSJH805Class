@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
@@ -37,19 +36,42 @@ body {
   color:#fff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   transition: opacity 1s ease;
 }
+
 #welcome-screen h1{
-  font-size:2rem; margin-bottom:2rem;
+  font-size:2.5rem; margin-bottom:2rem;
   animation:slideDown 1s ease;
 }
+
 #welcome-screen #enter-btn{
-  padding:0.8rem 2rem; font-size:1rem; border:none; border-radius:20px;
+  padding:1rem 3rem; font-size:1.2rem; border:none; border-radius:25px;
   cursor:pointer; background:rgba(255,255,255,0.9); color:#3498db;
   transition: all 0.3s ease;
   animation:buttonPulse 1.5s infinite alternate;
+  margin-bottom:3rem;
 }
+
 #welcome-screen #enter-btn:hover{
-  transform:scale(1.05);
+  transform:scale(1.1);
 }
+
+/* 右上角按鈕在歡迎頁 */
+#welcome-screen .btn-container {
+  position: absolute; top:20px; right:20px; display:flex; flex-direction:column;
+  gap:10px; opacity:0; transform:translateX(50px);
+  transition: all 1s ease;
+}
+#welcome-screen .school-btn, #welcome-screen .location-btn {
+  padding:0.6rem 1.2rem; border:none; border-radius:20px; cursor:pointer;
+  text-decoration:none; font-size:0.9rem; text-align:center; color:#fff;
+  user-select:none; position:relative; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  transform:translate3d(0,0,0); background-size:200% auto;
+  transition: all 0.5s cubic-bezier(0.42,0,0.58,1);
+}
+#welcome-screen .school-btn { background-image: linear-gradient(135deg,#2ecc71,#27ae60,#2ecc71);}
+#welcome-screen .school-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+#welcome-screen .location-btn { background-image: linear-gradient(135deg,#3498db,#2980b9,#3498db);}
+#welcome-screen .location-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+
 #welcome-screen .transparent-footer{
   position:absolute; bottom:10px; opacity:0.3; font-size:0.85rem;
 }
@@ -84,25 +106,12 @@ header {
   will-change:transform;
 }
 
-/* ===================== 按鈕區塊 ===================== */
+/* ===================== 原右上按鈕區塊 ===================== */
 .btn-container {
   position: fixed; top:80px; right:20px; display:flex; flex-direction:column;
   gap:10px; z-index:1000; opacity:0; transform:translateX(30px);
   transition: all 1s ease;
 }
-
-.school-btn, .location-btn {
-  padding:0.6rem 1.2rem; border:none; border-radius:20px; cursor:pointer;
-  text-decoration:none; font-size:0.9rem; text-align:center; color:#fff;
-  user-select:none; position:relative; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.2);
-  transform:translate3d(0,0,0); background-size:200% auto;
-  transition: all 0.5s cubic-bezier(0.42,0,0.58,1);
-  will-change: transform, box-shadow, background-position; backface-visibility:hidden;
-}
-.school-btn { background-image: linear-gradient(135deg,#2ecc71,#27ae60,#2ecc71);}
-.school-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-.location-btn { background-image: linear-gradient(135deg,#3498db,#2980b9,#3498db);}
-.location-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 
 /* ===================== 主要內容區 ===================== */
 #main-content { max-width:1000px; margin:0 auto; padding:1rem; transform:translate3d(0,0,0); opacity:0; transition:opacity 1s ease; display:none; }
@@ -186,6 +195,7 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
   section:hover{ transform:none !important;}
   #particles-js canvas{opacity:0.7;}
   section::after{display:none;}
+  #welcome-screen #enter-btn{padding:0.8rem 2rem; font-size:1rem;}
 }
 </style>
 </head>
@@ -195,17 +205,15 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 <div id="welcome-screen">
   <h1>歡迎進入DSJH805Class網站</h1>
   <button id="enter-btn">進入網站</button>
+  <div class="btn-container">
+    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank" rel="noopener noreferrer">進入學校網站</a>
+    <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank" rel="noopener noreferrer">學校位置查看</a>
+  </div>
   <div class="transparent-footer">此網站非東新國中官方製作</div>
 </div>
 
 <!-- 粒子背景 -->
 <div id="particles-js"></div>
-
-<!-- 按鈕區塊 -->
-<div class="btn-container">
-  <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank" rel="noopener noreferrer">進入學校網站</a>
-  <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank" rel="noopener noreferrer">學校位置查看</a>
-</div>
 
 <!-- 頁首 -->
 <header role="banner">
@@ -363,6 +371,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   enterBtn.addEventListener('click', ()=>{
     welcomeScreen.style.opacity=0;
+    welcomeScreen.querySelector('.btn-container').style.transform='translateX(50px)';
+    welcomeScreen.querySelector('.btn-container').style.opacity=0;
+
     setTimeout(()=>{ welcomeScreen.style.display='none'; },1000);
 
     mainContent.style.display='block';
@@ -374,6 +385,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
       btnContainer.style.transform='translateX(0)';
     },200);
   });
+
+  // 歡迎頁右上按鈕滑入
+  setTimeout(()=>{
+    const welcomeBtns = welcomeScreen.querySelector('.btn-container');
+    welcomeBtns.style.opacity=1;
+    welcomeBtns.style.transform='translateX(0)';
+  },500);
 });
 </script>
 </body>
