@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
@@ -15,9 +16,7 @@
   --gradient-y: 50%;
   --gradient-opacity: 0;
 }
-
 * { box-sizing: border-box; margin:0; padding:0; scroll-behavior: smooth; }
-
 body {
   background-color:#f2f2f2;
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -26,8 +25,38 @@ body {
   overflow-x:hidden;
   min-height:100vh;
   transition: background 0.5s ease;
-  padding-bottom: 4rem; /* 底部區塊空間 */
+  padding-bottom: 4rem;
 }
+
+/* ===================== 歡迎介面 ===================== */
+#welcome-screen{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(135deg,#3498db,#2ecc71);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; z-index:2000;
+  color:#fff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  transition: opacity 1s ease;
+}
+#welcome-screen h1{
+  font-size:2rem; margin-bottom:2rem;
+  animation:slideDown 1s ease;
+}
+#welcome-screen #enter-btn{
+  padding:0.8rem 2rem; font-size:1rem; border:none; border-radius:20px;
+  cursor:pointer; background:rgba(255,255,255,0.9); color:#3498db;
+  transition: all 0.3s ease;
+  animation:buttonPulse 1.5s infinite alternate;
+}
+#welcome-screen #enter-btn:hover{
+  transform:scale(1.05);
+}
+#welcome-screen .transparent-footer{
+  position:absolute; bottom:10px; opacity:0.3; font-size:0.85rem;
+}
+
+/* ===================== 進入動畫 ===================== */
+@keyframes slideDown { from { transform:translateY(-30px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+@keyframes buttonPulse { from { transform:scale(1); } to { transform:scale(1.05); } }
 
 /* ===================== 頁首 ===================== */
 header {
@@ -44,6 +73,8 @@ header {
   box-shadow:0 4px 15px rgba(0,0,0,0.1);
   will-change: transform, opacity;
   backface-visibility:hidden;
+  opacity:0; transform:translateY(-30px);
+  transition: all 1s ease;
 }
 
 /* ===================== 粒子背景 ===================== */
@@ -55,8 +86,9 @@ header {
 
 /* ===================== 按鈕區塊 ===================== */
 .btn-container {
-  position: fixed; top:20px; right:20px; display:flex; flex-direction:column;
-  gap:10px; z-index:1000; will-change:transform; backface-visibility:hidden;
+  position: fixed; top:80px; right:20px; display:flex; flex-direction:column;
+  gap:10px; z-index:1000; opacity:0; transform:translateX(30px);
+  transition: all 1s ease;
 }
 
 .school-btn, .location-btn {
@@ -67,14 +99,13 @@ header {
   transition: all 0.5s cubic-bezier(0.42,0,0.58,1);
   will-change: transform, box-shadow, background-position; backface-visibility:hidden;
 }
-
 .school-btn { background-image: linear-gradient(135deg,#2ecc71,#27ae60,#2ecc71);}
 .school-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 .location-btn { background-image: linear-gradient(135deg,#3498db,#2980b9,#3498db);}
 .location-btn:hover { background-position:right center; transform:translate3d(0,-3px,0); box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 
 /* ===================== 主要內容區 ===================== */
-main { max-width:1000px; margin:0 auto; padding:1rem; transform:translate3d(0,0,0); }
+#main-content { max-width:1000px; margin:0 auto; padding:1rem; transform:translate3d(0,0,0); opacity:0; transition:opacity 1s ease; display:none; }
 
 section {
   opacity:0; transform:translate3d(0,50px,0);
@@ -160,6 +191,13 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 </head>
 <body>
 
+<!-- 歡迎介面 -->
+<div id="welcome-screen">
+  <h1>歡迎進入DSJH805Class網站</h1>
+  <button id="enter-btn">進入網站</button>
+  <div class="transparent-footer">此網站非東新國中官方製作</div>
+</div>
+
 <!-- 粒子背景 -->
 <div id="particles-js"></div>
 
@@ -175,7 +213,7 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 </header>
 
 <!-- 主要內容 -->
-<main>
+<main id="main-content">
 <section id="schedule">
   <h2>課表</h2>
   <p class="centered-content">暫無內容顯示</p>
@@ -310,12 +348,32 @@ class RippleEffect{
   }); }
 }
 
-// ===================== 初始化 =====================
+// ===================== 歡迎頁進入動畫 =====================
 document.addEventListener('DOMContentLoaded', ()=>{
   new ParticleSystem();
   new ScrollAnimator();
   new GradientEffect();
   new RippleEffect();
+
+  const enterBtn=document.getElementById('enter-btn');
+  const welcomeScreen=document.getElementById('welcome-screen');
+  const mainContent=document.getElementById('main-content');
+  const header=document.querySelector('header');
+  const btnContainer=document.querySelector('.btn-container');
+
+  enterBtn.addEventListener('click', ()=>{
+    welcomeScreen.style.opacity=0;
+    setTimeout(()=>{ welcomeScreen.style.display='none'; },1000);
+
+    mainContent.style.display='block';
+    setTimeout(()=>{
+      mainContent.style.opacity=1;
+      header.style.opacity=1;
+      header.style.transform='translateY(0)';
+      btnContainer.style.opacity=1;
+      btnContainer.style.transform='translateX(0)';
+    },200);
+  });
 });
 </script>
 </body>
