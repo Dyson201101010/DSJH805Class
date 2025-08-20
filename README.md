@@ -267,7 +267,7 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 const eventsData = [
   { "date": "8/28", "text": "新生訓練" },
   { "date": "8/29", "text": "全校返校日" },
-  { "date": "9/1", "text": "正式開學" }
+  { "date": "9/1", "text": "正式開學" },
   { "date": "1/20","text": "寒假開始" }
 ];
 
