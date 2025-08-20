@@ -54,7 +54,6 @@ body {
   transform:scale(1.1);
 }
 
-/* 右上角按鈕在歡迎頁 */
 #welcome-screen .btn-container {
   position: absolute; top:20px; right:20px; display:flex; flex-direction:column;
   gap:10px; opacity:0; transform:translateX(50px);
@@ -106,15 +105,20 @@ header {
   will-change:transform;
 }
 
-/* ===================== 原右上按鈕區塊 ===================== */
-.btn-container {
-  position: fixed; top:80px; right:20px; display:flex; flex-direction:column;
-  gap:10px; z-index:1000; opacity:0; transform:translateX(30px);
-  transition: all 1s ease;
-}
-
 /* ===================== 主要內容區 ===================== */
 #main-content { max-width:1000px; margin:0 auto; padding:1rem; transform:translate3d(0,0,0); opacity:0; transition:opacity 1s ease; display:none; }
+
+/* ===================== Section 展開效果 ===================== */
+.expand-section {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.42,0,0.58,1), opacity 0.6s ease;
+  opacity:0;
+}
+.expand-section.show {
+  transform: scaleY(1);
+  opacity:1;
+}
 
 section {
   opacity:0; transform:translate3d(0,50px,0);
@@ -234,11 +238,9 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 
 <section id="important">
   <h2>重要事項</h2>
-  <p style="text-align:center; font-size:0.85rem; color:#666;">（非即時更改）</p>
+  <p style="text-align:center; font-size:0.85rem; color:#666;">（可直接修改 JSON 檔案更新）</p>
   <hr style="width:60%; margin:1rem auto; border:0; border-top:1px solid rgba(0,0,0,0.1);">
-  <div class="event-item">📌 8/28 新生訓練</div>
-  <div class="event-item">📌 8/29 全校返校日</div>
-  <div class="event-item">📌 9/1 正式開學</div>
+  <div id="event-list"></div>
 </section>
 
 <section id="photos">
@@ -261,6 +263,26 @@ section:hover { transform:scale(1.015) translateZ(0); box-shadow:0 8px 20px rgba
 <div class="footer-block">此網站非東新國中官方製作</div>
 
 <script>
+// ===================== 重要事項 JSON =====================
+const eventsData = [
+  { "date": "8/28", "text": "新生訓練" },
+  { "date": "8/29", "text": "全校返校日" },
+  { "date": "9/1", "text": "正式開學" }
+  { "date": "1/20","text": "寒假開始" }
+];
+
+// ===================== 生成公告列表 =====================
+function renderEvents() {
+  const eventList = document.getElementById('event-list');
+  eventList.innerHTML = '';
+  eventsData.forEach(event => {
+    const div = document.createElement('div');
+    div.className = 'event-item';
+    div.textContent = `📌 ${event.date} ${event.text}`;
+    eventList.appendChild(div);
+  });
+}
+
 // ===================== 粒子系統 =====================
 class ParticleSystem{
   constructor(){
@@ -358,40 +380,39 @@ class RippleEffect{
 
 // ===================== 歡迎頁進入動畫 =====================
 document.addEventListener('DOMContentLoaded', ()=>{
+  renderEvents(); // 先渲染公告
   new ParticleSystem();
   new ScrollAnimator();
   new GradientEffect();
   new RippleEffect();
 
+  const welcome=document.getElementById('welcome-screen');
+  const main=document.getElementById('main-content');
   const enterBtn=document.getElementById('enter-btn');
-  const welcomeScreen=document.getElementById('welcome-screen');
-  const mainContent=document.getElementById('main-content');
-  const header=document.querySelector('header');
-  const btnContainer=document.querySelector('.btn-container');
 
   enterBtn.addEventListener('click', ()=>{
-    welcomeScreen.style.opacity=0;
-    welcomeScreen.querySelector('.btn-container').style.transform='translateX(50px)';
-    welcomeScreen.querySelector('.btn-container').style.opacity=0;
-
-    setTimeout(()=>{ welcomeScreen.style.display='none'; },1000);
-
-    mainContent.style.display='block';
+    welcome.style.opacity='0';
     setTimeout(()=>{
-      mainContent.style.opacity=1;
-      header.style.opacity=1;
-      header.style.transform='translateY(0)';
-      btnContainer.style.opacity=1;
-      btnContainer.style.transform='translateX(0)';
-    },200);
-  });
+      welcome.style.display='none';
+      main.style.display='block';
+      main.style.opacity='1';
 
-  // 歡迎頁右上按鈕滑入
-  setTimeout(()=>{
-    const welcomeBtns = welcomeScreen.querySelector('.btn-container');
-    welcomeBtns.style.opacity=1;
-    welcomeBtns.style.transform='translateX(0)';
-  },500);
+      // header 顯示
+      const header=document.querySelector('header');
+      header.style.opacity='1';
+      header.style.transform='translateY(0)';
+
+      // 逐個展開 section
+      const sections=document.querySelectorAll('main section');
+      sections.forEach((sec,i)=>{
+        sec.classList.add('expand-section');
+        setTimeout(()=>sec.classList.add('show'), i*200);
+      });
+
+      // 右上按鈕顯示
+      document.querySelector('.btn-container').style.opacity='1';
+    },1000);
+  });
 });
 </script>
 </body>
