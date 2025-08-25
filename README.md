@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSJH 805 班級網站</title>
+    <title>東新國中805班級網站</title>
     <meta name="description" content="東新國中805班官方網站，提供課表、公告與聯絡資訊">
     <meta name="keywords" content="東新國中,805班,班級網站,課表,班級公告">
     <meta property="og:title" content="東新國中805班級官方網站">
@@ -91,8 +90,8 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            opacity: 0;
-            transform: translateX(60px);
+            opacity: 1;
+            transform: translateX(0);
             transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
@@ -236,6 +235,7 @@
             backface-visibility: hidden;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         /* 區塊漸層光影 */
@@ -491,8 +491,6 @@
 
         <section id="important">
             <h2>重要事項</h2>
-            <p style="text-align:center; font-size:0.9rem; color:#666;">（可直接修改 JSON 檔案更新）</p>
-            <hr style="width:60%; margin:1.2rem auto; border:0; border-top:1px solid rgba(0,0,0,0.1);">
             <div id="event-list"></div>
         </section>
 
@@ -699,10 +697,6 @@
                                 section.style.transform = 'translate3d(0, 0, 0)';
                             }, 300 + (i * 200)); //  staggered animation
                         });
-                        
-                        // 右上按钮显示
-                        document.querySelector('.btn-container').style.opacity = '1';
-                        document.querySelector('.btn-container').style.transform = 'translateX(0)';
                     });
                 }, 1000);
             });
