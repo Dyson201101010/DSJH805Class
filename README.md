@@ -33,6 +33,12 @@
             overflow-x: hidden;
             min-height: 100vh;
             padding-bottom: 4rem;
+            text-align: center; /* 確保全域文字置中 */
+        }
+
+        /* 強制所有文字元素置中 */
+        h1, h2, h3, p, div, span, section, header, main {
+            text-align: center;
         }
 
         /* ===================== 歡迎介面 ===================== */
