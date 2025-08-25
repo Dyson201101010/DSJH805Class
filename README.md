@@ -193,6 +193,28 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
+        /* ===================== 返回歡迎介面按鈕 ===================== */
+        #back-to-welcome {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        #back-to-welcome:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
         /* ===================== 粒子背景 ===================== */
         #particles-js {
             position: fixed;
@@ -240,6 +262,48 @@
             text-align: center;
         }
 
+        /* 放大按鈕 */
+        .expand-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .expand-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* 查看內容按鈕 */
+        .view-content-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+        }
+
+        .view-content-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+
         /* 區塊漸層光影 */
         section::after {
             content: '';
@@ -270,7 +334,17 @@
             padding-bottom: 0.5rem;
         }
 
-        /* 移除了标题下方的彩色线条 */
+        /* 全屏模式 */
+        section.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            border-radius: 0;
+            overflow-y: auto;
+        }
 
         /* ===================== 即將上線樣式 ===================== */
         .coming-soon {
@@ -345,6 +419,52 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             pointer-events: none;
             font-weight: 500;
+        }
+
+        /* ===================== 模態框 ===================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--light-bg);
+            margin: auto;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            width: 80%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-color);
         }
 
         /* ===================== 底部區塊 ===================== */
@@ -437,6 +557,18 @@
             .coming-soon-date {
                 font-size: 1.1rem;
             }
+
+            .expand-btn {
+                top: 10px;
+                right: 10px;
+                padding: 0.2rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .view-content-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -459,12 +591,17 @@
     <!-- 頁首 -->
     <header role="banner">
         <h1 id="title" aria-label="東新國中805班級網站">DSJH 805 班級網站</h1>
+        <button id="back-to-welcome">返回歡迎介面</button>
     </header>
 
     <!-- 主要內容 -->
     <main id="main-content" role="main">
         <section id="schedule" aria-labelledby="schedule-heading">
             <h2 id="schedule-heading">課表</h2>
+            <button class="expand-btn">放大</button>
+            <div class="view-content-button-container">
+                <button class="view-content-btn">查看內容</button>
+            </div>
             <div class="coming-soon">
                 <span class="coming-soon-icon" aria-hidden="true">📚</span>
                 <div class="coming-soon-text">內容準備中</div>
@@ -474,6 +611,10 @@
 
         <section id="officers" aria-labelledby="officers-heading">
             <h2 id="officers-heading">班級幹部</h2>
+            <button class="expand-btn">放大</button>
+            <div class="view-content-button-container">
+                <button class="view-content-btn">查看內容</button>
+            </div>
             <div class="coming-soon">
                 <span class="coming-soon-icon" aria-hidden="true">👥</span>
                 <div class="coming-soon-text">內容準備中</div>
@@ -483,11 +624,16 @@
 
         <section id="important" aria-labelledby="important-heading">
             <h2 id="important-heading">重要事項</h2>
+            <button class="expand-btn">放大</button>
             <div id="event-list"></div>
         </section>
 
         <section id="photos" aria-labelledby="photos-heading">
             <h2 id="photos-heading">班級照片</h2>
+            <button class="expand-btn">放大</button>
+            <div class="view-content-button-container">
+                <button class="view-content-btn">查看內容</button>
+            </div>
             <div class="coming-soon">
                 <span class="coming-soon-icon" aria-hidden="true">📷</span>
                 <div class="coming-soon-text">內容準備中</div>
@@ -497,6 +643,7 @@
 
         <section id="contact" aria-labelledby="contact-heading">
             <h2 id="contact-heading">作者聯絡方式</h2>
+            <button class="expand-btn">放大</button>
             <div class="contact-container">
                 <span class="contact-email">lianyuqing169@gmail.com</span>
             </div>
@@ -505,6 +652,20 @@
             </p>
         </section>
     </main>
+
+    <!-- 模態框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="coming-soon">
+                    <span class="coming-soon-icon" aria-hidden="true">📚</span>
+                    <div class="coming-soon-text">內容準備中</div>
+                    <div class="coming-soon-date">9/1 將同開學上線</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- 底部文字區塊 -->
     <div class="footer-block">此網站非東新國中官方製作</div>
@@ -653,6 +814,82 @@
             }
         }
 
+        // ===================== 區塊放大功能 =====================
+        class ExpandSection {
+            constructor() {
+                this.expandButtons = document.querySelectorAll('.expand-btn');
+                this.expandButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const section = e.currentTarget.parentElement;
+                        this.toggleSection(section, button);
+                    });
+                });
+            }
+            
+            toggleSection(section, button) {
+                if (section.classList.contains('fullscreen')) {
+                    // 縮小
+                    section.classList.remove('fullscreen');
+                    button.textContent = '放大';
+                    // 顯示其他所有區塊
+                    document.querySelectorAll('section').forEach(s => {
+                        if (s !== section) {
+                            s.style.display = 'block';
+                        }
+                    });
+                    // 顯示header和footer
+                    document.querySelector('header').style.display = 'block';
+                    document.querySelector('.footer-block').style.display = 'block';
+                } else {
+                    // 放大
+                    section.classList.add('fullscreen');
+                    button.textContent = '縮小';
+                    // 隱藏其他所有區塊
+                    document.querySelectorAll('section').forEach(s => {
+                        if (s !== section) {
+                            s.style.display = 'none';
+                        }
+                    });
+                    // 隱藏header和footer
+                    document.querySelector('header').style.display = 'none';
+                    document.querySelector('.footer-block').style.display = 'none';
+                }
+            }
+        }
+
+        // ===================== 模態框功能 =====================
+        class Modal {
+            constructor() {
+                this.modal = document.getElementById('modal');
+                this.viewContentButtons = document.querySelectorAll('.view-content-btn');
+                this.closeButton = document.querySelector('.close-modal');
+                
+                this.viewContentButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        this.openModal();
+                    });
+                });
+                
+                this.closeButton.addEventListener('click', () => {
+                    this.closeModal();
+                });
+                
+                this.modal.addEventListener('click', (e) => {
+                    if (e.target === this.modal) {
+                        this.closeModal();
+                    }
+                });
+            }
+            
+            openModal() {
+                this.modal.classList.add('show');
+            }
+            
+            closeModal() {
+                this.modal.classList.remove('show');
+            }
+        }
+
         // ===================== 歡迎頁進入動畫 =====================
         document.addEventListener('DOMContentLoaded', () => {
             renderEvents();
@@ -660,10 +897,13 @@
             new ScrollAnimator();
             new GradientEffect();
             new RippleEffect();
+            new ExpandSection();
+            new Modal();
 
             const welcome = document.getElementById('welcome-screen');
             const main = document.getElementById('main-content');
             const enterBtn = document.getElementById('enter-btn');
+            const backToWelcomeBtn = document.getElementById('back-to-welcome');
 
             enterBtn.addEventListener('click', () => {
                 welcome.style.opacity = '0';
@@ -691,6 +931,21 @@
                         });
                     });
                 }, 1000);
+            });
+
+            // 返回欢迎界面功能
+            backToWelcomeBtn.addEventListener('click', () => {
+                // 隐藏主内容
+                main.style.display = 'none';
+                main.style.opacity = '0';
+                document.querySelector('header').style.opacity = '0';
+                document.querySelector('header').style.transform = 'translateY(-40px)';
+
+                // 显示欢迎界面
+                welcome.style.display = 'flex';
+                setTimeout(() => {
+                    welcome.style.opacity = '1';
+                }, 50);
             });
         });
     </script>
