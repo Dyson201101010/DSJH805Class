@@ -10,12 +10,13 @@
     <style>
         /* ===================== 全局設定 ===================== */
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --accent-color: #ff7e5f;
-            --text-color: #333;
+            --primary-color: #7a7a7a;
+            --secondary-color: #a8a8a8;
+            --accent-color: #9e9e9e;
+            --text-color: #4a4a4a;
             --light-bg: rgba(255, 255, 255, 0.85);
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(240, 240, 240, 0.7);
         }
         
         * { 
@@ -33,29 +34,31 @@
             overflow-x: hidden;
             min-height: 100vh;
             padding-bottom: 4rem;
-            text-align: center; /* 確保全域文字置中 */
-        }
-
-        /* 強制所有文字元素置中 */
-        h1, h2, h3, p, div, span, section, header, main {
             text-align: center;
         }
 
-        /* ===================== 歡迎介面 ===================== */
+        /* 強制所有文字元素置中 */
+        h1, h2, h3, p, div, span, section, header, main, .event-item, .contact-container {
+            text-align: center;
+        }
+
+        /* ===================== 歡迎介面 - 毛玻璃效果 ===================== */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: rgba(240, 240, 240, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             z-index: 2000;
-            color: #fff;
+            color: #5a5a5a;
             transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
@@ -65,7 +68,7 @@
             animation: slideDown 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             opacity: 0;
             transform: translateY(-40px);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         #welcome-screen #enter-btn {
@@ -74,19 +77,20 @@
             border: none;
             border-radius: 35px;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.9);
+            color: #5a5a5a;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation: buttonPulse 2s infinite alternate;
             margin-bottom: 3.5rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             font-weight: 600;
             letter-spacing: 1px;
         }
 
         #welcome-screen #enter-btn:hover {
             transform: scale(1.12) translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
         }
 
         #welcome-screen .btn-container {
@@ -110,35 +114,27 @@
             text-decoration: none;
             font-size: 1rem;
             text-align: center;
-            color: #fff;
+            color: #5a5a5a;
             user-select: none;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
             transform: translate3d(0, 0, 0);
-            background-size: 200% auto;
+            background: rgba(255, 255, 255, 0.8);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-weight: 500;
         }
         
-        #welcome-screen .school-btn { 
-            background-image: linear-gradient(135deg, #2ecc71, #27ae60, #2ecc71);
-        }
-        
         #welcome-screen .school-btn:hover { 
-            background-position: right center; 
             transform: translate3d(0, -4px, 0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-        }
-        
-        #welcome-screen .location-btn { 
-            background-image: linear-gradient(135deg, #3498db, #2980b9, #3498db);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
         }
         
         #welcome-screen .location-btn:hover { 
-            background-position: right center; 
             transform: translate3d(0, -4px, 0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
         }
 
         #welcome-screen .transparent-footer {
@@ -163,11 +159,11 @@
         @keyframes buttonPulse { 
             from { 
                 transform: scale(1); 
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             } 
             to { 
                 transform: scale(1.08); 
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
             } 
         }
 
@@ -194,7 +190,7 @@
         header h1 {
             font-size: 2.5rem;
             color: var(--primary-color);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         /* ===================== 粒子背景 ===================== */
@@ -208,7 +204,7 @@
             pointer-events: none;
             transform: translate3d(0, 0, 0);
             will-change: transform;
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
         /* ===================== 主要內容區 ===================== */
@@ -253,7 +249,7 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle at var(--gradient-x) var(--gradient-y), 
-                        rgba(52, 152, 219, 0.15), rgba(255, 255, 255, 0));
+                        rgba(122, 122, 122, 0.1), rgba(255, 255, 255, 0));
             opacity: var(--gradient-opacity);
             transition: opacity 0.8s ease;
             pointer-events: none;
@@ -262,7 +258,7 @@
 
         section:hover { 
             transform: scale(1.02) translateZ(0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); 
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); 
         }
 
         section h2 {
@@ -274,17 +270,7 @@
             padding-bottom: 0.5rem;
         }
 
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            border-radius: 3px;
-        }
+        /* 移除了标题下方的彩色线条 */
 
         /* ===================== 即將上線樣式 ===================== */
         .coming-soon {
@@ -319,7 +305,7 @@
         .coming-soon-date {
             font-size: 1.2rem;
             color: var(--primary-color);
-            background: rgba(52, 152, 219, 0.1);
+            background: rgba(122, 122, 122, 0.1);
             display: inline-block;
             padding: 0.5rem 1.2rem;
             border-radius: 20px;
@@ -383,7 +369,7 @@
             position: fixed;
             width: 20px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(200, 200, 200, 0.6);
             border-radius: 50%;
             transform: translate3d(-50%, -50%, 0) scale(0);
             animation: ripple 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -420,7 +406,7 @@
             }
             
             #particles-js canvas {
-                opacity: 0.5;
+                opacity: 0.4;
             }
             
             section::after {
@@ -457,18 +443,18 @@
 <body>
 
     <!-- 歡迎介面 -->
-    <div id="welcome-screen">
+    <div id="welcome-screen" aria-label="歡迎畫面">
         <h1>歡迎進入DSJH805Class網站</h1>
-        <button id="enter-btn">進入網站</button>
+        <button id="enter-btn" aria-label="進入網站">進入網站</button>
         <div class="btn-container">
-            <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank" rel="noopener noreferrer">進入學校網站</a>
-            <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank" rel="noopener noreferrer">學校位置查看</a>
+            <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank" rel="noopener noreferrer" aria-label="進入學校網站">進入學校網站</a>
+            <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank" rel="noopener noreferrer" aria-label="查看學校位置">學校位置查看</a>
         </div>
         <div class="transparent-footer">此網站非東新國中官方製作</div>
     </div>
 
     <!-- 粒子背景 -->
-    <div id="particles-js"></div>
+    <div id="particles-js" aria-hidden="true"></div>
 
     <!-- 頁首 -->
     <header role="banner">
@@ -476,41 +462,41 @@
     </header>
 
     <!-- 主要內容 -->
-    <main id="main-content">
-        <section id="schedule">
-            <h2>課表</h2>
+    <main id="main-content" role="main">
+        <section id="schedule" aria-labelledby="schedule-heading">
+            <h2 id="schedule-heading">課表</h2>
             <div class="coming-soon">
-                <span class="coming-soon-icon">📚</span>
+                <span class="coming-soon-icon" aria-hidden="true">📚</span>
                 <div class="coming-soon-text">內容準備中</div>
                 <div class="coming-soon-date">9/1 將同開學上線</div>
             </div>
         </section>
 
-        <section id="officers">
-            <h2>班級幹部</h2>
+        <section id="officers" aria-labelledby="officers-heading">
+            <h2 id="officers-heading">班級幹部</h2>
             <div class="coming-soon">
-                <span class="coming-soon-icon">👥</span>
+                <span class="coming-soon-icon" aria-hidden="true">👥</span>
                 <div class="coming-soon-text">內容準備中</div>
                 <div class="coming-soon-date">9/1 將同開學上線</div>
             </div>
         </section>
 
-        <section id="important">
-            <h2>重要事項</h2>
+        <section id="important" aria-labelledby="important-heading">
+            <h2 id="important-heading">重要事項</h2>
             <div id="event-list"></div>
         </section>
 
-        <section id="photos">
-            <h2>班級照片</h2>
+        <section id="photos" aria-labelledby="photos-heading">
+            <h2 id="photos-heading">班級照片</h2>
             <div class="coming-soon">
-                <span class="coming-soon-icon">📷</span>
+                <span class="coming-soon-icon" aria-hidden="true">📷</span>
                 <div class="coming-soon-text">內容準備中</div>
                 <div class="coming-soon-date">9/1 將同開學上線</div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2>作者聯絡方式</h2>
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">作者聯絡方式</h2>
             <div class="contact-container">
                 <span class="contact-email">lianyuqing169@gmail.com</span>
             </div>
@@ -561,7 +547,7 @@
             createParticles() {
                 const count = Math.min(Math.floor(window.innerWidth / 4), 150);
                 return Array.from({ length: count }, () => {
-                    const colors = ['#ff9ff3', '#feca57', '#48dbfb', '#1dd1a1', '#5f27cd'];
+                    const colors = ['#b8b8b8', '#c8c8c8', '#a0a0a0', '#909090', '#989898'];
                     return {
                         x: Math.random() * window.innerWidth,
                         y: Math.random() * window.innerHeight,
