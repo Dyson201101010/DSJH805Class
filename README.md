@@ -179,7 +179,7 @@
             padding: 80px 0;
             text-align: center;
             background: linear-gradient(135deg, rgba(122, 186, 255, 0.15) 0%, rgba(96, 163, 248, 0.15) 100%);
-            margin-bottom: 60px; /* 增加间距 */
+            margin-bottom: 60px;
             border-radius: 0 0 30px 30px;
         }
         
@@ -199,7 +199,7 @@
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px; /* 增加间距 */
+            margin-bottom: 50px;
             color: var(--primary);
             font-size: 2.2rem;
             position: relative;
@@ -222,8 +222,8 @@
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; /* 增加间距 */
-            margin-bottom: 80px; /* 增加间距 */
+            gap: 30px;
+            margin-bottom: 80px;
         }
         
         .card {
@@ -254,21 +254,25 @@
             text-align: center;
         }
         
-        /* 班級幹部表格樣式 */
+        /* 班級幹部表格樣式 - 已修復 */
         .officers-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 600px; /* 限制最大宽度 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
         
         .officers-table th, .officers-table td {
             padding: 15px;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .officers-table th {
-            background-color: rgba(74, 134, 232, 0.1);
+            background-color: rgba(74, 134, 232, 0.2);
             color: var(--primary);
             font-weight: 600;
         }
@@ -315,7 +319,7 @@
         .announcement-list {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* 增加间距 */
+            gap: 20px;
         }
         
         .announcement {
@@ -356,9 +360,9 @@
         .contact-methods {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px; /* 增加间距 */
+            gap: 25px;
             justify-content: center;
-            margin-top: 40px; /* 增加间距 */
+            margin-top: 40px;
         }
         
         .contact-method {
@@ -390,14 +394,14 @@
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 80px; /* 增加间距 */
+            margin-top: 80px;
             border-radius: 30px 30px 0 0;
         }
         
         /* 返回按鈕 - 调整位置 */
         #back-to-welcome {
             position: fixed;
-            top: 15px; /* 向上调整位置 */
+            top: 15px;
             right: 20px;
             background: var(--primary);
             color: white;
@@ -461,7 +465,17 @@
             }
             
             .officers-table th, .officers-table td {
-                padding: 10px;
+                padding: 10px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .officers-table {
+                font-size: 0.8rem;
+            }
+            
+            .officers-table th, .officers-table td {
+                padding: 8px 5px;
             }
         }
     </style>
@@ -537,7 +551,7 @@
                 </div>
             </section>
 
-            <!-- 班級幹部區域 -->
+            <!-- 班級幹部區域 - 已修復 -->
             <section id="officers">
                 <h2 class="section-title">班級幹部</h2>
                 <div class="card">
@@ -657,7 +671,6 @@
     <footer>
         <div class="container">
             <p>此網站非東新國中官方製作 | 東新國中805班級網站</p>
-            <!-- 已移除版权信息 -->
         </div>
     </footer>
 
