@@ -2,747 +2,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東新國中805班級網站</title>
-    <meta name="description" content="東新國中805班官方網站，提供課表、公告與聯絡資訊">
-    <meta name="keywords" content="東新國中,805班,班級網站,課表,班級公告">
-    <meta property="og:title" content="東新國中805班級官方網站">
-    <meta property="og:description" content="東新國中805班的官方網站，提供最新課表、班級公告和聯絡資訊">
+    <title>東新國中805班級網站 - 淺藍風格</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===================== 全局設定 ===================== */
         :root {
-            --primary-color: #7a7a7a;
-            --secondary-color: #a8a8a8;
-            --accent-color: #9e9e9e;
-            --text-color: #4a4a4a;
-            --light-bg: rgba(255, 255, 255, 0.85);
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --glass-bg: rgba(240, 240, 240, 0.7);
+            --primary: #4a86e8;
+            --primary-light: #6fa3ef;
+            --primary-dark: #3a6bc0;
+            --secondary: #87ceeb;
+            --accent: #5c9ead;
+            --light: #f0f8ff;
+            --dark: #2c3e50;
+            --success: #5cb85c;
+            --warning: #f0ad4e;
+            --danger: #d9534f;
+            --gray: #a0aec0;
+            --transition: all 0.3s ease;
         }
         
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            scroll-behavior: smooth; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f2f2f2;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            color: var(--text-color);
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #e6f7ff 0%, #c3e6fc 100%);
+            color: var(--dark);
+            line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 4rem;
-            text-align: center;
+            padding-bottom: 60px;
         }
-
-        /* 強制所有文字元素置中 */
-        h1, h2, h3, p, div, span, section, header, main, .event-item, .contact-container {
-            text-align: center;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        /* ===================== 歡迎介面 - 毛玻璃效果 ===================== */
+        
+        /* 歡迎畫面 - 不透明背景 */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(240, 240, 240, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, #a8d5ff 0%, #7abaff 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            z-index: 2000;
-            color: #5a5a5a;
-            transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 1000;
+            color: white;
+            transition: opacity 0.8s ease;
         }
-
+        
+        .welcome-content {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
         #welcome-screen h1 {
             font-size: 2.8rem;
-            margin-bottom: 2.5rem;
-            animation: slideDown 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            opacity: 0;
-            transform: translateY(-40px);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            color: #2c3e50;
         }
-
-        #welcome-screen #enter-btn {
-            padding: 1.2rem 3.5rem;
-            font-size: 1.3rem;
+        
+        #welcome-screen p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            opacity: 0.9;
+        }
+        
+        #enter-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: var(--primary);
+            color: white;
             border: none;
-            border-radius: 35px;
+            border-radius: 50px;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.9);
-            color: #5a5a5a;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: buttonPulse 2s infinite alternate;
-            margin-bottom: 3.5rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             font-weight: 600;
-            letter-spacing: 1px;
         }
-
-        #welcome-screen #enter-btn:hover {
-            transform: scale(1.12) translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 1);
+        
+        #enter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: var(--primary-dark);
         }
-
-        #welcome-screen .btn-container {
-            position: absolute;
-            top: 25px;
-            right: 25px;
+        
+        .welcome-buttons {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
-        #welcome-screen .school-btn, 
-        #welcome-screen .location-btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
+        .welcome-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--dark);
             text-decoration: none;
-            font-size: 1rem;
-            text-align: center;
-            color: #5a5a5a;
-            user-select: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
-            transform: translate3d(0, 0, 0);
-            background: rgba(255, 255, 255, 0.8);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 50px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
-        #welcome-screen .school-btn:hover { 
-            transform: translate3d(0, -4px, 0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 1);
-        }
-        
-        #welcome-screen .location-btn:hover { 
-            transform: translate3d(0, -4px, 0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 1);
-        }
-
-        #welcome-screen .transparent-footer {
-            position: absolute;
-            bottom: 15px;
-            opacity: 0.4;
-            font-size: 0.9rem;
-        }
-
-        /* ===================== 進入動畫 ===================== */
-        @keyframes slideDown { 
-            from { 
-                transform: translateY(-40px); 
-                opacity: 0; 
-            } 
-            to { 
-                transform: translateY(0); 
-                opacity: 1; 
-            } 
-        }
-        
-        @keyframes buttonPulse { 
-            from { 
-                transform: scale(1); 
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            } 
-            to { 
-                transform: scale(1.08); 
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-            } 
-        }
-
-        /* ===================== 頁首 ===================== */
-        header {
-            text-align: center;
-            margin: 2.5rem auto 1.5rem;
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            background-color: var(--light-bg);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 2rem;
-            max-width: 800px;
-            position: relative;
-            box-shadow: var(--shadow);
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            opacity: 0;
-            transform: translateY(-40px);
-            transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        /* ===================== 返回歡迎介面按鈕 ===================== */
-        #back-to-welcome {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--primary-color);
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-weight: 500;
-        }
-
-        #back-to-welcome:hover {
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        .welcome-btn:hover {
+            background: rgba(255, 255, 255, 0.7);
             transform: translateY(-2px);
         }
-
-        /* ===================== 粒子背景 ===================== */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
-            opacity: 0.5;
-        }
-
-        /* ===================== 主要內容區 ===================== */
-        #main-content { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 1.5rem; 
-            transform: translate3d(0, 0, 0); 
-            opacity: 0; 
-            transition: opacity 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            display: none; 
-        }
-
-        /* ===================== Section 動畫效果 ===================== */
-        section {
-            opacity: 0;
-            transform: translate3d(0, 50px, 0);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            background-color: var(--light-bg);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        box-shadow 0.8s ease, 
-                        opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        /* 區塊漸層光影 */
-        section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at var(--gradient-x) var(--gradient-y), 
-                        rgba(122, 122, 122, 0.1), rgba(255, 255, 255, 0));
-            opacity: var(--gradient-opacity);
-            transition: opacity 0.8s ease;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        section:hover { 
-            transform: scale(1.02) translateZ(0); 
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); 
-        }
-
-        section h2 {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.8rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        /* ===================== 即將上線樣式 ===================== */
-        .coming-soon {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.5s ease;
-        }
-
-        .coming-soon:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .coming-soon-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            color: var(--accent-color);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .coming-soon-text {
-            font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .coming-soon-date {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            background: rgba(122, 122, 122, 0.1);
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        /* ===================== 班級活動 ===================== */
-        .event-item {
-            text-align: center;
-            margin: 1.2rem 0;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform;
-        }
         
-        .event-item:hover { 
-            transform: translate3d(0, -5px, 0); 
-        }
-
-        /* ===================== 聯絡方式 ===================== */
-        .contact-container {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-        
-        .contact-email {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 1rem 2rem;
-            border-radius: 35px;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            pointer-events: none;
-            font-weight: 500;
-        }
-
-        /* ===================== 底部區塊 ===================== */
-        .footer-block {
-            width: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #555;
-            background-color: var(--light-bg);
-            padding: 1rem 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* 導航欄 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
             z-index: 100;
         }
-
-        /* ===================== 漣漪效果 ===================== */
-        .ripple-effect {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: rgba(200, 200, 200, 0.6);
-            border-radius: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(0);
-            animation: ripple 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
-            z-index: 1000;
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        @keyframes ripple { 
-            to { 
-                transform: translate3d(-50%, -50%, 0) scale(12); 
-                opacity: 0; 
-            } 
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
         }
-
-        /* ===================== 手機響應 ===================== */
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* 主內容區 */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(122, 186, 255, 0.15) 0%, rgba(96, 163, 248, 0.15) 100%);
+            margin-bottom: 60px; /* 增加间距 */
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px; /* 增加间距 */
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* 卡片樣式 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; /* 增加间距 */
+            margin-bottom: 80px; /* 增加间距 */
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        /* 即將上線樣式 */
+        .coming-soon {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .coming-soon-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .coming-soon-text {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .coming-soon-date {
+            font-size: 1.2rem;
+            color: var(--primary);
+            background: rgba(74, 134, 232, 0.15);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        /* 公告樣式 */
+        .announcement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* 增加间距 */
+        }
+        
+        .announcement {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .announcement-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .announcement-content h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .announcement-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* 聯絡樣式 */
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* 增加间距 */
+            justify-content: center;
+            margin-top: 40px; /* 增加间距 */
+        }
+        
+        .contact-method {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* 頁腳 */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 80px; /* 增加间距 */
+            border-radius: 30px 30px 0 0;
+        }
+        
+        /* 返回按鈕 - 调整位置 */
+        #back-to-welcome {
+            position: fixed;
+            top: 15px; /* 向上调整位置 */
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 101;
+            transition: var(--transition);
+        }
+        
+        #back-to-welcome:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* 響應式設計 */
         @media (max-width: 768px) {
-            header, section {
-                margin: 1.2rem;
-                padding: 1.5rem;
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .btn-container {
-                top: 15px;
-                right: 15px;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            section:hover { 
-                transform: none !important;
+            .hero h1 {
+                font-size: 2.2rem;
             }
             
-            #particles-js canvas {
-                opacity: 0.4;
+            .hero p {
+                font-size: 1rem;
             }
             
-            section::after {
-                display: none;
+            .section-title {
+                font-size: 1.8rem;
             }
             
-            #welcome-screen #enter-btn {
-                padding: 1rem 2.5rem;
-                font-size: 1.1rem;
+            .welcome-content {
+                padding: 20px;
             }
             
             #welcome-screen h1 {
                 font-size: 2.2rem;
             }
             
-            .coming-soon {
-                padding: 2rem 1.5rem;
-            }
-            
-            .coming-soon-icon {
-                font-size: 3rem;
-            }
-            
-            .coming-soon-text {
-                font-size: 1.3rem;
-            }
-            
-            .coming-soon-date {
-                font-size: 1.1rem;
-            }
-
-            #back-to-welcome {
-                top: 15px;
-                right: 15px;
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+            .card-grid {
+                gap: 20px;
+                margin-bottom: 60px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- 歡迎介面 -->
-    <div id="welcome-screen" aria-label="歡迎畫面">
-        <h1>歡迎進入DSJH805Class網站</h1>
-        <button id="enter-btn" aria-label="進入網站">進入網站</button>
-        <div class="btn-container">
-            <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="school-btn" target="_blank" rel="noopener noreferrer" aria-label="進入學校網站">進入學校網站</a>
-            <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="location-btn" target="_blank" rel="noopener noreferrer" aria-label="查看學校位置">學校位置查看</a>
+    <!-- 歡迎畫面 -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h1>歡迎來到東新國中805班</h1>
+            <p>我們是一個充滿活力與學習熱情的班級，這個網站將提供最新的班級資訊、課表、公告和活動照片。</p>
+            <button id="enter-btn">進入網站</button>
+            
+            <div class="welcome-buttons">
+                <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" class="welcome-btn" target="_blank">
+                    <i class="fas fa-school"></i> 學校網站
+                </a>
+                <a href="https://www.google.com/maps?q=928屏東縣東港鎮東新路1號" class="welcome-btn" target="_blank">
+                    <i class="fas fa-map-marker-alt"></i> 學校位置
+                </a>
+                <a href="mailto:lianyuqing169@gmail.com" class="welcome-btn">
+                    <i class="fas fa-envelope"></i> 聯絡我們
+                </a>
+            </div>
         </div>
-        <div class="transparent-footer">此網站非東新國中官方製作</div>
     </div>
 
-    <!-- 粒子背景 -->
-    <div id="particles-js" aria-hidden="true"></div>
+    <!-- 返回歡迎畫面按鈕 -->
+    <button id="back-to-welcome" title="返回歡迎畫面">
+        <i class="fas fa-home"></i>
+    </button>
 
-    <!-- 返回歡迎介面按鈕 -->
-    <button id="back-to-welcome">返回歡迎介面</button>
-
-    <!-- 頁首 -->
-    <header role="banner">
-        <h1 id="title" aria-label="東新國中805班級網站">DSJH 805 班級網站</h1>
+    <!-- 導航欄 -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>東新國中805班</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#schedule" class="active">課表</a>
+                <a href="#officers">班級幹部</a>
+                <a href="#announcements">重要公告</a>
+                <a href="#gallery">班級相冊</a>
+                <a href="#contact">聯絡我們</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- 主要內容 -->
-    <main id="main-content" role="main">
-        <section id="schedule" aria-labelledby="schedule-heading">
-            <h2 id="schedule-heading">課表</h2>
-            <div class="coming-soon">
-                <span class="coming-soon-icon" aria-hidden="true">📚</span>
-                <div class="coming-soon-text">內容準備中</div>
-                <div class="coming-soon-date">9/1 將同開學上線</div>
+    <!-- 主內容 -->
+    <main>
+        <!-- 英雄區域 -->
+        <section class="hero">
+            <div class="container">
+                <h1>歡迎來到805班級網站</h1>
+                <p>我們是一個積極向上、團結友愛的班集體，在這裡您可以找到所有關於我們班的資訊和動態。</p>
             </div>
         </section>
 
-        <section id="officers" aria-labelledby="officers-heading">
-            <h2 id="officers-heading">班級幹部</h2>
-            <div class="coming-soon">
-                <span class="coming-soon-icon" aria-hidden="true">👥</span>
-                <div class="coming-soon-text">內容準備中</div>
-                <div class="coming-soon-date">9/1 將同開學上線</div>
-            </div>
-        </section>
+        <div class="container">
+            <!-- 課表區域 -->
+            <section id="schedule">
+                <h2 class="section-title">課程表</h2>
+                <div class="card">
+                    <div class="card-header">805班 每週課表</div>
+                    <div class="card-body">
+                        <div class="coming-soon">
+                            <i class="fas fa-calendar-alt coming-soon-icon"></i>
+                            <div class="coming-soon-text">內容準備中</div>
+                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="important" aria-labelledby="important-heading">
-            <h2 id="important-heading">重要事項</h2>
-            <div id="event-list"></div>
-        </section>
+            <!-- 班級幹部區域 -->
+            <section id="officers">
+                <h2 class="section-title">班級幹部</h2>
+                <div class="card">
+                    <div class="card-header">805班 班級幹部名單</div>
+                    <div class="card-body">
+                        <div class="coming-soon">
+                            <i class="fas fa-users coming-soon-icon"></i>
+                            <div class="coming-soon-text">內容準備中</div>
+                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="photos" aria-labelledby="photos-heading">
-            <h2 id="photos-heading">班級照片</h2>
-            <div class="coming-soon">
-                <span class="coming-soon-icon" aria-hidden="true">📷</span>
-                <div class="coming-soon-text">內容準備中</div>
-                <div class="coming-soon-date">9/1 將同開學上線</div>
-            </div>
-        </section>
+            <!-- 重要公告區域 -->
+            <section id="announcements">
+                <h2 class="section-title">重要公告</h2>
+                <div class="card">
+                    <div class="card-header">最新公告</div>
+                    <div class="card-body">
+                        <div class="coming-soon">
+                            <i class="fas fa-bullhorn coming-soon-icon"></i>
+                            <div class="coming-soon-text">內容準備中</div>
+                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="contact" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">作者聯絡方式</h2>
-            <div class="contact-container">
-                <span class="contact-email">lianyuqing169@gmail.com</span>
-            </div>
-            <p style="text-align:center; color:#666; font-size:0.95rem; margin-top:1.2rem;">
-                請聯絡時將所有事情一次打好，請勿重複傳送 Gmail。
-            </p>
-        </section>
+            <!-- 班級相冊區域 -->
+            <section id="gallery">
+                <h2 class="section-title">班級相冊</h2>
+                <div class="card">
+                    <div class="card-header">805班 活動照片</div>
+                    <div class="card-body">
+                        <div class="coming-soon">
+                            <i class="fas fa-camera coming-soon-icon"></i>
+                            <div class="coming-soon-text">內容準備中</div>
+                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 聯絡我們區域 -->
+            <section id="contact">
+                <h2 class="section-title">聯絡我們</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>電子郵件</h3>
+                        <p>lianyuqing169@gmail.com</p>
+                        <small>請將所有事情一次說明清楚，請勿重複傳送郵件</small>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3>學校地址</h3>
+                        <p>928屏東縣東港鎮東新路1號</p>
+                        <small>歡迎家長來校參觀與交流</small>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <!-- 底部文字區塊 -->
-    <div class="footer-block">此網站非東新國中官方製作</div>
+    <!-- 頁腳 -->
+    <footer>
+        <div class="container">
+            <p>此網站非東新國中官方製作 | 東新國中805班級網站</p>
+            <!-- 已移除版权信息 -->
+        </div>
+    </footer>
 
     <script>
-        // ===================== 重要事項 JSON =====================
-        const eventsData = [
-            { "date": "8/28", "text": "新生訓練" },
-            { "date": "8/29", "text": "全校返校日" },
-            { "date": "9/1", "text": "正式開學" },
-            { "date": "1/20", "text": "寒假開始" }
-        ];
-
-        // ===================== 生成公告列表 =====================
-        function renderEvents() {
-            const eventList = document.getElementById('event-list');
-            eventList.innerHTML = '';
-            eventsData.forEach(event => {
-                const div = document.createElement('div');
-                div.className = 'event-item';
-                div.innerHTML = `<span style="color:var(--accent-color); margin-right:8px;">📌</span> ${event.date} ${event.text}`;
-                eventList.appendChild(div);
-            });
-        }
-
-        // ===================== 粒子系統 =====================
-        class ParticleSystem {
-            constructor() {
-                this.canvas = document.createElement('canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.container = document.getElementById('particles-js');
-                this.container.appendChild(this.canvas);
-                this.particles = this.createParticles();
-                this.resize();
-                this.animate();
-                this.debouncedResize = this.debounce(() => this.resize(), 100);
-                window.addEventListener('resize', this.debouncedResize, { passive: true });
-            }
-            
-            createParticles() {
-                const count = Math.min(Math.floor(window.innerWidth / 4), 150);
-                return Array.from({ length: count }, () => {
-                    const colors = ['#b8b8b8', '#c8c8c8', '#a0a0a0', '#909090', '#989898'];
-                    return {
-                        x: Math.random() * window.innerWidth,
-                        y: Math.random() * window.innerHeight,
-                        size: Math.random() * 3 + 1,
-                        speedX: (Math.random() - 0.5) * 0.2,
-                        speedY: (Math.random() - 0.5) * 0.2,
-                        opacity: Math.random() * 0.4 + 0.1,
-                        color: colors[Math.floor(Math.random() * colors.length)]
-                    };
-                });
-            }
-            
-            resize() { 
-                this.canvas.width = this.container.offsetWidth; 
-                this.canvas.height = this.container.offsetHeight; 
-            }
-            
-            animate() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                this.particles.forEach(p => {
-                    p.x += p.speedX; 
-                    p.y += p.speedY;
-                    if (p.x > this.canvas.width) p.x = 0;
-                    if (p.x < 0) p.x = this.canvas.width;
-                    if (p.y > this.canvas.height) p.y = 0;
-                    if (p.y < 0) p.y = this.canvas.height;
-                    
-                    this.ctx.fillStyle = `rgba(${this.hexToRgb(p.color)}, ${p.opacity})`;
-                    this.ctx.beginPath();
-                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                    this.ctx.fill();
-                });
-                requestAnimationFrame(() => this.animate());
-            }
-            
-            hexToRgb(hex) { 
-                const c = hex.substring(1).match(/.{2}/g).map(x => parseInt(x, 16)); 
-                return c.join(','); 
-            }
-            
-            debounce(func, wait) { 
-                let timeout; 
-                return function() { 
-                    const context = this, args = arguments; 
-                    clearTimeout(timeout); 
-                    timeout = setTimeout(() => func.apply(context, args), wait); 
-                }; 
-            }
-        }
-
-        // ===================== 滾動動畫 =====================
-        class ScrollAnimator {
-            constructor() {
-                this.sections = document.querySelectorAll('section');
-                this.hasAnimated = new Set();
-                window.addEventListener('scroll', () => this.update(), { passive: true });
-                this.update();
-            }
-            
-            update() {
-                this.sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight * 0.75 && !this.hasAnimated.has(section)) {
-                        this.hasAnimated.add(section);
-                        section.style.opacity = 1;
-                        section.style.transform = 'translate3d(0, 0, 0)';
-                    }
-                });
-            }
-        }
-
-        // ===================== 漸層跟隨效果 =====================
-        class GradientEffect {
-            constructor() {
-                this.sections = document.querySelectorAll('section');
-                this.sections.forEach(section => {
-                    section.addEventListener('mousemove', e => this.handleMouseMove(e, section));
-                    section.addEventListener('mouseenter', () => section.style.setProperty('--gradient-opacity', '0.8'));
-                    section.addEventListener('mouseleave', () => section.style.setProperty('--gradient-opacity', '0'));
-                });
-            }
-            
-            handleMouseMove(e, section) {
-                const rect = section.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                section.style.setProperty('--gradient-x', `${x}%`);
-                section.style.setProperty('--gradient-y', `${y}%`);
-            }
-        }
-
-        // ===================== 漣漪效果 =====================
-        class RippleEffect {
-            constructor() { 
-                document.addEventListener('click', e => {
-                    const ripple = document.createElement('div'); 
-                    ripple.className = 'ripple-effect';
-                    ripple.style.left = e.clientX + 'px'; 
-                    ripple.style.top = e.clientY + 'px';
-                    document.body.appendChild(ripple);
-                    setTimeout(() => document.body.removeChild(ripple), 1200);
-                }); 
-            }
-        }
-
-        // ===================== 歡迎頁進入動畫 =====================
-        document.addEventListener('DOMContentLoaded', () => {
-            renderEvents();
-            new ParticleSystem();
-            new ScrollAnimator();
-            new GradientEffect();
-            new RippleEffect();
-
-            const welcome = document.getElementById('welcome-screen');
-            const main = document.getElementById('main-content');
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeScreen = document.getElementById('welcome-screen');
             const enterBtn = document.getElementById('enter-btn');
             const backToWelcomeBtn = document.getElementById('back-to-welcome');
-
-            // 初始隱藏返回按鈕
-            backToWelcomeBtn.style.display = 'none';
-
-            enterBtn.addEventListener('click', () => {
-                welcome.style.opacity = '0';
-                
+            
+            // 進入網站按鈕事件
+            enterBtn.addEventListener('click', function() {
+                welcomeScreen.style.opacity = '0';
                 setTimeout(() => {
-                    welcome.style.display = 'none';
-                    main.style.display = 'block';
-                    backToWelcomeBtn.style.display = 'block';
-                    
-                    // 使用requestAnimationFrame确保流畅的动画
-                    requestAnimationFrame(() => {
-                        main.style.opacity = '1';
-                        
-                        // header显示动画
-                        const header = document.querySelector('header');
-                        header.style.opacity = '1';
-                        header.style.transform = 'translateY(0)';
-                        
-                        // section逐个显示动画
-                        const sections = document.querySelectorAll('main section');
-                        sections.forEach((section, i) => {
-                            setTimeout(() => {
-                                section.style.opacity = '1';
-                                section.style.transform = 'translate3d(0, 0, 0)';
-                            }, 300 + (i * 200)); //  staggered animation
-                        });
-                    });
-                }, 1000);
+                    welcomeScreen.style.display = 'none';
+                }, 800);
             });
-
-            // 返回欢迎界面功能
-            backToWelcomeBtn.addEventListener('click', () => {
-                // 隐藏主内容和返回按钮
-                main.style.display = 'none';
-                main.style.opacity = '0';
-                backToWelcomeBtn.style.display = 'none';
-                document.querySelector('header').style.opacity = '0';
-                document.querySelector('header').style.transform = 'translateY(-40px)';
-
-                // 显示欢迎界面
-                welcome.style.display = 'flex';
+            
+            // 返回歡迎畫面按鈕事件
+            backToWelcomeBtn.addEventListener('click', function() {
+                welcomeScreen.style.display = 'flex';
                 setTimeout(() => {
-                    welcome.style.opacity = '1';
-                }, 50);
+                    welcomeScreen.style.opacity = '1';
+                }, 10);
+            });
+            
+            // 導航欄滾動效果
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // 更新活動狀態
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 滾動到目標區域
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // 根據滾動位置更新導航欄活動狀態
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
