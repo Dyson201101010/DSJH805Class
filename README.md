@@ -254,6 +254,33 @@
             text-align: center;
         }
         
+        /* 班級幹部表格樣式 */
+        .officers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .officers-table th, .officers-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .officers-table th {
+            background-color: rgba(74, 134, 232, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .officers-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .officers-table tr:hover {
+            background-color: rgba(74, 134, 232, 0.05);
+        }
+        
         /* 即將上線樣式 */
         .coming-soon {
             text-align: center;
@@ -428,6 +455,14 @@
                 gap: 20px;
                 margin-bottom: 60px;
             }
+            
+            .officers-table {
+                font-size: 0.9rem;
+            }
+            
+            .officers-table th, .officers-table td {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -508,11 +543,56 @@
                 <div class="card">
                     <div class="card-header">805班 班級幹部名單</div>
                     <div class="card-body">
-                        <div class="coming-soon">
-                            <i class="fas fa-users coming-soon-icon"></i>
-                            <div class="coming-soon-text">內容準備中</div>
-                            <div class="coming-soon-date">將同9/1開學上線</div>
-                        </div>
+                        <table class="officers-table">
+                            <tr>
+                                <th>職務</th>
+                                <th>座號</th>
+                            </tr>
+                            <tr>
+                                <td>班長</td>
+                                <td>12號</td>
+                            </tr>
+                            <tr>
+                                <td>副班長</td>
+                                <td>24號</td>
+                            </tr>
+                            <tr>
+                                <td>風紀股長</td>
+                                <td>2號</td>
+                            </tr>
+                            <tr>
+                                <td>副風紀股長</td>
+                                <td>17號</td>
+                            </tr>
+                            <tr>
+                                <td>衛生股長</td>
+                                <td>6號</td>
+                            </tr>
+                            <tr>
+                                <td>副衛生股長</td>
+                                <td>3號</td>
+                            </tr>
+                            <tr>
+                                <td>總務股長</td>
+                                <td>23號</td>
+                            </tr>
+                            <tr>
+                                <td>副總務股長</td>
+                                <td>18號</td>
+                            </tr>
+                            <tr>
+                                <td>輔導股長</td>
+                                <td>1號</td>
+                            </tr>
+                            <tr>
+                                <td>午餐股長</td>
+                                <td>25號</td>
+                            </tr>
+                            <tr>
+                                <td>導師秘書</td>
+                                <td>14號</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </section>
