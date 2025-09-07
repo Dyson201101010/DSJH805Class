@@ -32,102 +32,107 @@
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 60px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 30px;
+            width: 100%;
         }
         
-        /* 歡迎畫面 - 不透明背景 */
+        /* 歡迎畫面 - 灰白色霧面玻璃效果 */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #a8d5ff 0%, #7abaff 100%);
+            background: rgba(245, 245, 245, 0.8);
+            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             z-index: 1000;
-            color: white;
+            color: var(--dark);
             transition: opacity 0.8s ease;
+            padding: 20px;
         }
         
         .welcome-content {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(5px);
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 60px 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            max-width: 600px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         #welcome-screen h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            color: #2c3e50;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
         }
         
         #welcome-screen p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--dark);
             opacity: 0.9;
+            line-height: 1.8;
         }
         
         #enter-btn {
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 18px 50px;
+            font-size: 1.4rem;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             font-weight: 600;
+            margin-bottom: 30px;
         }
         
         #enter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
             background: var(--primary-dark);
         }
         
         .welcome-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 20px;
+            margin-top: 40px;
             justify-content: center;
             flex-wrap: wrap;
         }
         
         .welcome-btn {
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.5);
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.6);
             color: var(--dark);
             text-decoration: none;
             border-radius: 50px;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-weight: 500;
             border: 1px solid rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
         }
         
         .welcome-btn:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         /* 導航欄 */
@@ -176,22 +181,22 @@
         
         /* 主內容區 */
         .hero {
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             background: linear-gradient(135deg, rgba(122, 186, 255, 0.15) 0%, rgba(96, 163, 248, 0.15) 100%);
             margin-bottom: 60px;
-            border-radius: 0 0 30px 30px;
+            width: 100%;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: var(--primary);
             margin-bottom: 20px;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: 1.3rem;
+            max-width: 800px;
             margin: 0 auto;
             color: var(--dark);
             opacity: 0.8;
@@ -201,7 +206,7 @@
             text-align: center;
             margin-bottom: 50px;
             color: var(--primary);
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             position: relative;
             padding-bottom: 15px;
         }
@@ -212,67 +217,75 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 5px;
             background: var(--accent);
-            border-radius: 2px;
+            border-radius: 3px;
         }
         
         /* 卡片樣式 */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             margin-bottom: 80px;
+            width: 100%;
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .card-header {
             background: var(--primary);
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 600;
         }
         
         .card-body {
-            padding: 25px;
+            padding: 30px;
             text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
-        /* 班級幹部表格樣式 - 已修復 */
+        /* 班級幹部表格樣式 */
         .officers-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px auto;
-            max-width: 600px; /* 限制最大宽度 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
+            background: white;
         }
         
         .officers-table th, .officers-table td {
-            padding: 15px;
+            padding: 18px;
             text-align: center;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
         }
         
         .officers-table th {
-            background-color: rgba(74, 134, 232, 0.2);
+            background-color: rgba(74, 134, 232, 0.25);
             color: var(--primary);
             font-weight: 600;
         }
@@ -282,110 +295,122 @@
         }
         
         .officers-table tr:hover {
-            background-color: rgba(74, 134, 232, 0.05);
+            background-color: rgba(74, 134, 232, 0.08);
         }
         
-        /* 即將上線樣式 */
-        .coming-soon {
+        /* 暫不顯示內容樣式 */
+        .no-content {
             text-align: center;
             padding: 40px 20px;
+            width: 100%;
         }
         
-        .coming-soon-icon {
-            font-size: 4rem;
+        .no-content-icon {
+            font-size: 4.5rem;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: block;
+            opacity: 0.7;
         }
         
-        .coming-soon-text {
-            font-size: 1.5rem;
+        .no-content-text {
+            font-size: 1.8rem;
             color: var(--dark);
             margin-bottom: 15px;
             font-weight: 500;
-        }
-        
-        .coming-soon-date {
-            font-size: 1.2rem;
-            color: var(--primary);
-            background: rgba(74, 134, 232, 0.15);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 600;
+            opacity: 0.8;
         }
         
         /* 公告樣式 */
         .announcement-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            width: 100%;
         }
         
         .announcement {
             background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: flex-start;
         }
         
         .announcement-icon {
             background: var(--primary);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             flex-shrink: 0;
         }
         
         .announcement-content h3 {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--primary);
+            font-size: 1.4rem;
         }
         
         .announcement-date {
             color: var(--gray);
-            font-size: 0.9rem;
-            margin-top: 5px;
+            font-size: 1rem;
+            margin-top: 8px;
         }
         
         /* 聯絡樣式 */
         .contact-methods {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 30px;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 50px;
+            width: 100%;
         }
         
         .contact-method {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 25px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
             flex: 1;
-            min-width: 250px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         .contact-method:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
         
         .contact-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact-method h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .contact-method p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .contact-method small {
+            font-size: 1rem;
+            color: var(--gray);
         }
         
         /* 頁腳 */
@@ -393,37 +418,83 @@
             background: var(--dark);
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 80px;
-            border-radius: 30px 30px 0 0;
+            padding: 30px;
+            margin-top: 100px;
+            width: 100%;
         }
         
-        /* 返回按鈕 - 调整位置 */
+        footer p {
+            font-size: 1.1rem;
+        }
+        
+        /* 返回按鈕 */
         #back-to-welcome {
             position: fixed;
-            top: 15px;
-            right: 20px;
+            top: 20px;
+            right: 25px;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             z-index: 101;
             transition: var(--transition);
+            font-size: 1.4rem;
         }
         
         #back-to-welcome:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
         }
         
         /* 響應式設計 */
+        @media (max-width: 992px) {
+            .welcome-content {
+                padding: 40px 30px;
+            }
+            
+            #welcome-screen h1 {
+                font-size: 2.8rem;
+            }
+            
+            #welcome-screen p {
+                font-size: 1.2rem;
+            }
+            
+            #enter-btn {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .welcome-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -433,10 +504,15 @@
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 80px 0;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
             
             .hero p {
@@ -444,20 +520,73 @@
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                margin-bottom: 40px;
             }
             
             .welcome-content {
-                padding: 20px;
+                padding: 30px 20px;
             }
             
             #welcome-screen h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
             
             .card-grid {
-                gap: 20px;
+                gap: 25px;
                 margin-bottom: 60px;
+            }
+            
+            .card-header {
+                padding: 20px;
+                font-size: 1.4rem;
+            }
+            
+            .card-body {
+                padding: 25px;
+            }
+            
+            .officers-table th, .officers-table td {
+                padding: 15px 12px;
+                font-size: 1rem;
+            }
+            
+            .contact-method {
+                min-width: 250px;
+                padding: 25px;
+            }
+            
+            .welcome-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .welcome-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
             }
             
             .officers-table {
@@ -465,17 +594,23 @@
             }
             
             .officers-table th, .officers-table td {
-                padding: 10px 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .officers-table {
-                font-size: 0.8rem;
+                padding: 12px 8px;
             }
             
-            .officers-table th, .officers-table td {
-                padding: 8px 5px;
+            .no-content-text {
+                font-size: 1.5rem;
+            }
+            
+            .no-content-icon {
+                font-size: 3.5rem;
+            }
+            
+            #back-to-welcome {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                top: 15px;
+                right: 15px;
             }
         }
     </style>
@@ -542,16 +677,15 @@
                 <div class="card">
                     <div class="card-header">805班 每週課表</div>
                     <div class="card-body">
-                        <div class="coming-soon">
-                            <i class="fas fa-calendar-alt coming-soon-icon"></i>
-                            <div class="coming-soon-text">內容準備中</div>
-                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        <div class="no-content">
+                            <i class="fas fa-calendar-alt no-content-icon"></i>
+                            <div class="no-content-text">暫不顯示任何內容</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- 班級幹部區域 - 已修復 -->
+            <!-- 班級幹部區域 -->
             <section id="officers">
                 <h2 class="section-title">班級幹部</h2>
                 <div class="card">
@@ -617,10 +751,9 @@
                 <div class="card">
                     <div class="card-header">最新公告</div>
                     <div class="card-body">
-                        <div class="coming-soon">
-                            <i class="fas fa-bullhorn coming-soon-icon"></i>
-                            <div class="coming-soon-text">內容準備中</div>
-                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        <div class="no-content">
+                            <i class="fas fa-bullhorn no-content-icon"></i>
+                            <div class="no-content-text">暫不顯示任何內容</div>
                         </div>
                     </div>
                 </div>
@@ -632,10 +765,9 @@
                 <div class="card">
                     <div class="card-header">805班 活動照片</div>
                     <div class="card-body">
-                        <div class="coming-soon">
-                            <i class="fas fa-camera coming-soon-icon"></i>
-                            <div class="coming-soon-text">內容準備中</div>
-                            <div class="coming-soon-date">將同9/1開學上線</div>
+                        <div class="no-content">
+                            <i class="fas fa-camera no-content-icon"></i>
+                            <div class="no-content-text">暫不顯示任何內容</div>
                         </div>
                     </div>
                 </div>
