@@ -17,6 +17,7 @@
             color: #2c3e50;
             line-height: 1.6;
             transition: all 0.3s ease;
+            font-size: 16px;
         }
         
         .container {
@@ -30,13 +31,22 @@
             padding: 30px 0;
             animation: fadeIn 1.5s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
         
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            flex: 1;
         }
         
         .logo-icon {
@@ -129,9 +139,6 @@
         
         /* 顶部按钮样式 */
         .top-buttons {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             display: flex;
             gap: 15px;
         }
@@ -149,6 +156,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
         }
         
         .top-button:hover {
@@ -158,9 +167,6 @@
         }
         
         .settings-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             background: #2ecc71;
         }
         
@@ -250,19 +256,6 @@
             border: 3px solid #2c3e50;
         }
         
-        .font-size-slider {
-            width: 100%;
-            margin: 15px 0;
-        }
-        
-        .preview-text {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
         .overlay {
             position: fixed;
             top: 0;
@@ -280,13 +273,103 @@
         
         .disclaimer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 40px;
             padding: 15px;
             background: #fff8e1;
             border-radius: 8px;
             font-size: 0.9rem;
             color: #e65100;
             border-left: 4px solid #ffc107;
+        }
+        
+        /* 更新日志样式 */
+        .update-log {
+            margin-top: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .update-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #2980b9;
+            font-size: 1.5rem;
+        }
+        
+        .update-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: #3498db;
+        }
+        
+        .update-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .update-date {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+        
+        .update-content {
+            color: #555;
+        }
+        
+        /* 联系开发者样式 */
+        .contact-developer {
+            margin-top: 40px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .contact-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #2980b9;
+            font-size: 1.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: #3498db;
+        }
+        
+        .contact-email {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border-radius: 30px;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #e6f7ff;
+        }
+        
+        .contact-email:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .contact-note {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
         }
         
         @keyframes fadeIn {
@@ -300,33 +383,105 @@
             }
         }
         
-        @media (max-width: 768px) {
+        /* 平板设备样式 */
+        @media (max-width: 1024px) {
             .main-content {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .top-button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 手机设备样式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
             }
             
             .top-buttons {
-                position: relative;
-                top: 0;
-                right: 0;
+                width: 100%;
                 justify-content: center;
-                margin-bottom: 20px;
             }
             
-            .settings-button {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-bottom: 20px;
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
             }
             
             .settings-panel {
                 width: 300px;
                 left: -300px;
+            }
+            
+            .top-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .update-log, .contact-developer {
+                padding: 20px;
+            }
+        }
+        
+        /* 小手机设备样式 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .placeholder-icon {
+                font-size: 2.5rem;
+            }
+            
+            .settings-panel {
+                width: 85%;
+                left: -85%;
+            }
+            
+            .contact-email {
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -334,26 +489,25 @@
 <body>
     <div class="container">
         <header>
-            <button class="top-button settings-button" id="settingsButton">
-                <i class="fas fa-cog"></i> 設定
-            </button>
-            
-            <div class="logo">
-                <i class="fas fa-graduation-cap logo-icon"></i>
-                <h1>DSJH805Class</h1>
+            <div class="header-top">
+                <button class="top-button settings-button" id="settingsButton">
+                    <i class="fas fa-cog"></i> 設定
+                </button>
+                
+                <div class="logo">
+                    <i class="fas fa-graduation-cap logo-icon"></i>
+                    <h1>DSJH805Class</h1>
+                </div>
+                
+                <div class="top-buttons">
+                    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button">
+                        <i class="fas fa-school"></i> 進入校網
+                    </a>
+                </div>
             </div>
+            
             <p class="subtitle">我們的專屬班級空間 • 知識分享與交流的平台</p>
-            
-            <div class="top-buttons">
-                <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button">
-                    <i class="fas fa-school"></i> 進入校網
-                </a>
-            </div>
         </header>
-        
-        <div class="disclaimer">
-            <i class="fas fa-exclamation-circle"></i> 此網站為學生個人製作，非學校官方製作
-        </div>
         
         <div class="main-content">
             <div class="section">
@@ -363,17 +517,6 @@
                 </h2>
                 <div class="content-placeholder">
                     <i class="fas fa-file-alt placeholder-icon"></i>
-                    <p class="placeholder-text">暫無內容或未開放</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-tasks section-icon"></i>
-                    作業專區
-                </h2>
-                <div class="content-placeholder">
-                    <i class="fas fa-clipboard-list placeholder-icon"></i>
                     <p class="placeholder-text">暫無內容或未開放</p>
                 </div>
             </div>
@@ -402,33 +545,11 @@
             
             <div class="section">
                 <h2 class="section-title">
-                    <i class="fas fa-users section-icon"></i>
-                    同學名冊
-                </h2>
-                <div class="content-placeholder">
-                    <i class="fas fa-user-friends placeholder-icon"></i>
-                    <p class="placeholder-text">暫無內容或未開放</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">
                     <i class="fas fa-comments section-icon"></i>
                     討論區
                 </h2>
                 <div class="content-placeholder">
                     <i class="fas fa-comment placeholder-icon"></i>
-                    <p class="placeholder-text">暫無內容或未開放</p>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-chart-line section-icon"></i>
-                    成績查詢
-                </h2>
-                <div class="content-placeholder">
-                    <i class="fas fa-chart-bar placeholder-icon"></i>
                     <p class="placeholder-text">暫無內容或未開放</p>
                 </div>
             </div>
@@ -443,6 +564,58 @@
                     <p class="placeholder-text">暫無內容或未開放</p>
                 </div>
             </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-trophy section-icon"></i>
+                    班級榮譽
+                </h2>
+                <div class="content-placeholder">
+                    <i class="fas fa-award placeholder-icon"></i>
+                    <p class="placeholder-text">暫無內容或未開放</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 联系开发者区块 -->
+        <div class="contact-developer">
+            <h2 class="contact-title">
+                <i class="fas fa-envelope contact-icon"></i>
+                聯繫開發者
+            </h2>
+            <p>如果您有任何問題或建議，歡迎聯繫開發者：</p>
+            <a href="mailto:lianyuqing169@gmail.com?subject=關於DSJH805Class班級網站的問題" class="contact-email">
+                <i class="fas fa-paper-plane"></i> lianyuqing169@gmail.com
+            </a>
+            <p class="contact-note">點擊上方郵件地址將自動開啟Gmail發送郵件</p>
+        </div>
+        
+        <!-- 更新日志区块 -->
+        <div class="update-log">
+            <h2 class="update-title">
+                <i class="fas fa-clipboard-list update-icon"></i>
+                更新日誌
+            </h2>
+            <div class="update-item">
+                <div class="update-date">2025年9月11日</div>
+                <div class="update-content">- 新增聯繫開發者功能</div>
+                <div class="update-content">- 添加更新日誌區塊</div>
+            </div>
+            <div class="update-item">
+                <div class="update-date">2025年9月11日</div>
+                <div class="update-content">- 優化手機和平板設備的顯示效果</div>
+                <div class="update-content">- 修復了一些已知問題</div>
+            </div>
+            <div class="update-item">
+                <div class="update-date">2025年9月1日</div>
+                <div class="update-content">- 首次發布更新版DSJH805Class班級網站</div>
+                <div class="update-content">- 包含課程資源、活動相簿等基本功能</div>
+            </div>
+        </div>
+        
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-circle"></i> 此網站為學生個人製作，非學校官方製作
         </div>
         
         <footer>
@@ -472,14 +645,6 @@
         </div>
         
         <div class="setting-group">
-            <label class="setting-label">字體大小</label>
-            <input type="range" min="12" max="24" value="16" class="font-size-slider" id="fontSizeSlider">
-            <div class="preview-text" id="fontPreview">
-                這是字體大小預覽範例文字
-            </div>
-        </div>
-        
-        <div class="setting-group">
             <label class="setting-label">重設設定</label>
             <button class="top-button" id="resetSettings" style="background: #e74c3c;">
                 <i class="fas fa-undo"></i> 恢復預設值
@@ -496,17 +661,12 @@
         const settingsPanel = document.getElementById('settingsPanel');
         const overlay = document.getElementById('overlay');
         const colorOptions = document.querySelectorAll('.color-option');
-        const fontSizeSlider = document.getElementById('fontSizeSlider');
-        const fontPreview = document.getElementById('fontPreview');
         const resetSettingsButton = document.getElementById('resetSettings');
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             // 从本地存储加载设置
             loadSettings();
-            
-            // 更新字体预览
-            updateFontPreview();
         });
         
         // 打开设置面板
@@ -546,36 +706,10 @@
             });
         });
         
-        // 字体大小调整
-        fontSizeSlider.addEventListener('input', function() {
-            const fontSize = this.value;
-            
-            // 更新网站字体大小
-            document.body.style.fontSize = `${fontSize}px`;
-            
-            // 更新预览
-            updateFontPreview();
-            
-            // 保存到本地存储
-            localStorage.setItem('fontSize', fontSize);
-        });
-        
-        // 更新字体预览
-        function updateFontPreview() {
-            const fontSize = fontSizeSlider.value;
-            fontPreview.style.fontSize = `${fontSize}px`;
-            fontPreview.textContent = `這是字體大小預覽範例文字 (${fontSize}px)`;
-        }
-        
         // 重设设置
         resetSettingsButton.addEventListener('click', function() {
             // 重置颜色
             document.body.style.background = 'linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%)';
-            
-            // 重置字体大小
-            document.body.style.fontSize = '16px';
-            fontSizeSlider.value = 16;
-            updateFontPreview();
             
             // 重置颜色选项
             colorOptions.forEach(option => {
@@ -587,7 +721,6 @@
             
             // 清除本地存储
             localStorage.removeItem('themeColor');
-            localStorage.removeItem('fontSize');
         });
         
         // 从本地存储加载设置
@@ -604,13 +737,6 @@
                         option.classList.add('active');
                     }
                 });
-            }
-            
-            // 加载字体大小设置
-            const savedFontSize = localStorage.getItem('fontSize');
-            if (savedFontSize) {
-                document.body.style.fontSize = `${savedFontSize}px`;
-                fontSizeSlider.value = savedFontSize;
             }
         }
     </script>
