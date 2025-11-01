@@ -32,12 +32,84 @@
         }
         
         body {
-            background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
             font-size: 16px;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* 动态背景样式 */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .bg-option {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .bg-option.active {
+            opacity: 1;
+        }
+        
+        /* 渐变背景1 */
+        .gradient-1 {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        /* 渐变背景2 */
+        .gradient-2 {
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradient 12s ease infinite;
+        }
+        
+        /* 渐变背景3 */
+        .gradient-3 {
+            background: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+            background-size: 400% 400%;
+            animation: gradient 18s ease infinite;
+        }
+        
+        /* 渐变背景4 */
+        .gradient-4 {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+        }
+        
+        /* 渐变背景5 - 单色渐变 */
+        .gradient-5 {
+            background: linear-gradient(-45deg, #3498db, #2980b9, #1a5276, #1b4f72);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .container {
@@ -291,6 +363,36 @@
             box-shadow: 0 0 0 2px white, 0 0 0 4px var(--secondary-color);
         }
         
+        /* 背景选择样式 */
+        .bg-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .bg-option-btn {
+            padding: 12px 10px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            font-size: 0.9rem;
+        }
+        
+        .bg-option-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .bg-option-btn.active {
+            background: var(--secondary-color);
+            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--secondary-color);
+        }
+        
         .overlay {
             position: fixed;
             top: 0;
@@ -491,10 +593,15 @@
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
         
-        .contact-note {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #7f8c8d;
+        /* 文本选择样式 */
+        ::selection {
+            background: rgba(52, 152, 219, 0.3);
+            color: var(--text-color);
+        }
+        
+        ::-moz-selection {
+            background: rgba(52, 152, 219, 0.3);
+            color: var(--text-color);
         }
         
         @keyframes fadeIn {
@@ -537,6 +644,10 @@
             .top-button {
                 padding: 8px 16px;
                 font-size: 0.9rem;
+            }
+            
+            .bg-options {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -619,10 +730,23 @@
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
+            
+            .bg-options {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 动态背景 -->
+    <div class="dynamic-bg">
+        <div class="bg-option gradient-1 active" id="bg1"></div>
+        <div class="bg-option gradient-2" id="bg2"></div>
+        <div class="bg-option gradient-3" id="bg3"></div>
+        <div class="bg-option gradient-4" id="bg4"></div>
+        <div class="bg-option gradient-5" id="bg5"></div>
+    </div>
+    
     <div class="container">
         <header>
             <div class="header-top">
@@ -696,7 +820,7 @@
             </h2>
             <p data-lang="contact-description">如果您有任何問題或建議，歡迎聯繫開發者：</p>
             <div class="contact-email">lianyuqing169@gmail.com</div>
-            <p class="contact-note" data-lang="contact-note">點擊上方郵件地址將自動開啟Gmail發送郵件</p>
+            <!-- 已删除"點擊上方郵件地址將自動開啟Gmail發送郵件"這行字 -->
         </div>
         
         <!-- 免责声明 -->
@@ -728,6 +852,18 @@
         </div>
         
         <div class="setting-group">
+            <label class="setting-label" data-lang="background">動態背景</label>
+            <div class="bg-options">
+                <button class="bg-option-btn active" data-bg="1">多彩漸變1</button>
+                <button class="bg-option-btn" data-bg="2">粉紫漸變</button>
+                <button class="bg-option-btn" data-bg="3">清新綠漸變</button>
+                <button class="bg-option-btn" data-bg="4">霓虹漸變</button>
+                <button class="bg-option-btn" data-bg="5">藍色系漸變</button>
+                <button class="bg-option-btn" data-bg="0">無背景</button>
+            </div>
+        </div>
+        
+        <div class="setting-group">
             <label class="setting-label" data-lang="reset-settings">重設設定</label>
             <button class="top-button" id="resetSettings" style="background: #e74c3c;">
                 <i class="fas fa-undo"></i> <span data-lang="reset-default">恢復預設值</span>
@@ -749,6 +885,8 @@
         const languageDropdown = document.getElementById('languageDropdown');
         const languageOptions = document.querySelectorAll('.language-option');
         const currentLanguage = document.getElementById('currentLanguage');
+        const bgOptions = document.querySelectorAll('.bg-option');
+        const bgOptionBtns = document.querySelectorAll('.bg-option-btn');
         
         // 多语言文本
         const translations = {
@@ -765,11 +903,11 @@
                 'go-to-schedule': '前往課表',
                 'contact-developer': '聯繫開發者',
                 'contact-description': '如果您有任何問題或建議，歡迎聯繫開發者：',
-                'contact-note': '點擊上方郵件地址將自動開啟Gmail發送郵件',
                 'disclaimer': '此網站為學生個人製作，非學校官方製作',
                 'footer-text': '班級網站 - 僅供班級內部使用',
                 'website-settings': '網站設定',
                 'theme': '主題',
+                'background': '動態背景',
                 'light-theme': '淺色',
                 'dark-theme': '深色',
                 'auto-theme': '跟隨系統',
@@ -789,11 +927,11 @@
                 'go-to-schedule': '前往课表',
                 'contact-developer': '联系开发者',
                 'contact-description': '如果您有任何问题或建议，欢迎联系开发者：',
-                'contact-note': '点击上方邮件地址将自动开启Gmail发送邮件',
                 'disclaimer': '此网站为学生个人制作，非学校官方制作',
                 'footer-text': '班级网站 - 仅供班级内部使用',
                 'website-settings': '网站设置',
                 'theme': '主题',
+                'background': '动态背景',
                 'light-theme': '浅色',
                 'dark-theme': '深色',
                 'auto-theme': '跟随系统',
@@ -813,11 +951,11 @@
                 'go-to-schedule': 'Go to Schedule',
                 'contact-developer': 'Contact Developer',
                 'contact-description': 'If you have any questions or suggestions, please contact the developer:',
-                'contact-note': 'Click the email address above to automatically open Gmail',
                 'disclaimer': 'This website is made by students, not officially by the school',
                 'footer-text': 'Class Website - For Internal Use Only',
                 'website-settings': 'Website Settings',
                 'theme': 'Theme',
+                'background': 'Dynamic Background',
                 'light-theme': 'Light',
                 'dark-theme': 'Dark',
                 'auto-theme': 'Follow System',
@@ -837,11 +975,11 @@
                 'go-to-schedule': '時間割へ',
                 'contact-developer': '開発者に連絡',
                 'contact-description': 'ご質問やご提案がある場合は、開発者までご連絡ください：',
-                'contact-note': '上記のメールアドレスをクリックするとGmailが自動的に開きます',
                 'disclaimer': 'このウェブサイトは学生が個人で作成したもので、学校公式のものではありません',
                 'footer-text': 'クラスウェブサイト - 内部使用のみ',
                 'website-settings': 'ウェブサイト設定',
                 'theme': 'テーマ',
+                'background': '動的背景',
                 'light-theme': 'ライト',
                 'dark-theme': 'ダーク',
                 'auto-theme': 'システムに従う',
@@ -861,11 +999,11 @@
                 'go-to-schedule': '시간표로 이동',
                 'contact-developer': '개발자에게 문의',
                 'contact-description': '질문이나 제안 사항이 있으면 개발자에게 연락해 주세요:',
-                'contact-note': '위의 이메일 주소를 클릭하면 Gmail이 자동으로 열립니다',
                 'disclaimer': '이 웹사이트는 학생이 개인적으로 제작한 것으로 학교 공식 제작물이 아닙니다',
                 'footer-text': '클래스 웹사이트 - 내부 사용만',
                 'website-settings': '웹사이트 설정',
                 'theme': '테마',
+                'background': '동적 배경',
                 'light-theme': '라이트',
                 'dark-theme': '다크',
                 'auto-theme': '시스템 따라가기',
@@ -881,6 +1019,9 @@
             
             // 加载语言设置
             loadLanguage();
+            
+            // 确保所有内容正确居中
+            centerAllElements();
         });
         
         // 打开设置面板
@@ -941,6 +1082,44 @@
             }
         }
         
+        // 背景选择
+        bgOptionBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有active类
+                bgOptionBtns.forEach(opt => opt.classList.remove('active'));
+                // 添加active类到当前选项
+                this.classList.add('active');
+                
+                // 获取背景值
+                const bg = this.getAttribute('data-bg');
+                
+                // 应用背景
+                applyBackground(bg);
+                
+                // 保存到本地存储
+                localStorage.setItem('background', bg);
+            });
+        });
+        
+        // 应用背景
+        function applyBackground(bg) {
+            // 隐藏所有背景
+            bgOptions.forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // 如果选择了"无背景"，直接返回
+            if (bg === '0') {
+                return;
+            }
+            
+            // 显示选中的背景
+            const selectedBg = document.getElementById('bg' + bg);
+            if (selectedBg) {
+                selectedBg.classList.add('active');
+            }
+        }
+        
         // 重设设置
         resetSettingsButton.addEventListener('click', function() {
             // 重置主题
@@ -954,11 +1133,23 @@
                 }
             });
             
+            // 重置背景
+            applyBackground('1');
+            
+            // 重置背景选项
+            bgOptionBtns.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-bg') === '1') {
+                    option.classList.add('active');
+                }
+            });
+            
             // 重置语言
             changeLanguage('zh-TW');
             
             // 清除本地存储
             localStorage.removeItem('theme');
+            localStorage.removeItem('background');
             localStorage.removeItem('language');
         });
         
@@ -973,6 +1164,16 @@
                 }
             });
             applyTheme(savedTheme);
+            
+            // 加载背景设置
+            const savedBg = localStorage.getItem('background') || '1';
+            bgOptionBtns.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-bg') === savedBg) {
+                    option.classList.add('active');
+                }
+            });
+            applyBackground(savedBg);
         }
         
         // 语言选择器
@@ -1019,6 +1220,30 @@
             const savedLanguage = localStorage.getItem('language') || 'zh-TW';
             changeLanguage(savedLanguage);
         }
+        
+        // 确保所有元素正确居中
+        function centerAllElements() {
+            // 对于可能存在的居中问题，添加额外的居中样式
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const placeholders = section.querySelectorAll('.content-placeholder');
+                placeholders.forEach(placeholder => {
+                    // 确保内容居中
+                    if (!placeholder.style.textAlign) {
+                        placeholder.style.textAlign = 'center';
+                    }
+                });
+            });
+            
+            // 确保联系开发者部分居中
+            const contactSection = document.querySelector('.contact-developer');
+            if (contactSection && !contactSection.style.textAlign) {
+                contactSection.style.textAlign = 'center';
+            }
+        }
+        
+        // 窗口调整大小时重新居中元素
+        window.addEventListener('resize', centerAllElements);
     </script>
 </body>
 </html>
