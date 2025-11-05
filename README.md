@@ -45,6 +45,84 @@
             overflow-x: hidden;
         }
         
+        /* 位置訪問詢問彈窗 */
+        .location-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .location-modal-content {
+            background: var(--card-color);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+        }
+        
+        .location-modal h2 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.5rem;
+        }
+        
+        .location-modal p {
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .location-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .location-btn {
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .location-accept {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .location-accept:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .location-deny {
+            background: var(--card-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .location-deny:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -611,6 +689,41 @@
             box-shadow: 0 6px 15px var(--shadow-color);
         }
         
+        /* Instagram 链接样式 */
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            background: var(--card-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-top: 15px;
+            gap: 8px;
+        }
+        
+        .instagram-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        
+        .instagram-icon {
+            color: #E4405F;
+        }
+        
+        .instagram-link:hover .instagram-icon {
+            color: white;
+        }
+        
         /* 多语言排版优化 */
         [lang="zh-TW"], [lang="zh-CN"] {
             letter-spacing: 0.5px;
@@ -629,13 +742,6 @@
         [lang="ko"] {
             letter-spacing: 0.2px;
             line-height: 1.5;
-        }
-        
-        /* 图标居中优化 */
-        .icon-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         @keyframes fadeIn {
@@ -740,6 +846,10 @@
             .class-table-title {
                 font-size: 1.6rem;
             }
+            
+            .location-buttons {
+                flex-direction: column;
+            }
         }
         
         /* 小手机设备样式 */
@@ -778,6 +888,18 @@
     </style>
 </head>
 <body>
+    <!-- 位置訪問詢問彈窗 -->
+    <div class="location-modal" id="locationModal">
+        <div class="location-modal-content">
+            <h2 data-lang="location-request">訪問您的位置</h2>
+            <p data-lang="location-description">為了提供更好的體驗，我們希望根據您的位置自動選擇最適合的語言。我們不會存儲或分享您的位置信息。</p>
+            <div class="location-buttons">
+                <button class="location-btn location-accept" id="acceptLocation" data-lang="allow-location">允許訪問</button>
+                <button class="location-btn location-deny" id="denyLocation" data-lang="deny-location">拒絕</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <header>
             <div class="header-top">
@@ -806,6 +928,11 @@
                     
                     <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button">
                         <i class="fas fa-school"></i> <span data-lang="school-website">進入校網</span>
+                    </a>
+
+                    <!-- 班級IG帳號連結 -->
+                    <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="top-button">
+                        <i class="fab fa-instagram"></i> <span data-lang="instagram">班級IG</span>
                     </a>
                 </div>
             </div>
@@ -851,6 +978,12 @@
             </h2>
             <p data-lang="contact-description">如果您有任何問題或建議，歡迎聯繫開發者：</p>
             <div class="contact-email">lianyuqing169@gmail.com</div>
+            
+            <!-- 班級IG帳號連結 -->
+            <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="instagram-link">
+                <i class="fab fa-instagram instagram-icon"></i>
+                <span data-lang="follow-instagram">關注班級IG帳號</span>
+            </a>
         </div>
         
         <!-- 免责声明 -->
@@ -903,6 +1036,9 @@
         const languageDropdown = document.getElementById('languageDropdown');
         const languageOptions = document.querySelectorAll('.language-option');
         const currentLanguage = document.getElementById('currentLanguage');
+        const locationModal = document.getElementById('locationModal');
+        const acceptLocation = document.getElementById('acceptLocation');
+        const denyLocation = document.getElementById('denyLocation');
         
         // 多语言文本
         const translations = {
@@ -910,6 +1046,8 @@
                 'settings': '設定',
                 'current': '繁體中文',
                 'school-website': '進入校網',
+                'instagram': '班級IG',
+                'follow-instagram': '關注班級IG帳號',
                 'subtitle': '我們的專屬班級空間 • 知識分享與交流的平台',
                 'latest-notice': '最新通知',
                 'class-schedule': '課表',
@@ -927,12 +1065,18 @@
                 'dark-theme': '深色模式',
                 'auto-theme': '跟隨系統',
                 'reset-settings': '重設設定',
-                'reset-default': '恢復預設值'
+                'reset-default': '恢復預設值',
+                'location-request': '訪問您的位置',
+                'location-description': '為了提供更好的體驗，我們希望根據您的位置自動選擇最適合的語言。我們不會存儲或分享您的位置信息。',
+                'allow-location': '允許訪問',
+                'deny-location': '拒絕'
             },
             'zh-CN': {
                 'settings': '设置',
                 'current': '简体中文',
                 'school-website': '进入校网',
+                'instagram': '班级IG',
+                'follow-instagram': '关注班级IG账号',
                 'subtitle': '我们的专属班级空间 • 知识分享与交流的平台',
                 'latest-notice': '最新通知',
                 'class-schedule': '课表',
@@ -950,12 +1094,18 @@
                 'dark-theme': '深色模式',
                 'auto-theme': '跟随系统',
                 'reset-settings': '重设设置',
-                'reset-default': '恢复默认值'
+                'reset-default': '恢复默认值',
+                'location-request': '访问您的位置',
+                'location-description': '为了提供更好的体验，我们希望根据您的位置自动选择最适合的语言。我们不会存储或分享您的位置信息。',
+                'allow-location': '允许访问',
+                'deny-location': '拒绝'
             },
             'en': {
                 'settings': 'Settings',
                 'current': 'English',
                 'school-website': 'School Website',
+                'instagram': 'Class IG',
+                'follow-instagram': 'Follow Class Instagram',
                 'subtitle': 'Our Exclusive Class Space • Platform for Knowledge Sharing and Exchange',
                 'latest-notice': 'Latest Notice',
                 'class-schedule': 'Class Schedule',
@@ -973,12 +1123,18 @@
                 'dark-theme': 'Dark Mode',
                 'auto-theme': 'Follow System',
                 'reset-settings': 'Reset Settings',
-                'reset-default': 'Restore Default'
+                'reset-default': 'Restore Default',
+                'location-request': 'Access Your Location',
+                'location-description': 'To provide a better experience, we would like to automatically select the most appropriate language based on your location. We will not store or share your location information.',
+                'allow-location': 'Allow Access',
+                'deny-location': 'Deny'
             },
             'ja': {
                 'settings': '設定',
                 'current': '日本語',
                 'school-website': '学校のウェブサイト',
+                'instagram': 'クラスIG',
+                'follow-instagram': 'クラスInstagramをフォロー',
                 'subtitle': '私たちの専用クラススペース • 知識共有と交流のプラットフォーム',
                 'latest-notice': '最新のお知らせ',
                 'class-schedule': '時間割',
@@ -996,12 +1152,18 @@
                 'dark-theme': 'ダークモード',
                 'auto-theme': 'システムに従う',
                 'reset-settings': '設定をリセット',
-                'reset-default': 'デフォルトに戻す'
+                'reset-default': 'デフォルトに戻す',
+                'location-request': '位置情報へのアクセス',
+                'location-description': 'より良い体験を提供するために、お客様の位置情報に基づいて最適な言語を自動的に選択したいと思います。お客様の位置情報を保存または共有することはありません。',
+                'allow-location': 'アクセスを許可',
+                'deny-location': '拒否'
             },
             'ko': {
                 'settings': '설정',
                 'current': '한국어',
                 'school-website': '학교 웹사이트',
+                'instagram': '클래스 IG',
+                'follow-instagram': '클래스 Instagram 팔로우',
                 'subtitle': '우리의 전용 클래스 공간 • 지식 공유 및 교류 플랫폼',
                 'latest-notice': '최신 공지',
                 'class-schedule': '시간표',
@@ -1019,67 +1181,164 @@
                 'dark-theme': '다크 모드',
                 'auto-theme': '시스템 따라가기',
                 'reset-settings': '설정 재설정',
-                'reset-default': '기본값 복원'
+                'reset-default': '기본값 복원',
+                'location-request': '위치 접근',
+                'location-description': '더 나은 경험을 제공하기 위해 귀하의 위치를 기반으로 가장 적합한 언어를 자동으로 선택하고자 합니다. 귀하의 위치 정보를 저장하거나 공유하지 않습니다.',
+                'allow-location': '접근 허용',
+                'deny-location': '거부'
             }
+        };
+        
+        // 國家/地區到語言的映射
+        const countryToLanguage = {
+            'TW': 'zh-TW', // 台灣 - 繁體中文
+            'HK': 'zh-TW', // 香港 - 繁體中文
+            'MO': 'zh-TW', // 澳門 - 繁體中文
+            'CN': 'zh-CN', // 中國 - 簡體中文
+            'US': 'en',    // 美國 - 英文
+            'GB': 'en',    // 英國 - 英文
+            'CA': 'en',    // 加拿大 - 英文
+            'AU': 'en',    // 澳大利亞 - 英文
+            'JP': 'ja',    // 日本 - 日文
+            'KR': 'ko',    // 韓國 - 韓文
+            // 可以根據需要添加更多國家映射
         };
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 从本地存储加载设置
-            loadSettings();
+            // 檢查是否已經詢問過位置
+            const locationAsked = localStorage.getItem('locationAsked');
             
-            // 加载语言设置
-            loadLanguage();
+            if (!locationAsked) {
+                // 顯示位置詢問彈窗
+                locationModal.style.display = 'flex';
+            } else {
+                // 從本地存儲加載設置
+                loadSettings();
+                
+                // 加載語言設置
+                loadLanguage();
+            }
         });
         
-        // 打开设置面板
+        // 接受位置訪問
+        acceptLocation.addEventListener('click', function() {
+            // 隱藏彈窗
+            locationModal.style.display = 'none';
+            
+            // 標記為已詢問
+            localStorage.setItem('locationAsked', 'true');
+            
+            // 獲取用戶位置
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        // 成功獲取位置，根據位置獲取國家代碼
+                        getCountryFromCoordinates(position.coords.latitude, position.coords.longitude);
+                    },
+                    function(error) {
+                        // 獲取位置失敗，使用默認語言
+                        console.log('位置獲取失敗:', error);
+                        setDefaultLanguage();
+                    }
+                );
+            } else {
+                // 瀏覽器不支持地理位置
+                console.log('瀏覽器不支持地理位置');
+                setDefaultLanguage();
+            }
+        });
+        
+        // 拒絕位置訪問
+        denyLocation.addEventListener('click', function() {
+            // 隱藏彈窗
+            locationModal.style.display = 'none';
+            
+            // 標記為已詢問
+            localStorage.setItem('locationAsked', 'true');
+            
+            // 使用默認語言
+            setDefaultLanguage();
+        });
+        
+        // 根據經緯度獲取國家代碼
+        function getCountryFromCoordinates(lat, lng) {
+            // 使用逆地理編碼API獲取國家信息
+            fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`)
+                .then(response => response.json())
+                .then(data => {
+                    const countryCode = data.countryCode;
+                    const language = countryToLanguage[countryCode] || 'zh-TW'; // 默認使用繁體中文
+                    
+                    // 應用語言
+                    changeLanguage(language);
+                    
+                    // 保存語言設置
+                    localStorage.setItem('language', language);
+                })
+                .catch(error => {
+                    console.log('獲取國家信息失敗:', error);
+                    setDefaultLanguage();
+                });
+        }
+        
+        // 設置默認語言
+        function setDefaultLanguage() {
+            // 從本地存儲加載設置
+            loadSettings();
+            
+            // 加載語言設置
+            loadLanguage();
+        }
+        
+        // 打開設置面板
         settingsButton.addEventListener('click', function() {
             settingsPanel.classList.add('active');
             overlay.classList.add('active');
         });
         
-        // 关闭设置面板
+        // 關閉設置面板
         closeSettings.addEventListener('click', function() {
             settingsPanel.classList.remove('active');
             overlay.classList.remove('active');
         });
         
-        // 点击遮罩层关闭设置
+        // 點擊遮罩層關閉設置
         overlay.addEventListener('click', function() {
             settingsPanel.classList.remove('active');
             overlay.classList.remove('active');
         });
         
-        // 主题选择
+        // 主題選擇
         themeOptions.forEach(option => {
             option.addEventListener('click', function() {
-                // 移除所有active类
+                // 移除所有active類
                 themeOptions.forEach(opt => opt.classList.remove('active'));
-                // 添加active类到当前选项
+                // 添加active類到當前選項
                 this.classList.add('active');
                 
-                // 获取主题值
+                // 獲取主題值
                 const theme = this.getAttribute('data-theme');
                 
-                // 应用主题
+                // 應用主題
                 applyTheme(theme);
                 
-                // 保存到本地存储
+                // 保存到本地存儲
                 localStorage.setItem('theme', theme);
             });
         });
         
-        // 应用主题
+        // 應用主題
         function applyTheme(theme) {
             if (theme === 'auto') {
-                // 跟随系统主题
+                // 跟隨系統主題
                 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 } else {
                     document.documentElement.setAttribute('data-theme', 'light');
                 }
                 
-                // 监听系统主题变化
+                // 監聽系統主題變化
                 if (window.matchMedia) {
                     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
                         document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
@@ -1090,12 +1349,12 @@
             }
         }
         
-        // 重设设置
+        // 重設設置
         resetSettingsButton.addEventListener('click', function() {
-            // 重置主题
+            // 重置主題
             document.documentElement.setAttribute('data-theme', 'light');
             
-            // 重置主题选项
+            // 重置主題選項
             themeOptions.forEach(option => {
                 option.classList.remove('active');
                 if (option.getAttribute('data-theme') === 'light') {
@@ -1103,17 +1362,21 @@
                 }
             });
             
-            // 重置语言
+            // 重置語言
             changeLanguage('zh-TW');
             
-            // 清除本地存储
+            // 清除本地存儲
             localStorage.removeItem('theme');
             localStorage.removeItem('language');
+            localStorage.removeItem('locationAsked');
+            
+            // 重新顯示位置詢問
+            locationModal.style.display = 'flex';
         });
         
-        // 从本地存储加载设置
+        // 從本地存儲加載設置
         function loadSettings() {
-            // 加载主题设置
+            // 加載主題設置
             const savedTheme = localStorage.getItem('theme') || 'light';
             themeOptions.forEach(option => {
                 option.classList.remove('active');
@@ -1124,12 +1387,12 @@
             applyTheme(savedTheme);
         }
         
-        // 语言选择器
+        // 語言選擇器
         languageButton.addEventListener('click', function() {
             languageDropdown.classList.toggle('active');
         });
         
-        // 选择语言
+        // 選擇語言
         languageOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
@@ -1138,20 +1401,20 @@
             });
         });
         
-        // 点击外部关闭语言选择器
+        // 點擊外部關閉語言選擇器
         document.addEventListener('click', function(event) {
             if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
                 languageDropdown.classList.remove('active');
             }
         });
         
-        // 更改语言
+        // 更改語言
         function changeLanguage(lang) {
-            // 更新当前语言显示
+            // 更新當前語言顯示
             currentLanguage.textContent = translations[lang]['current'];
             currentLanguage.setAttribute('data-lang', lang);
             
-            // 更新所有带data-lang属性的元素
+            // 更新所有帶data-lang屬性的元素
             document.querySelectorAll('[data-lang]').forEach(element => {
                 const key = element.getAttribute('data-lang');
                 if (translations[lang][key]) {
@@ -1159,14 +1422,14 @@
                 }
             });
             
-            // 设置语言属性
+            // 設置語言屬性
             document.documentElement.lang = lang;
             
-            // 保存语言设置
+            // 保存語言設置
             localStorage.setItem('language', lang);
         }
         
-        // 加载语言设置
+        // 加載語言設置
         function loadLanguage() {
             const savedLanguage = localStorage.getItem('language') || 'zh-TW';
             changeLanguage(savedLanguage);
