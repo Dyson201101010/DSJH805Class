@@ -53,7 +53,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 2000;
@@ -622,6 +622,68 @@
             box-shadow: 0 6px 18px rgba(88, 86, 214, 0.4);
         }
         
+        /* Instagram 區塊樣式 */
+        .instagram-section {
+            margin-top: 40px;
+            background: var(--card-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .instagram-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .instagram-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: #E4405F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            background: var(--card-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-top: 15px;
+            gap: 8px;
+        }
+        
+        .instagram-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+        }
+        
         /* 联系开发者样式 */
         .contact-developer {
             margin-top: 40px;
@@ -687,41 +749,6 @@
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
-        }
-        
-        /* Instagram 链接样式 */
-        .instagram-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            background: var(--card-color);
-            color: var(--primary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px var(--shadow-color);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            margin-top: 15px;
-            gap: 8px;
-        }
-        
-        .instagram-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px var(--shadow-color);
-        }
-        
-        .instagram-icon {
-            color: #E4405F;
-        }
-        
-        .instagram-link:hover .instagram-icon {
-            color: white;
         }
         
         /* 多语言排版优化 */
@@ -831,7 +858,7 @@
                 width: 85%;
             }
             
-            .contact-developer {
+            .contact-developer, .instagram-section {
                 padding: 25px;
             }
             
@@ -970,6 +997,19 @@
             </div>
         </div>
         
+        <!-- Instagram 區塊 -->
+        <div class="instagram-section">
+            <h2 class="instagram-title">
+                <i class="fab fa-instagram instagram-icon"></i>
+                <span data-lang="instagram-title">班級 Instagram</span>
+            </h2>
+            <p data-lang="instagram-description">關注我們的班級 Instagram 帳號，獲取最新班級動態和活動照片：</p>
+            <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="instagram-link">
+                <i class="fab fa-instagram"></i>
+                <span data-lang="follow-instagram">@dsjh_805</span>
+            </a>
+        </div>
+        
         <!-- 联系开发者区块 -->
         <div class="contact-developer">
             <h2 class="contact-title">
@@ -978,12 +1018,6 @@
             </h2>
             <p data-lang="contact-description">如果您有任何問題或建議，歡迎聯繫開發者：</p>
             <div class="contact-email">lianyuqing169@gmail.com</div>
-            
-            <!-- 班級IG帳號連結 -->
-            <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="instagram-link">
-                <i class="fab fa-instagram instagram-icon"></i>
-                <span data-lang="follow-instagram">關注班級IG帳號</span>
-            </a>
         </div>
         
         <!-- 免责声明 -->
@@ -1015,6 +1049,15 @@
         </div>
         
         <div class="setting-group">
+            <label class="setting-label" data-lang="location-settings">位置設定</label>
+            <div class="theme-options">
+                <button class="theme-option" id="enableLocation" data-lang="enable-location">啟用位置</button>
+                <button class="theme-option" id="disableLocation" data-lang="disable-location">停用位置</button>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);" data-lang="location-help">停用位置後，將不會再自動根據位置選擇語言</p>
+        </div>
+        
+        <div class="setting-group">
             <label class="setting-label" data-lang="reset-settings">重設設定</label>
             <button class="top-button" id="resetSettings" style="background: #FF3B30; color: white; border: none;">
                 <i class="fas fa-undo"></i> <span data-lang="reset-default">恢復預設值</span>
@@ -1039,6 +1082,8 @@
         const locationModal = document.getElementById('locationModal');
         const acceptLocation = document.getElementById('acceptLocation');
         const denyLocation = document.getElementById('denyLocation');
+        const enableLocation = document.getElementById('enableLocation');
+        const disableLocation = document.getElementById('disableLocation');
         
         // 多语言文本
         const translations = {
@@ -1047,7 +1092,9 @@
                 'current': '繁體中文',
                 'school-website': '進入校網',
                 'instagram': '班級IG',
-                'follow-instagram': '關注班級IG帳號',
+                'instagram-title': '班級 Instagram',
+                'instagram-description': '關注我們的班級 Instagram 帳號，獲取最新班級動態和活動照片：',
+                'follow-instagram': '@dsjh_805',
                 'subtitle': '我們的專屬班級空間 • 知識分享與交流的平台',
                 'latest-notice': '最新通知',
                 'class-schedule': '課表',
@@ -1064,6 +1111,10 @@
                 'light-theme': '淺色模式',
                 'dark-theme': '深色模式',
                 'auto-theme': '跟隨系統',
+                'location-settings': '位置設定',
+                'enable-location': '啟用位置',
+                'disable-location': '停用位置',
+                'location-help': '停用位置後，將不會再自動根據位置選擇語言',
                 'reset-settings': '重設設定',
                 'reset-default': '恢復預設值',
                 'location-request': '訪問您的位置',
@@ -1076,7 +1127,9 @@
                 'current': '简体中文',
                 'school-website': '进入校网',
                 'instagram': '班级IG',
-                'follow-instagram': '关注班级IG账号',
+                'instagram-title': '班级 Instagram',
+                'instagram-description': '关注我们的班级 Instagram 账号，获取最新班级动态和活动照片：',
+                'follow-instagram': '@dsjh_805',
                 'subtitle': '我们的专属班级空间 • 知识分享与交流的平台',
                 'latest-notice': '最新通知',
                 'class-schedule': '课表',
@@ -1093,6 +1146,10 @@
                 'light-theme': '浅色模式',
                 'dark-theme': '深色模式',
                 'auto-theme': '跟随系统',
+                'location-settings': '位置设置',
+                'enable-location': '启用位置',
+                'disable-location': '停用位置',
+                'location-help': '停用位置后，将不会再自动根据位置选择语言',
                 'reset-settings': '重设设置',
                 'reset-default': '恢复默认值',
                 'location-request': '访问您的位置',
@@ -1105,7 +1162,9 @@
                 'current': 'English',
                 'school-website': 'School Website',
                 'instagram': 'Class IG',
-                'follow-instagram': 'Follow Class Instagram',
+                'instagram-title': 'Class Instagram',
+                'instagram-description': 'Follow our class Instagram account for the latest updates and activity photos:',
+                'follow-instagram': '@dsjh_805',
                 'subtitle': 'Our Exclusive Class Space • Platform for Knowledge Sharing and Exchange',
                 'latest-notice': 'Latest Notice',
                 'class-schedule': 'Class Schedule',
@@ -1122,6 +1181,10 @@
                 'light-theme': 'Light Mode',
                 'dark-theme': 'Dark Mode',
                 'auto-theme': 'Follow System',
+                'location-settings': 'Location Settings',
+                'enable-location': 'Enable Location',
+                'disable-location': 'Disable Location',
+                'location-help': 'After disabling location, language will no longer be automatically selected based on location',
                 'reset-settings': 'Reset Settings',
                 'reset-default': 'Restore Default',
                 'location-request': 'Access Your Location',
@@ -1134,7 +1197,9 @@
                 'current': '日本語',
                 'school-website': '学校のウェブサイト',
                 'instagram': 'クラスIG',
-                'follow-instagram': 'クラスInstagramをフォロー',
+                'instagram-title': 'クラス Instagram',
+                'instagram-description': '最新のクラス更新と活動写真を入手するには、クラスのInstagramアカウントをフォローしてください：',
+                'follow-instagram': '@dsjh_805',
                 'subtitle': '私たちの専用クラススペース • 知識共有と交流のプラットフォーム',
                 'latest-notice': '最新のお知らせ',
                 'class-schedule': '時間割',
@@ -1151,6 +1216,10 @@
                 'light-theme': 'ライトモード',
                 'dark-theme': 'ダークモード',
                 'auto-theme': 'システムに従う',
+                'location-settings': '位置設定',
+                'enable-location': '位置を有効化',
+                'disable-location': '位置を無効化',
+                'location-help': '位置を無効にすると、位置に基づいて言語が自動的に選択されなくなります',
                 'reset-settings': '設定をリセット',
                 'reset-default': 'デフォルトに戻す',
                 'location-request': '位置情報へのアクセス',
@@ -1163,7 +1232,9 @@
                 'current': '한국어',
                 'school-website': '학교 웹사이트',
                 'instagram': '클래스 IG',
-                'follow-instagram': '클래스 Instagram 팔로우',
+                'instagram-title': '클래스 Instagram',
+                'instagram-description': '최신 클래스 업데이트 및 활동 사진을 보려면 클래스 Instagram 계정을 팔로우하세요:',
+                'follow-instagram': '@dsjh_805',
                 'subtitle': '우리의 전용 클래스 공간 • 지식 공유 및 교류 플랫폼',
                 'latest-notice': '최신 공지',
                 'class-schedule': '시간표',
@@ -1180,6 +1251,10 @@
                 'light-theme': '라이트 모드',
                 'dark-theme': '다크 모드',
                 'auto-theme': '시스템 따라가기',
+                'location-settings': '위치 설정',
+                'enable-location': '위치 활성화',
+                'disable-location': '위치 비활성화',
+                'location-help': '위치를 비활성화하면 위치에 따라 언어가 자동으로 선택되지 않습니다',
                 'reset-settings': '설정 재설정',
                 'reset-default': '기본값 복원',
                 'location-request': '위치 접근',
@@ -1206,10 +1281,11 @@
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 檢查是否已經詢問過位置
+            // 檢查位置服務是否啟用
+            const locationEnabled = localStorage.getItem('locationEnabled') !== 'false';
             const locationAsked = localStorage.getItem('locationAsked');
             
-            if (!locationAsked) {
+            if (locationEnabled && !locationAsked) {
                 // 顯示位置詢問彈窗
                 locationModal.style.display = 'flex';
             } else {
@@ -1219,6 +1295,40 @@
                 // 加載語言設置
                 loadLanguage();
             }
+            
+            // 更新位置設定按鈕狀態
+            updateLocationButtons();
+        });
+        
+        // 更新位置設定按鈕狀態
+        function updateLocationButtons() {
+            const locationEnabled = localStorage.getItem('locationEnabled') !== 'false';
+            
+            if (locationEnabled) {
+                enableLocation.classList.add('active');
+                disableLocation.classList.remove('active');
+            } else {
+                enableLocation.classList.remove('active');
+                disableLocation.classList.add('active');
+            }
+        }
+        
+        // 啟用位置
+        enableLocation.addEventListener('click', function() {
+            localStorage.setItem('locationEnabled', 'true');
+            updateLocationButtons();
+            
+            // 如果還沒有詢問過位置，顯示詢問彈窗
+            const locationAsked = localStorage.getItem('locationAsked');
+            if (!locationAsked) {
+                locationModal.style.display = 'flex';
+            }
+        });
+        
+        // 停用位置
+        disableLocation.addEventListener('click', function() {
+            localStorage.setItem('locationEnabled', 'false');
+            updateLocationButtons();
         });
         
         // 接受位置訪問
@@ -1228,6 +1338,10 @@
             
             // 標記為已詢問
             localStorage.setItem('locationAsked', 'true');
+            localStorage.setItem('locationEnabled', 'true');
+            
+            // 更新按鈕狀態
+            updateLocationButtons();
             
             // 獲取用戶位置
             if (navigator.geolocation) {
@@ -1256,6 +1370,10 @@
             
             // 標記為已詢問
             localStorage.setItem('locationAsked', 'true');
+            localStorage.setItem('locationEnabled', 'false');
+            
+            // 更新按鈕狀態
+            updateLocationButtons();
             
             // 使用默認語言
             setDefaultLanguage();
@@ -1365,10 +1483,14 @@
             // 重置語言
             changeLanguage('zh-TW');
             
+            // 重置位置設定
+            localStorage.removeItem('locationAsked');
+            localStorage.removeItem('locationEnabled');
+            updateLocationButtons();
+            
             // 清除本地存儲
             localStorage.removeItem('theme');
             localStorage.removeItem('language');
-            localStorage.removeItem('locationAsked');
             
             // 重新顯示位置詢問
             locationModal.style.display = 'flex';
