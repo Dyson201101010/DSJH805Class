@@ -2,7 +2,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSJH805Class - 班级网站</title>
+    <meta name="description" content="DSJH805Class 班級網站 - 我們的專屬班級空間 • 知識分享與交流的平台">
+    <meta name="keywords" content="班級網站, DSJH, 805班, 課表, 通知, 學生">
+    <meta property="og:title" content="DSJH805Class - 班級網站">
+    <meta property="og:description" content="我們的專屬班級空間 • 知識分享與交流的平台">
+    <meta property="og:type" content="website">
+    <title>DSJH805Class - 班級網站</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -22,6 +27,9 @@
             --shadow-color: rgba(0, 0, 0, 0.1);
             --border-color: rgba(0, 0, 0, 0.1);
             --transition-speed: 0.4s;
+            --error-color: #FF3B30;
+            --success-color: #34C759;
+            --warning-color: #FF9500;
         }
         
         [data-theme="dark"] {
@@ -33,6 +41,9 @@
             --text-secondary: #8E8E93;
             --shadow-color: rgba(0, 0, 0, 0.3);
             --border-color: rgba(255, 255, 255, 0.1);
+            --error-color: #FF453A;
+            --success-color: #30D158;
+            --warning-color: #FF9F0A;
         }
         
         body {
@@ -100,6 +111,10 @@
             transition: all 0.3s ease;
             border: none;
             font-size: 1rem;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .location-accept {
@@ -107,7 +122,7 @@
             color: white;
         }
         
-        .location-accept:hover {
+        .location-accept:hover, .location-accept:focus {
             background: var(--secondary-color);
             transform: translateY(-2px);
         }
@@ -118,7 +133,7 @@
             border: 1px solid var(--border-color);
         }
         
-        .location-deny:hover {
+        .location-deny:hover, .location-deny:focus {
             background: rgba(0, 0, 0, 0.05);
             transform: translateY(-2px);
         }
@@ -316,13 +331,19 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             line-height: 1.2;
+            min-height: 44px;
         }
         
-        .top-button:hover {
+        .top-button:hover, .top-button:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
+        }
+        
+        .top-button:active {
+            transform: translateY(0);
         }
         
         .settings-button {
@@ -330,7 +351,7 @@
             color: var(--primary-color);
         }
         
-        .settings-button:hover {
+        .settings-button:hover, .settings-button:focus {
             background: var(--primary-color);
             color: white;
         }
@@ -352,6 +373,7 @@
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border-right: 1px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
         }
         
         .settings-panel.active {
@@ -378,8 +400,8 @@
             background: transparent;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 1.2rem;
@@ -389,10 +411,11 @@
             transition: all 0.3s ease;
         }
         
-        .close-settings:hover {
+        .close-settings:hover, .close-settings:focus {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            outline: none;
         }
         
         .setting-group {
@@ -431,11 +454,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 44px;
         }
         
-        .theme-option:hover {
+        .theme-option:hover, .theme-option:focus {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
         }
         
         .theme-option.active {
@@ -497,13 +522,15 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             line-height: 1.2;
+            min-height: 44px;
         }
         
-        .language-button:hover {
+        .language-button:hover, .language-button:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
         }
         
         .language-dropdown {
@@ -541,10 +568,12 @@
             line-height: 1.3;
             display: flex;
             align-items: center;
+            min-height: 44px;
         }
         
-        .language-option:hover {
+        .language-option:hover, .language-option:focus {
             background: rgba(0, 122, 255, 0.1);
+            outline: none;
         }
         
         /* 课表链接样式 */
@@ -566,9 +595,10 @@
             flex: 1;
         }
         
-        .class-table-link:hover {
+        .class-table-link:hover, .class-table-link:focus {
             transform: scale(1.03) translateY(-5px);
             box-shadow: 0 12px 30px var(--shadow-color);
+            outline: none;
         }
         
         .class-table-icon {
@@ -614,12 +644,14 @@
             align-items: center;
             gap: 8px;
             line-height: 1.2;
+            min-height: 44px;
         }
         
-        .class-table-button:hover {
+        .class-table-button:hover, .class-table-button:focus {
             background: var(--secondary-color);
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(88, 86, 214, 0.4);
+            outline: none;
         }
         
         /* Instagram 區塊樣式 */
@@ -675,13 +707,15 @@
             -webkit-backdrop-filter: blur(10px);
             margin-top: 15px;
             gap: 8px;
+            min-height: 44px;
         }
         
-        .instagram-link:hover {
+        .instagram-link:hover, .instagram-link:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
         }
         
         /* 联系开发者样式 */
@@ -742,13 +776,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 44px;
         }
         
-        .contact-email:hover {
+        .contact-email:hover, .contact-email:focus {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
         }
         
         /* 多语言排版优化 */
@@ -771,6 +807,100 @@
             line-height: 1.5;
         }
         
+        /* 加载指示器 */
+        .loading-indicator {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 122, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin: 20px auto;
+        }
+        
+        .loading-indicator.active {
+            display: block;
+        }
+        
+        /* 错误消息样式 */
+        .error-message {
+            display: none;
+            background-color: var(--error-color);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .error-message.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* 成功消息样式 */
+        .success-message {
+            display: none;
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* 警告消息样式 */
+        .warning-message {
+            display: none;
+            background-color: var(--warning-color);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .warning-message.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* 无障碍访问改进 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* 焦点样式改进 */
+        *:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* 禁用文本选择 */
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -790,6 +920,12 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
         
@@ -877,6 +1013,10 @@
             .location-buttons {
                 flex-direction: column;
             }
+            
+            .theme-options {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* 小手机设备样式 */
@@ -898,10 +1038,6 @@
                 padding: 25px;
             }
             
-            .theme-options {
-                grid-template-columns: 1fr;
-            }
-            
             .section-title {
                 flex-direction: column;
                 text-align: center;
@@ -912,13 +1048,55 @@
                 margin-right: 0;
             }
         }
+        
+        /* 横屏模式优化 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .location-modal-content {
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .settings-panel {
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+        }
+        
+        /* 减少动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* 高对比度模式支持 */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-color: #0040FF;
+                --secondary-color: #3D3BCC;
+                --text-color: #000000;
+                --text-secondary: #555555;
+            }
+            
+            [data-theme="dark"] {
+                --primary-color: #409CFF;
+                --secondary-color: #7D7AFF;
+                --text-color: #FFFFFF;
+                --text-secondary: #CCCCCC;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 屏幕阅读器专用提示 -->
+    <div class="sr-only" id="pageTitle" aria-live="polite">DSJH805Class 班級網站</div>
+    
     <!-- 位置訪問詢問彈窗 -->
-    <div class="location-modal" id="locationModal">
+    <div class="location-modal" id="locationModal" role="dialog" aria-labelledby="locationModalTitle" aria-modal="true">
         <div class="location-modal-content">
-            <h2 data-lang="location-request">訪問您的位置</h2>
+            <h2 id="locationModalTitle" data-lang="location-request">訪問您的位置</h2>
             <p data-lang="location-description">為了提供更好的體驗，我們希望根據您的位置自動選擇最適合的語言。我們不會存儲或分享您的位置信息。</p>
             <div class="location-buttons">
                 <button class="location-btn location-accept" id="acceptLocation" data-lang="allow-location">允許訪問</button>
@@ -927,39 +1105,51 @@
         </div>
     </div>
     
+    <!-- 加载指示器 -->
+    <div class="loading-indicator" id="loadingIndicator" aria-live="polite" aria-label="加载中"></div>
+    
+    <!-- 错误消息 -->
+    <div class="error-message" id="errorMessage" aria-live="assertive"></div>
+    
+    <!-- 成功消息 -->
+    <div class="success-message" id="successMessage" aria-live="polite"></div>
+    
+    <!-- 警告消息 -->
+    <div class="warning-message" id="warningMessage" aria-live="polite"></div>
+    
     <div class="container">
         <header>
             <div class="header-top">
-                <button class="top-button settings-button" id="settingsButton">
-                    <i class="fas fa-cog"></i> <span data-lang="settings">設定</span>
+                <button class="top-button settings-button" id="settingsButton" aria-label="網站設定" aria-expanded="false" aria-controls="settingsPanel">
+                    <i class="fas fa-cog" aria-hidden="true"></i> <span data-lang="settings">設定</span>
                 </button>
                 
                 <div class="logo">
-                    <i class="fas fa-graduation-cap logo-icon"></i>
+                    <i class="fas fa-graduation-cap logo-icon" aria-hidden="true"></i>
                     <h1>DSJH805Class</h1>
                 </div>
                 
                 <div class="top-buttons">
                     <div class="language-selector">
-                        <button class="language-button" id="languageButton">
-                            <i class="fas fa-globe"></i> <span id="currentLanguage" data-lang="current">繁體中文</span>
+                        <button class="language-button" id="languageButton" aria-label="選擇語言" aria-expanded="false" aria-controls="languageDropdown">
+                            <i class="fas fa-globe" aria-hidden="true"></i> <span id="currentLanguage" data-lang="current">繁體中文</span>
                         </button>
-                        <div class="language-dropdown" id="languageDropdown">
-                            <button class="language-option" data-lang="zh-TW">繁體中文</button>
-                            <button class="language-option" data-lang="zh-CN">简体中文</button>
-                            <button class="language-option" data-lang="en">English</button>
-                            <button class="language-option" data-lang="ja">日本語</button>
-                            <button class="language-option" data-lang="ko">한국어</button>
+                        <div class="language-dropdown" id="languageDropdown" role="menu">
+                            <button class="language-option" data-lang="zh-TW" role="menuitem">繁體中文</button>
+                            <button class="language-option" data-lang="zh-CN" role="menuitem">简体中文</button>
+                            <button class="language-option" data-lang="en" role="menuitem">English</button>
+                            <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
+                            <button class="language-option" data-lang="ko" role="menuitem">한국어</button>
                         </div>
                     </div>
                     
-                    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button">
-                        <i class="fas fa-school"></i> <span data-lang="school-website">進入校網</span>
+                    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button" rel="noopener noreferrer">
+                        <i class="fas fa-school" aria-hidden="true"></i> <span data-lang="school-website">進入校網</span>
                     </a>
 
                     <!-- 班級IG帳號連結 -->
-                    <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="top-button">
-                        <i class="fab fa-instagram"></i> <span data-lang="instagram">班級IG</span>
+                    <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="top-button" rel="noopener noreferrer">
+                        <i class="fab fa-instagram" aria-hidden="true"></i> <span data-lang="instagram">班級IG</span>
                     </a>
                 </div>
             </div>
@@ -970,28 +1160,28 @@
         <div class="main-content">
             <div class="section">
                 <h2 class="section-title">
-                    <i class="fas fa-bullhorn section-icon"></i>
+                    <i class="fas fa-bullhorn section-icon" aria-hidden="true"></i>
                     <span data-lang="latest-notice">最新通知</span>
                 </h2>
                 <div class="content-placeholder">
-                    <i class="fas fa-bell placeholder-icon"></i>
+                    <i class="fas fa-bell placeholder-icon" aria-hidden="true"></i>
                     <p class="placeholder-text" data-lang="no-content">暫無內容或未開放</p>
                 </div>
             </div>
             
             <div class="section">
                 <h2 class="section-title">
-                    <i class="fas fa-table section-icon"></i>
+                    <i class="fas fa-table section-icon" aria-hidden="true"></i>
                     <span data-lang="class-schedule">課表</span>
                 </h2>
-                <a href="http://163.24.48.25/classtable/" target="_blank" class="class-table-link">
-                    <i class="fas fa-calendar-alt class-table-icon"></i>
+                <a href="http://163.24.48.25/classtable/" target="_blank" class="class-table-link" rel="noopener noreferrer">
+                    <i class="fas fa-calendar-alt class-table-icon" aria-hidden="true"></i>
                     <div class="class-table-title" data-lang="view-schedule">查看課表</div>
                     <div class="class-table-description" data-lang="schedule-description">
                         點擊此處查看八年五班的完整課表，請選擇「八年五班」查看詳細課程安排
                     </div>
                     <div class="class-table-button">
-                        <i class="fas fa-external-link-alt"></i> <span data-lang="go-to-schedule">前往課表</span>
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i> <span data-lang="go-to-schedule">前往課表</span>
                     </div>
                 </a>
             </div>
@@ -1000,12 +1190,12 @@
         <!-- Instagram 區塊 -->
         <div class="instagram-section">
             <h2 class="instagram-title">
-                <i class="fab fa-instagram instagram-icon"></i>
+                <i class="fab fa-instagram instagram-icon" aria-hidden="true"></i>
                 <span data-lang="instagram-title">班級 Instagram</span>
             </h2>
             <p data-lang="instagram-description">關注我們的班級 Instagram 帳號，獲取最新班級動態和活動照片：</p>
-            <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="instagram-link">
-                <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="instagram-link" rel="noopener noreferrer">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
                 <span data-lang="follow-instagram">@dsjh_805</span>
             </a>
         </div>
@@ -1013,16 +1203,16 @@
         <!-- 联系开发者区块 -->
         <div class="contact-developer">
             <h2 class="contact-title">
-                <i class="fas fa-envelope contact-icon"></i>
+                <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
                 <span data-lang="contact-developer">聯繫開發者</span>
             </h2>
             <p data-lang="contact-description">如果您有任何問題或建議，歡迎聯繫開發者：</p>
-            <div class="contact-email">lianyuqing169@gmail.com</div>
+            <a href="mailto:lianyuqing169@gmail.com" class="contact-email">lianyuqing169@gmail.com</a>
         </div>
         
         <!-- 免责声明 -->
         <div class="disclaimer">
-            <i class="fas fa-exclamation-circle"></i> <span data-lang="disclaimer">此網站為學生個人製作，非學校官方製作</span>
+            <i class="fas fa-exclamation-circle" aria-hidden="true"></i> <span data-lang="disclaimer">此網站為學生個人製作，非學校官方製作</span>
         </div>
         
         <footer>
@@ -1031,11 +1221,11 @@
     </div>
     
     <!-- 设置面板 -->
-    <div class="settings-panel" id="settingsPanel">
+    <div class="settings-panel" id="settingsPanel" role="dialog" aria-labelledby="settingsPanelTitle" aria-modal="true">
         <div class="settings-header">
-            <h2 class="settings-title" data-lang="website-settings">網站設定</h2>
-            <button class="close-settings" id="closeSettings">
-                <i class="fas fa-times"></i>
+            <h2 class="settings-title" id="settingsPanelTitle" data-lang="website-settings">網站設定</h2>
+            <button class="close-settings" id="closeSettings" aria-label="關閉設定">
+                <i class="fas fa-times" aria-hidden="true"></i>
             </button>
         </div>
         
@@ -1060,7 +1250,7 @@
         <div class="setting-group">
             <label class="setting-label" data-lang="reset-settings">重設設定</label>
             <button class="top-button" id="resetSettings" style="background: #FF3B30; color: white; border: none;">
-                <i class="fas fa-undo"></i> <span data-lang="reset-default">恢復預設值</span>
+                <i class="fas fa-undo" aria-hidden="true"></i> <span data-lang="reset-default">恢復預設值</span>
             </button>
         </div>
     </div>
@@ -1084,6 +1274,10 @@
         const denyLocation = document.getElementById('denyLocation');
         const enableLocation = document.getElementById('enableLocation');
         const disableLocation = document.getElementById('disableLocation');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const warningMessage = document.getElementById('warningMessage');
         
         // 多语言文本
         const translations = {
@@ -1120,7 +1314,13 @@
                 'location-request': '訪問您的位置',
                 'location-description': '為了提供更好的體驗，我們希望根據您的位置自動選擇最適合的語言。我們不會存儲或分享您的位置信息。',
                 'allow-location': '允許訪問',
-                'deny-location': '拒絕'
+                'deny-location': '拒絕',
+                'loading': '加載中...',
+                'location-error': '無法獲取您的位置信息，請檢查位置權限設置',
+                'location-denied': '位置訪問已被拒絕',
+                'location-unavailable': '位置服務不可用',
+                'location-timeout': '位置請求超時',
+                'reset-success': '設置已重置為默認值'
             },
             'zh-CN': {
                 'settings': '设置',
@@ -1155,7 +1355,13 @@
                 'location-request': '访问您的位置',
                 'location-description': '为了提供更好的体验，我们希望根据您的位置自动选择最适合的语言。我们不会存储或分享您的位置信息。',
                 'allow-location': '允许访问',
-                'deny-location': '拒绝'
+                'deny-location': '拒绝',
+                'loading': '加载中...',
+                'location-error': '无法获取您的位置信息，请检查位置权限设置',
+                'location-denied': '位置访问已被拒绝',
+                'location-unavailable': '位置服务不可用',
+                'location-timeout': '位置请求超时',
+                'reset-success': '设置已重置为默认值'
             },
             'en': {
                 'settings': 'Settings',
@@ -1190,7 +1396,13 @@
                 'location-request': 'Access Your Location',
                 'location-description': 'To provide a better experience, we would like to automatically select the most appropriate language based on your location. We will not store or share your location information.',
                 'allow-location': 'Allow Access',
-                'deny-location': 'Deny'
+                'deny-location': 'Deny',
+                'loading': 'Loading...',
+                'location-error': 'Unable to retrieve your location information, please check location permissions',
+                'location-denied': 'Location access has been denied',
+                'location-unavailable': 'Location services are unavailable',
+                'location-timeout': 'Location request timed out',
+                'reset-success': 'Settings have been reset to default values'
             },
             'ja': {
                 'settings': '設定',
@@ -1225,7 +1437,13 @@
                 'location-request': '位置情報へのアクセス',
                 'location-description': 'より良い体験を提供するために、お客様の位置情報に基づいて最適な言語を自動的に選択したいと思います。お客様の位置情報を保存または共有することはありません。',
                 'allow-location': 'アクセスを許可',
-                'deny-location': '拒否'
+                'deny-location': '拒否',
+                'loading': '読み込み中...',
+                'location-error': '位置情報を取得できません。位置情報の権限設定を確認してください',
+                'location-denied': '位置情報へのアクセスが拒否されました',
+                'location-unavailable': '位置情報サービスは利用できません',
+                'location-timeout': '位置情報のリクエストがタイムアウトしました',
+                'reset-success': '設定がデフォルト値にリセットされました'
             },
             'ko': {
                 'settings': '설정',
@@ -1260,7 +1478,13 @@
                 'location-request': '위치 접근',
                 'location-description': '더 나은 경험을 제공하기 위해 귀하의 위치를 기반으로 가장 적합한 언어를 자동으로 선택하고자 합니다. 귀하의 위치 정보를 저장하거나 공유하지 않습니다.',
                 'allow-location': '접근 허용',
-                'deny-location': '거부'
+                'deny-location': '거부',
+                'loading': '로딩 중...',
+                'location-error': '위치 정보를 검색할 수 없습니다. 위치 권한 설정을 확인하세요',
+                'location-denied': '위치 접근이 거부되었습니다',
+                'location-unavailable': '위치 서비스를 사용할 수 없습니다',
+                'location-timeout': '위치 요청이 시간 초과되었습니다',
+                'reset-success': '설정이 기본값으로 재설정되었습니다'
             }
         };
         
@@ -1279,6 +1503,33 @@
             // 可以根據需要添加更多國家映射
         };
         
+        // 顯示消息函數
+        function showMessage(element, message, duration = 5000) {
+            element.textContent = message;
+            element.classList.add('active');
+            
+            setTimeout(() => {
+                element.classList.remove('active');
+            }, duration);
+        }
+        
+        // 顯示加載指示器
+        function showLoading() {
+            loadingIndicator.classList.add('active');
+            loadingIndicator.setAttribute('aria-label', getCurrentTranslation('loading'));
+        }
+        
+        // 隱藏加載指示器
+        function hideLoading() {
+            loadingIndicator.classList.remove('active');
+        }
+        
+        // 獲取當前語言的翻譯
+        function getCurrentTranslation(key) {
+            const currentLang = document.documentElement.lang || 'zh-TW';
+            return translations[currentLang][key] || key;
+        }
+        
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             // 檢查位置服務是否啟用
@@ -1288,6 +1539,7 @@
             if (locationEnabled && !locationAsked) {
                 // 顯示位置詢問彈窗
                 locationModal.style.display = 'flex';
+                locationModal.setAttribute('aria-hidden', 'false');
             } else {
                 // 從本地存儲加載設置
                 loadSettings();
@@ -1298,6 +1550,18 @@
             
             // 更新位置設定按鈕狀態
             updateLocationButtons();
+            
+            // 設置全局錯誤處理
+            window.addEventListener('error', function(e) {
+                console.error('全局錯誤:', e.error);
+                showMessage(errorMessage, getCurrentTranslation('location-error'));
+            });
+            
+            // 設置未處理的Promise拒絕處理
+            window.addEventListener('unhandledrejection', function(e) {
+                console.error('未處理的Promise拒絕:', e.reason);
+                showMessage(errorMessage, getCurrentTranslation('location-error'));
+            });
         });
         
         // 更新位置設定按鈕狀態
@@ -1322,6 +1586,7 @@
             const locationAsked = localStorage.getItem('locationAsked');
             if (!locationAsked) {
                 locationModal.style.display = 'flex';
+                locationModal.setAttribute('aria-hidden', 'false');
             }
         });
         
@@ -1335,6 +1600,7 @@
         acceptLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
+            locationModal.setAttribute('aria-hidden', 'true');
             
             // 標記為已詢問
             localStorage.setItem('locationAsked', 'true');
@@ -1343,22 +1609,51 @@
             // 更新按鈕狀態
             updateLocationButtons();
             
+            // 顯示加載指示器
+            showLoading();
+            
             // 獲取用戶位置
             if (navigator.geolocation) {
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 60000
+                };
+                
                 navigator.geolocation.getCurrentPosition(
                     function(position) {
                         // 成功獲取位置，根據位置獲取國家代碼
+                        hideLoading();
                         getCountryFromCoordinates(position.coords.latitude, position.coords.longitude);
                     },
                     function(error) {
                         // 獲取位置失敗，使用默認語言
+                        hideLoading();
                         console.log('位置獲取失敗:', error);
+                        
+                        let errorMsg = getCurrentTranslation('location-error');
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMsg = getCurrentTranslation('location-denied');
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMsg = getCurrentTranslation('location-unavailable');
+                                break;
+                            case error.TIMEOUT:
+                                errorMsg = getCurrentTranslation('location-timeout');
+                                break;
+                        }
+                        
+                        showMessage(warningMessage, errorMsg);
                         setDefaultLanguage();
-                    }
+                    },
+                    options
                 );
             } else {
                 // 瀏覽器不支持地理位置
+                hideLoading();
                 console.log('瀏覽器不支持地理位置');
+                showMessage(warningMessage, getCurrentTranslation('location-unavailable'));
                 setDefaultLanguage();
             }
         });
@@ -1367,6 +1662,7 @@
         denyLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
+            locationModal.setAttribute('aria-hidden', 'true');
             
             // 標記為已詢問
             localStorage.setItem('locationAsked', 'true');
@@ -1383,7 +1679,12 @@
         function getCountryFromCoordinates(lat, lng) {
             // 使用逆地理編碼API獲取國家信息
             fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const countryCode = data.countryCode;
                     const language = countryToLanguage[countryCode] || 'zh-TW'; // 默認使用繁體中文
@@ -1396,6 +1697,7 @@
                 })
                 .catch(error => {
                     console.log('獲取國家信息失敗:', error);
+                    showMessage(warningMessage, getCurrentTranslation('location-error'));
                     setDefaultLanguage();
                 });
         }
@@ -1413,18 +1715,39 @@
         settingsButton.addEventListener('click', function() {
             settingsPanel.classList.add('active');
             overlay.classList.add('active');
+            settingsButton.setAttribute('aria-expanded', 'true');
+            settingsPanel.setAttribute('aria-hidden', 'false');
+            
+            // 防止背景滾動
+            document.body.style.overflow = 'hidden';
         });
         
         // 關閉設置面板
         closeSettings.addEventListener('click', function() {
+            closeSettingsPanel();
+        });
+        
+        // 關閉設置面板函數
+        function closeSettingsPanel() {
             settingsPanel.classList.remove('active');
             overlay.classList.remove('active');
-        });
+            settingsButton.setAttribute('aria-expanded', 'false');
+            settingsPanel.setAttribute('aria-hidden', 'true');
+            
+            // 恢復背景滾動
+            document.body.style.overflow = '';
+        }
         
         // 點擊遮罩層關閉設置
         overlay.addEventListener('click', function() {
-            settingsPanel.classList.remove('active');
-            overlay.classList.remove('active');
+            closeSettingsPanel();
+        });
+        
+        // ESC鍵關閉設置面板
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && settingsPanel.classList.contains('active')) {
+                closeSettingsPanel();
+            }
         });
         
         // 主題選擇
@@ -1492,8 +1815,14 @@
             localStorage.removeItem('theme');
             localStorage.removeItem('language');
             
+            // 顯示成功消息
+            showMessage(successMessage, getCurrentTranslation('reset-success'));
+            
             // 重新顯示位置詢問
-            locationModal.style.display = 'flex';
+            setTimeout(() => {
+                locationModal.style.display = 'flex';
+                locationModal.setAttribute('aria-hidden', 'false');
+            }, 1000);
         });
         
         // 從本地存儲加載設置
@@ -1511,7 +1840,8 @@
         
         // 語言選擇器
         languageButton.addEventListener('click', function() {
-            languageDropdown.classList.toggle('active');
+            const isActive = languageDropdown.classList.toggle('active');
+            languageButton.setAttribute('aria-expanded', isActive.toString());
         });
         
         // 選擇語言
@@ -1520,6 +1850,8 @@
                 const lang = this.getAttribute('data-lang');
                 changeLanguage(lang);
                 languageDropdown.classList.remove('active');
+                languageButton.setAttribute('aria-expanded', 'false');
+                languageButton.focus();
             });
         });
         
@@ -1527,6 +1859,19 @@
         document.addEventListener('click', function(event) {
             if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
                 languageDropdown.classList.remove('active');
+                languageButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // 鍵盤導航語言選擇器
+        languageButton.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const isActive = languageDropdown.classList.toggle('active');
+                languageButton.setAttribute('aria-expanded', isActive.toString());
+            } else if (e.key === 'Escape' && languageDropdown.classList.contains('active')) {
+                languageDropdown.classList.remove('active');
+                languageButton.setAttribute('aria-expanded', 'false');
             }
         });
         
@@ -1547,6 +1892,9 @@
             // 設置語言屬性
             document.documentElement.lang = lang;
             
+            // 更新頁面標題
+            document.title = `DSJH805Class - ${translations[lang]['website-settings']}`;
+            
             // 保存語言設置
             localStorage.setItem('language', lang);
         }
@@ -1556,6 +1904,19 @@
             const savedLanguage = localStorage.getItem('language') || 'zh-TW';
             changeLanguage(savedLanguage);
         }
+        
+        // 改進觸控體驗
+        document.addEventListener('touchstart', function() {}, {passive: true});
+        
+        // 防止iOS彈跳
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.classList.contains('settings-panel') || 
+                e.target.closest('.settings-panel') || 
+                e.target.classList.contains('location-modal-content') || 
+                e.target.closest('.location-modal-content')) {
+                e.preventDefault();
+            }
+        }, {passive: false});
     </script>
 </body>
 </html>
