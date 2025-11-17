@@ -58,7 +58,7 @@
             padding-top: var(--header-height);
         }
         
-        /* 固定頂部導航欄 */
+        /* 固定頂部導航欄 - 修復垂直置中 */
         .fixed-header {
             position: fixed;
             top: 0;
@@ -71,7 +71,7 @@
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             display: flex;
-            align-items: center;
+            align-items: center; /* 確保內容垂直置中 */
             padding: 0 20px;
             transition: all 0.3s ease;
         }
@@ -79,35 +79,42 @@
         .header-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center; /* 確保內容垂直置中 */
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            height: 100%; /* 確保容器高度 */
         }
         
         .header-logo {
             display: flex;
-            align-items: center;
+            align-items: center; /* 確保內容垂直置中 */
             text-decoration: none;
             color: var(--text-color);
+            height: 100%; /* 確保容器高度 */
         }
         
         .header-logo-icon {
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-right: 10px;
+            display: flex;
+            align-items: center; /* 確保內容垂直置中 */
         }
         
         .header-title {
             font-size: 1.4rem;
             font-weight: 700;
             white-space: nowrap;
+            display: flex;
+            align-items: center; /* 確保內容垂直置中 */
         }
         
         .header-nav {
             display: flex;
-            align-items: center;
+            align-items: center; /* 確保內容垂直置中 */
             gap: 15px;
+            height: 100%; /* 確保容器高度 */
         }
         
         .mobile-menu-button {
@@ -118,6 +125,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 5px;
+            height: 44px; /* 固定高度 */
+            width: 44px; /* 固定寬度 */
+            display: flex;
+            align-items: center; /* 確保內容垂直置中 */
+            justify-content: center; /* 確保內容水平置中 */
         }
         
         /* 麵包屑導航 */
@@ -1132,6 +1144,7 @@
                 opacity: 0;
                 transition: all 0.3s ease;
                 z-index: 999;
+                height: auto;
             }
             
             .header-nav.active {
@@ -1140,7 +1153,7 @@
             }
             
             .mobile-menu-button {
-                display: block;
+                display: flex;
             }
             
             .breadcrumb {
@@ -1823,7 +1836,7 @@
             }
         }
         
-        // 啟用位置
+        // 啟用位置 - 修復：不會影響主題
         enableLocation.addEventListener('click', function() {
             localStorage.setItem('locationEnabled', 'true');
             updateLocationButtons();
@@ -1834,15 +1847,18 @@
                 locationModal.style.display = 'flex';
                 locationModal.setAttribute('aria-hidden', 'false');
             }
+            
+            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
-        // 停用位置
+        // 停用位置 - 修復：不會影響主題
         disableLocation.addEventListener('click', function() {
             localStorage.setItem('locationEnabled', 'false');
             updateLocationButtons();
+            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
-        // 接受位置訪問
+        // 接受位置訪問 - 修復：不會影響主題
         acceptLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
@@ -1902,9 +1918,11 @@
                 showMessage(warningMessage, getCurrentTranslation('location-unavailable'));
                 setDefaultLanguage();
             }
+            
+            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
-        // 拒絕位置訪問
+        // 拒絕位置訪問 - 修復：不會影響主題
         denyLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
@@ -1919,6 +1937,8 @@
             
             // 使用默認語言
             setDefaultLanguage();
+            
+            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
         // 根據經緯度獲取國家代碼
@@ -2036,18 +2056,10 @@
             }
         }
         
-        // 重設設置
+        // 重設設置 - 修復：重置時保持當前主題
         resetSettingsButton.addEventListener('click', function() {
-            // 重置主題
-            document.documentElement.setAttribute('data-theme', 'light');
-            
-            // 重置主題選項
-            themeOptions.forEach(option => {
-                option.classList.remove('active');
-                if (option.getAttribute('data-theme') === 'light') {
-                    option.classList.add('active');
-                }
-            });
+            // 保存當前主題
+            const currentTheme = document.documentElement.getAttribute('data-theme');
             
             // 重置語言
             changeLanguage('zh-TW');
@@ -2057,9 +2069,19 @@
             localStorage.removeItem('locationEnabled');
             updateLocationButtons();
             
-            // 清除本地存儲
-            localStorage.removeItem('theme');
+            // 清除語言設置
             localStorage.removeItem('language');
+            
+            // 恢復之前的主題
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            // 更新主題選項
+            themeOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-theme') === currentTheme) {
+                    option.classList.add('active');
+                }
+            });
             
             // 顯示成功消息
             showMessage(successMessage, getCurrentTranslation('reset-success'));
