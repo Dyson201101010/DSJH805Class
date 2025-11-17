@@ -30,6 +30,7 @@
             --error-color: #FF3B30;
             --success-color: #34C759;
             --warning-color: #FF9500;
+            --header-height: 70px;
         }
         
         [data-theme="dark"] {
@@ -54,6 +55,89 @@
             font-size: 17px;
             min-height: 100vh;
             overflow-x: hidden;
+            padding-top: var(--header-height);
+        }
+        
+        /* 固定頂部導航欄 */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: var(--card-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .header-logo-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mobile-menu-button {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* 麵包屑導航 */
+        .breadcrumb {
+            margin: 20px 0;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
         }
         
         /* 位置訪問詢問彈窗 */
@@ -901,6 +985,16 @@
             user-select: none;
         }
         
+        /* 圖片懶加載樣式 */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -1017,6 +1111,41 @@
             .theme-options {
                 grid-template-columns: 1fr;
             }
+            
+            /* 移動端導航優化 */
+            .fixed-header {
+                padding: 0 15px;
+            }
+            
+            .header-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--card-color);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .header-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+            }
+            
+            .breadcrumb {
+                padding: 0 15px;
+            }
         }
         
         /* 小手机设备样式 */
@@ -1046,6 +1175,14 @@
             
             .section-icon {
                 margin-right: 0;
+            }
+            
+            .fixed-header {
+                padding: 0 10px;
+            }
+            
+            .header-title {
+                font-size: 1.2rem;
             }
         }
         
@@ -1090,6 +1227,53 @@
     </style>
 </head>
 <body>
+    <!-- 固定頂部導航欄 -->
+    <header class="fixed-header">
+        <div class="header-content">
+            <a href="#" class="header-logo">
+                <i class="fas fa-graduation-cap header-logo-icon" aria-hidden="true"></i>
+                <span class="header-title">DSJH805Class</span>
+            </a>
+            
+            <nav class="header-nav" id="headerNav">
+                <button class="top-button settings-button" id="settingsButton" aria-label="網站設定" aria-expanded="false" aria-controls="settingsPanel">
+                    <i class="fas fa-cog" aria-hidden="true"></i> <span data-lang="settings">設定</span>
+                </button>
+                
+                <div class="language-selector">
+                    <button class="language-button" id="languageButton" aria-label="選擇語言" aria-expanded="false" aria-controls="languageDropdown">
+                        <i class="fas fa-globe" aria-hidden="true"></i> <span id="currentLanguage" data-lang="current">繁體中文</span>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown" role="menu">
+                        <button class="language-option" data-lang="zh-TW" role="menuitem">繁體中文</button>
+                        <button class="language-option" data-lang="zh-CN" role="menuitem">简体中文</button>
+                        <button class="language-option" data-lang="en" role="menuitem">English</button>
+                        <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
+                        <button class="language-option" data-lang="ko" role="menuitem">한국어</button>
+                    </div>
+                </div>
+                
+                <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button" rel="noopener noreferrer">
+                    <i class="fas fa-school" aria-hidden="true"></i> <span data-lang="school-website">進入校網</span>
+                </a>
+
+                <!-- 班級IG帳號連結 -->
+                <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="top-button" rel="noopener noreferrer">
+                    <i class="fab fa-instagram" aria-hidden="true"></i> <span data-lang="instagram">班級IG</span>
+                </a>
+            </nav>
+            
+            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="開啟選單" aria-expanded="false" aria-controls="headerNav">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- 麵包屑導航 -->
+    <div class="breadcrumb">
+        <a href="#">首頁</a> > <span data-lang="current-page">班級網站</span>
+    </div>
+    
     <!-- 屏幕阅读器专用提示 -->
     <div class="sr-only" id="pageTitle" aria-live="polite">DSJH805Class 班級網站</div>
     
@@ -1120,37 +1304,9 @@
     <div class="container">
         <header>
             <div class="header-top">
-                <button class="top-button settings-button" id="settingsButton" aria-label="網站設定" aria-expanded="false" aria-controls="settingsPanel">
-                    <i class="fas fa-cog" aria-hidden="true"></i> <span data-lang="settings">設定</span>
-                </button>
-                
                 <div class="logo">
                     <i class="fas fa-graduation-cap logo-icon" aria-hidden="true"></i>
                     <h1>DSJH805Class</h1>
-                </div>
-                
-                <div class="top-buttons">
-                    <div class="language-selector">
-                        <button class="language-button" id="languageButton" aria-label="選擇語言" aria-expanded="false" aria-controls="languageDropdown">
-                            <i class="fas fa-globe" aria-hidden="true"></i> <span id="currentLanguage" data-lang="current">繁體中文</span>
-                        </button>
-                        <div class="language-dropdown" id="languageDropdown" role="menu">
-                            <button class="language-option" data-lang="zh-TW" role="menuitem">繁體中文</button>
-                            <button class="language-option" data-lang="zh-CN" role="menuitem">简体中文</button>
-                            <button class="language-option" data-lang="en" role="menuitem">English</button>
-                            <button class="language-option" data-lang="ja" role="menuitem">日本語</button>
-                            <button class="language-option" data-lang="ko" role="menuitem">한국어</button>
-                        </div>
-                    </div>
-                    
-                    <a href="https://www.dsjh.ptc.edu.tw/nss/p/index" target="_blank" class="top-button" rel="noopener noreferrer">
-                        <i class="fas fa-school" aria-hidden="true"></i> <span data-lang="school-website">進入校網</span>
-                    </a>
-
-                    <!-- 班級IG帳號連結 -->
-                    <a href="https://www.instagram.com/dsjh_805/" target="_blank" class="top-button" rel="noopener noreferrer">
-                        <i class="fab fa-instagram" aria-hidden="true"></i> <span data-lang="instagram">班級IG</span>
-                    </a>
                 </div>
             </div>
             
@@ -1278,6 +1434,8 @@
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
         const warningMessage = document.getElementById('warningMessage');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const headerNav = document.getElementById('headerNav');
         
         // 多语言文本
         const translations = {
@@ -1320,7 +1478,8 @@
                 'location-denied': '位置訪問已被拒絕',
                 'location-unavailable': '位置服務不可用',
                 'location-timeout': '位置請求超時',
-                'reset-success': '設置已重置為默認值'
+                'reset-success': '設置已重置為默認值',
+                'current-page': '班級網站'
             },
             'zh-CN': {
                 'settings': '设置',
@@ -1361,7 +1520,8 @@
                 'location-denied': '位置访问已被拒绝',
                 'location-unavailable': '位置服务不可用',
                 'location-timeout': '位置请求超时',
-                'reset-success': '设置已重置为默认值'
+                'reset-success': '设置已重置为默认值',
+                'current-page': '班级网站'
             },
             'en': {
                 'settings': 'Settings',
@@ -1402,7 +1562,8 @@
                 'location-denied': 'Location access has been denied',
                 'location-unavailable': 'Location services are unavailable',
                 'location-timeout': 'Location request timed out',
-                'reset-success': 'Settings have been reset to default values'
+                'reset-success': 'Settings have been reset to default values',
+                'current-page': 'Class Website'
             },
             'ja': {
                 'settings': '設定',
@@ -1443,7 +1604,8 @@
                 'location-denied': '位置情報へのアクセスが拒否されました',
                 'location-unavailable': '位置情報サービスは利用できません',
                 'location-timeout': '位置情報のリクエストがタイムアウトしました',
-                'reset-success': '設定がデフォルト値にリセットされました'
+                'reset-success': '設定がデフォルト値にリセットされました',
+                'current-page': 'クラスウェブサイト'
             },
             'ko': {
                 'settings': '설정',
@@ -1484,7 +1646,8 @@
                 'location-denied': '위치 접근이 거부되었습니다',
                 'location-unavailable': '위치 서비스를 사용할 수 없습니다',
                 'location-timeout': '위치 요청이 시간 초과되었습니다',
-                'reset-success': '설정이 기본값으로 재설정되었습니다'
+                'reset-success': '설정이 기본값으로 재설정되었습니다',
+                'current-page': '클래스 웹사이트'
             }
         };
         
@@ -1562,6 +1725,89 @@
                 console.error('未處理的Promise拒絕:', e.reason);
                 showMessage(errorMessage, getCurrentTranslation('location-error'));
             });
+            
+            // 初始化圖片懶加載
+            initLazyLoading();
+            
+            // 初始化PWA功能
+            initPWA();
+        });
+        
+        // 初始化圖片懶加載
+        function initLazyLoading() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
+            } else {
+                // 不支持IntersectionObserver的瀏覽器
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                });
+            }
+        }
+        
+        // 初始化PWA功能
+        function initPWA() {
+            // 檢查是否支持Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    // 註冊Service Worker
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('SW registered: ', registration);
+                        })
+                        .catch(registrationError => {
+                            console.log('SW registration failed: ', registrationError);
+                        });
+                });
+            }
+            
+            // 監聽beforeinstallprompt事件，提供安裝提示
+            let deferredPrompt;
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // 防止Chrome 67及更早版本自動顯示提示
+                e.preventDefault();
+                // 保存事件以便稍後觸發
+                deferredPrompt = e;
+                // 可以在此處顯示自定義的安裝按鈕
+                console.log('PWA installation available');
+            });
+        }
+        
+        // 移動端菜單切換
+        mobileMenuButton.addEventListener('click', function() {
+            const isActive = headerNav.classList.toggle('active');
+            mobileMenuButton.setAttribute('aria-expanded', isActive.toString());
+            mobileMenuButton.setAttribute('aria-label', isActive ? '關閉選單' : '開啟選單');
+            
+            if (isActive) {
+                mobileMenuButton.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
+            } else {
+                mobileMenuButton.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+            }
+        });
+        
+        // 點擊外部關閉移動端菜單
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuButton.contains(event.target) && !headerNav.contains(event.target)) {
+                headerNav.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+            }
         });
         
         // 更新位置設定按鈕狀態
