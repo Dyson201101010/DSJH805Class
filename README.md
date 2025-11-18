@@ -71,7 +71,7 @@
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
             padding: 0 20px;
             transition: all 0.3s ease;
         }
@@ -79,19 +79,20 @@
         .header-content {
             display: flex;
             justify-content: space-between;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            height: 100%; /* 確保容器高度 */
+            height: 100%;
         }
         
         .header-logo {
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
             text-decoration: none;
             color: var(--text-color);
-            height: 100%; /* 確保容器高度 */
+            height: 100%;
+            z-index: 1001; /* 確保在導航之上 */
         }
         
         .header-logo-icon {
@@ -99,7 +100,7 @@
             color: var(--primary-color);
             margin-right: 10px;
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
         }
         
         .header-title {
@@ -107,14 +108,15 @@
             font-weight: 700;
             white-space: nowrap;
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
         }
         
         .header-nav {
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
+            align-items: center;
             gap: 15px;
-            height: 100%; /* 確保容器高度 */
+            height: 100%;
+            z-index: 1001; /* 確保在導航之上 */
         }
         
         .mobile-menu-button {
@@ -125,13 +127,164 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 5px;
-            height: 44px; /* 固定高度 */
-            width: 44px; /* 固定寬度 */
+            height: 44px;
+            width: 44px;
             display: flex;
-            align-items: center; /* 確保內容垂直置中 */
-            justify-content: center; /* 確保內容水平置中 */
+            align-items: center;
+            justify-content: center;
+            z-index: 1002; /* 最高層級 */
         }
         
+        /* 修復：確保按鈕可點擊 */
+        .settings-button, .language-button, .top-button {
+            position: relative;
+            z-index: 1001; /* 確保在可點擊層級 */
+            pointer-events: auto; /* 確保可以點擊 */
+        }
+        
+        /* 語言選擇器樣式修復 */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+            z-index: 1002; /* 更高層級確保下拉菜單可見 */
+        }
+        
+        .language-button {
+            padding: 10px 20px;
+            background: var(--card-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            line-height: 1.2;
+            min-height: 44px;
+            position: relative;
+            z-index: 1003;
+        }
+        
+        .language-button:hover, .language-button:focus {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--card-color);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            overflow: hidden;
+            z-index: 1004; /* 最高層級確保下拉菜單在最上層 */
+            display: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .language-dropdown.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .language-option {
+            padding: 12px 20px;
+            background: var(--card-color);
+            color: var(--text-color);
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 1rem;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            min-height: 44px;
+        }
+        
+        .language-option:hover, .language-option:focus {
+            background: rgba(0, 122, 255, 0.1);
+            outline: none;
+        }
+        
+        /* 設定按鈕樣式修復 */
+        .settings-button {
+            background: var(--card-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            line-height: 1.2;
+            min-height: 44px;
+            position: relative;
+            z-index: 1003;
+        }
+        
+        .settings-button:hover, .settings-button:focus {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
+        }
+        
+        /* 其他按鈕樣式 */
+        .top-button {
+            padding: 10px 20px;
+            background: var(--card-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            line-height: 1.2;
+            min-height: 44px;
+            position: relative;
+            z-index: 1001;
+        }
+        
+        .top-button:hover, .top-button:focus {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            outline: none;
+        }
+
         /* 麵包屑導航 */
         .breadcrumb {
             margin: 20px 0;
@@ -401,57 +554,6 @@
             line-height: 1.5;
         }
         
-        /* 顶部按钮样式 - Apple 风格 */
-        .top-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .top-button {
-            padding: 10px 20px;
-            background: var(--card-color);
-            color: var(--primary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px var(--shadow-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            white-space: nowrap;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            line-height: 1.2;
-            min-height: 44px;
-        }
-        
-        .top-button:hover, .top-button:focus {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px var(--shadow-color);
-            outline: none;
-        }
-        
-        .top-button:active {
-            transform: translateY(0);
-        }
-        
-        .settings-button {
-            background: var(--card-color);
-            color: var(--primary-color);
-        }
-        
-        .settings-button:hover, .settings-button:focus {
-            background: var(--primary-color);
-            color: white;
-        }
-        
         /* 设置面板样式 */
         .settings-panel {
             position: fixed;
@@ -464,7 +566,7 @@
             box-shadow: 8px 0 30px var(--shadow-color);
             padding: 30px;
             overflow-y: auto;
-            z-index: 1000;
+            z-index: 2000; /* 高於其他元素 */
             transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
@@ -572,7 +674,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            z-index: 1999; /* 在設定面板之下 */
             display: none;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
@@ -594,82 +696,6 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             line-height: 1.5;
-        }
-        
-        /* 语言选择器样式 */
-        .language-selector {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .language-button {
-            padding: 10px 20px;
-            background: var(--card-color);
-            color: var(--primary-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px var(--shadow-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            line-height: 1.2;
-            min-height: 44px;
-        }
-        
-        .language-button:hover, .language-button:focus {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px var(--shadow-color);
-            outline: none;
-        }
-        
-        .language-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: var(--card-color);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            overflow: hidden;
-            z-index: 100;
-            display: none;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        .language-dropdown.active {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-        
-        .language-option {
-            padding: 12px 20px;
-            background: var(--card-color);
-            color: var(--text-color);
-            border: none;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            font-size: 1rem;
-            line-height: 1.3;
-            display: flex;
-            align-items: center;
-            min-height: 44px;
-        }
-        
-        .language-option:hover, .language-option:focus {
-            background: rgba(0, 122, 255, 0.1);
-            outline: none;
         }
         
         /* 课表链接样式 */
@@ -1249,7 +1275,7 @@
             </a>
             
             <nav class="header-nav" id="headerNav">
-                <button class="top-button settings-button" id="settingsButton" aria-label="網站設定" aria-expanded="false" aria-controls="settingsPanel">
+                <button class="settings-button" id="settingsButton" aria-label="網站設定" aria-expanded="false" aria-controls="settingsPanel">
                     <i class="fas fa-cog" aria-hidden="true"></i> <span data-lang="settings">設定</span>
                 </button>
                 
@@ -1676,7 +1702,6 @@
             'AU': 'en',    // 澳大利亞 - 英文
             'JP': 'ja',    // 日本 - 日文
             'KR': 'ko',    // 韓國 - 韓文
-            // 可以根據需要添加更多國家映射
         };
         
         // 顯示消息函數
@@ -1738,68 +1763,7 @@
                 console.error('未處理的Promise拒絕:', e.reason);
                 showMessage(errorMessage, getCurrentTranslation('location-error'));
             });
-            
-            // 初始化圖片懶加載
-            initLazyLoading();
-            
-            // 初始化PWA功能
-            initPWA();
         });
-        
-        // 初始化圖片懶加載
-        function initLazyLoading() {
-            const lazyImages = document.querySelectorAll('.lazy-image');
-            
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.add('loaded');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(img => imageObserver.observe(img));
-            } else {
-                // 不支持IntersectionObserver的瀏覽器
-                lazyImages.forEach(img => {
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                });
-            }
-        }
-        
-        // 初始化PWA功能
-        function initPWA() {
-            // 檢查是否支持Service Worker
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    // 註冊Service Worker
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(registration => {
-                            console.log('SW registered: ', registration);
-                        })
-                        .catch(registrationError => {
-                            console.log('SW registration failed: ', registrationError);
-                        });
-                });
-            }
-            
-            // 監聽beforeinstallprompt事件，提供安裝提示
-            let deferredPrompt;
-            
-            window.addEventListener('beforeinstallprompt', (e) => {
-                // 防止Chrome 67及更早版本自動顯示提示
-                e.preventDefault();
-                // 保存事件以便稍後觸發
-                deferredPrompt = e;
-                // 可以在此處顯示自定義的安裝按鈕
-                console.log('PWA installation available');
-            });
-        }
         
         // 移動端菜單切換
         mobileMenuButton.addEventListener('click', function() {
@@ -1836,29 +1800,36 @@
             }
         }
         
-        // 啟用位置 - 修復：不會影響主題
+        // 啟用位置 - 修復：重新詢問位置
         enableLocation.addEventListener('click', function() {
+            // 清除之前的詢問記錄
+            localStorage.removeItem('locationAsked');
             localStorage.setItem('locationEnabled', 'true');
             updateLocationButtons();
             
-            // 如果還沒有詢問過位置，顯示詢問彈窗
-            const locationAsked = localStorage.getItem('locationAsked');
-            if (!locationAsked) {
-                locationModal.style.display = 'flex';
-                locationModal.setAttribute('aria-hidden', 'false');
-            }
-            
-            // 注意：這裡不會重置主題，保持當前主題不變
+            // 直接顯示位置詢問彈窗
+            locationModal.style.display = 'flex';
+            locationModal.setAttribute('aria-hidden', 'false');
         });
         
-        // 停用位置 - 修復：不會影響主題
+        // 停用位置 - 修復：直接停用瀏覽器權限
         disableLocation.addEventListener('click', function() {
             localStorage.setItem('locationEnabled', 'false');
+            localStorage.setItem('locationAsked', 'true'); // 標記為已詢問，避免再次彈出
             updateLocationButtons();
-            // 注意：這裡不會重置主題，保持當前主題不變
+            
+            // 嘗試撤銷地理位置權限（如果瀏覽器支持）
+            if (navigator.permissions && navigator.permissions.query) {
+                navigator.permissions.query({name: 'geolocation'}).then(function(result) {
+                    if (result.state === 'granted') {
+                        // 無法直接撤銷權限，但可以提示用戶手動撤銷
+                        showMessage(warningMessage, getCurrentTranslation('location-denied'));
+                    }
+                });
+            }
         });
         
-        // 接受位置訪問 - 修復：不會影響主題
+        // 接受位置訪問
         acceptLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
@@ -1918,11 +1889,9 @@
                 showMessage(warningMessage, getCurrentTranslation('location-unavailable'));
                 setDefaultLanguage();
             }
-            
-            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
-        // 拒絕位置訪問 - 修復：不會影響主題
+        // 拒絕位置訪問
         denyLocation.addEventListener('click', function() {
             // 隱藏彈窗
             locationModal.style.display = 'none';
@@ -1937,8 +1906,6 @@
             
             // 使用默認語言
             setDefaultLanguage();
-            
-            // 注意：這裡不會重置主題，保持當前主題不變
         });
         
         // 根據經緯度獲取國家代碼
@@ -1977,8 +1944,9 @@
             loadLanguage();
         }
         
-        // 打開設置面板
-        settingsButton.addEventListener('click', function() {
+        // 修復：設定按鈕點擊事件
+        settingsButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // 防止事件冒泡
             settingsPanel.classList.add('active');
             overlay.classList.add('active');
             settingsButton.setAttribute('aria-expanded', 'true');
@@ -2016,7 +1984,33 @@
             }
         });
         
-        // 主題選擇
+        // 修復：語言選擇器點擊事件
+        languageButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // 防止事件冒泡
+            const isActive = languageDropdown.classList.toggle('active');
+            languageButton.setAttribute('aria-expanded', isActive.toString());
+        });
+        
+        // 選擇語言
+        languageOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+                languageDropdown.classList.remove('active');
+                languageButton.setAttribute('aria-expanded', 'false');
+                languageButton.focus();
+            });
+        });
+        
+        // 點擊外部關閉語言選擇器
+        document.addEventListener('click', function(event) {
+            if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
+                languageDropdown.classList.remove('active');
+                languageButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // 主題選擇 - 修復：深色模式固定不變
         themeOptions.forEach(option => {
             option.addEventListener('click', function() {
                 // 移除所有active類
@@ -2035,7 +2029,7 @@
             });
         });
         
-        // 應用主題
+        // 應用主題 - 修復：深色模式固定不變
         function applyTheme(theme) {
             if (theme === 'auto') {
                 // 跟隨系統主題
@@ -2052,11 +2046,17 @@
                     });
                 }
             } else {
+                // 直接設置主題，不隨系統變化
                 document.documentElement.setAttribute('data-theme', theme);
+                
+                // 移除之前的系統主題監聽器
+                if (window.matchMedia) {
+                    window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', () => {});
+                }
             }
         }
         
-        // 重設設置 - 修復：重置時保持當前主題
+        // 重設設置 - 修復：重置時保持深色模式不變
         resetSettingsButton.addEventListener('click', function() {
             // 保存當前主題
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -2106,43 +2106,6 @@
             applyTheme(savedTheme);
         }
         
-        // 語言選擇器
-        languageButton.addEventListener('click', function() {
-            const isActive = languageDropdown.classList.toggle('active');
-            languageButton.setAttribute('aria-expanded', isActive.toString());
-        });
-        
-        // 選擇語言
-        languageOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                changeLanguage(lang);
-                languageDropdown.classList.remove('active');
-                languageButton.setAttribute('aria-expanded', 'false');
-                languageButton.focus();
-            });
-        });
-        
-        // 點擊外部關閉語言選擇器
-        document.addEventListener('click', function(event) {
-            if (!languageButton.contains(event.target) && !languageDropdown.contains(event.target)) {
-                languageDropdown.classList.remove('active');
-                languageButton.setAttribute('aria-expanded', 'false');
-            }
-        });
-        
-        // 鍵盤導航語言選擇器
-        languageButton.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const isActive = languageDropdown.classList.toggle('active');
-                languageButton.setAttribute('aria-expanded', isActive.toString());
-            } else if (e.key === 'Escape' && languageDropdown.classList.contains('active')) {
-                languageDropdown.classList.remove('active');
-                languageButton.setAttribute('aria-expanded', 'false');
-            }
-        });
-        
         // 更改語言
         function changeLanguage(lang) {
             // 更新當前語言顯示
@@ -2172,19 +2135,6 @@
             const savedLanguage = localStorage.getItem('language') || 'zh-TW';
             changeLanguage(savedLanguage);
         }
-        
-        // 改進觸控體驗
-        document.addEventListener('touchstart', function() {}, {passive: true});
-        
-        // 防止iOS彈跳
-        document.addEventListener('touchmove', function(e) {
-            if (e.target.classList.contains('settings-panel') || 
-                e.target.closest('.settings-panel') || 
-                e.target.classList.contains('location-modal-content') || 
-                e.target.closest('.location-modal-content')) {
-                e.preventDefault();
-            }
-        }, {passive: false});
     </script>
 </body>
 </html>
